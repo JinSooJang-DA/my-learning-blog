@@ -2,16 +2,195 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>내 프론트엔드 학습 실습장</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIAN | 매일매일 프론트엔드 기록</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Noto Sans KR', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  </style>
 </head>
-<body>
-  <h1>🚀 매일매일 프론트엔드 기록</h1>
-  <p>배운 내용을 하나씩 올려두는 연습 공간입니다.</p>
+<body class="bg-[#08080a] text-white min-h-screen">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08080a]/80 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 grid place-items-center font-black">C</div>
+        <div>
+          <div class="font-black text-lg leading-none">CIAN CITYCAT</div>
+          <div class="mono text-[10px] text-white/50 tracking-widest">DAILY FRONTEND LAB</div>
+        </div>
+      </div>
+      <div class="mono text-xs text-white/40">D:/ Daily Blog / index.html</div>
+    </div>
+  </header>
 
-  <ul>
-    <li><a href="./flexbox-test.html">01. Flexbox 레이아웃 연습</a></li>
-    <li><a href="./css-grid-practice.html">02. CSS Grid 반응형 연습</a></li>
-    <li><a href="./sakura-ramen/index.html">03. 라멘집 웹사이트 레이아웃</a></li>
-  </ul>
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <!-- Hero -->
+    <section class="mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs mono text-cyan-300 mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        LIVE ON GITHUB PAGES
+      </div>
+      <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] mb-4">
+        매일매일<br>
+        <span class="bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300 bg-clip-text text-transparent">프론트엔드 기록</span>
+      </h1>
+      <p class="text-white/60 text-lg max-w-2xl">배운 내용을 하나씩 올려두는 연습 공간입니다. 아래 CSS 학교는 6개 인터랙티브 실험실로 구성되어 있고, 전부 한국어/English/Deutsch 3개 언어로 번역되어 있어요.</p>
+    </section>
+
+    <!-- Existing Labs (keep your old links) -->
+    <section class="mb-16">
+      <h2 class="mono text-xs tracking-widest text-white/40 mb-4">ARCHIVE / 기존 실습</h2>
+      <div class="grid md:grid-cols-3 gap-3">
+        <a href="./flexbox-test.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+          <div class="mono text-[11px] text-white/30 mb-1">01</div>
+          <div class="font-bold group-hover:text-cyan-300 transition">Flexbox 레이아웃 연습</div>
+          <div class="text-xs text-white/40 mt-1">./flexbox-test.html</div>
+        </a>
+        <a href="./css-grid-practice.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+          <div class="mono text-[11px] text-white/30 mb-1">02</div>
+          <div class="font-bold group-hover:text-fuchsia-300 transition">CSS Grid 반응형 연습</div>
+          <div class="text-xs text-white/40 mt-1">./css-grid-practice.html</div>
+        </a>
+        <a href="./sakura-ramen/index.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+          <div class="mono text-[11px] text-white/30 mb-1">03</div>
+          <div class="font-bold group-hover:text-amber-300 transition">라멘집 웹사이트 레이아웃</div>
+          <div class="text-xs text-white/40 mt-1">./sakura-ramen/</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- NEW: CSS School -->
+    <section>
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="text-3xl font-black">🎓 CSS 학교 - 6개 실험실</h2>
+          <p class="mono text-xs text-white/40 mt-1">learning-room / CSS / — 클릭하면 바로 실험실로 이동</p>
+        </div>
+        <div class="hidden md:flex items-center gap-2 mono text-[11px]">
+          <span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">6 LABS</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/20">3 LANGS</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-white/50 border border-white/10">INTERACTIVE</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 01 -->
+        <a href="./learning-room/CSS/Css-Clamp.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-cyan-400 text-black grid place-items-center font-black mono">01</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-cyan-400 text-black font-bold">BASIC</div>
+          </div>
+          <div class="mono text-[11px] text-cyan-300/70 mb-1">clamp(MIN, VAL, MAX)</div>
+          <div class="font-black text-lg leading-tight">clamp() 완전 정복</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">min, preferred, max 한 줄로 반응형 끝내기. 그래프 + 라이브 플레이그라운드</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-cyan-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+
+        <!-- 02 -->
+        <a href="./learning-room/CSS/Css-Calc-Clamp.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-400 text-black grid place-items-center font-black mono">02</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-blue-400 text-black font-bold">BASIC</div>
+          </div>
+          <div class="mono text-[11px] text-blue-300/70 mb-1">clamp( calc() )</div>
+          <div class="font-black text-lg leading-tight">calc() + clamp() 꿀조합</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">rem + vw 섞는 완벽한 유동 공식. 6개 레시피 + 자동 공식 계산기</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-blue-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+
+        <!-- 03 -->
+        <a href="./learning-room/CSS/Css-Flex-Grid.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-fuchsia-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-fuchsia-400 text-black grid place-items-center font-black mono">03</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-fuchsia-400 text-black font-bold">LAYOUT</div>
+          </div>
+          <div class="mono text-[11px] text-fuchsia-300/70 mb-1">display: flex / grid</div>
+          <div class="font-black text-lg leading-tight">Flex & Grid 실험실</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">줄 세우기는 Flex, 판 짜기는 Grid. 드래그 리사이즈 실험</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-fuchsia-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+
+        <!-- 04 -->
+        <a href="./learning-room/CSS/Css-Position.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">04</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold">LAYOUT</div>
+          </div>
+          <div class="mono text-[11px] text-amber-300/70 mb-1">static / relative / absolute</div>
+          <div class="font-black text-lg leading-tight">Position 실험실</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">fixed, sticky까지 위치의 모든 것 + z-index 트랩</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-amber-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+
+        <!-- 05 -->
+        <a href="./learning-room/CSS/Css-Transform-Animation.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-violet-400 text-black grid place-items-center font-black mono">05</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-violet-400 text-black font-bold">MOTION</div>
+          </div>
+          <div class="mono text-[11px] text-violet-300/70 mb-1">transform / @keyframes</div>
+          <div class="font-black text-lg leading-tight">Transform & Animation</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">cubic-bezier 에디터 + 타임라인 + 60fps 비교</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-violet-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+
+        <!-- 06 -->
+        <a href="./learning-room/CSS/Css-Container-Queries.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 transition duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-400 text-black grid place-items-center font-black mono">06</div>
+            <div class="mono text-[10px] px-2 py-1 rounded-full bg-emerald-400 text-black font-bold">FUTURE</div>
+          </div>
+          <div class="mono text-[11px] text-emerald-300/70 mb-1">@container / cqw</div>
+          <div class="font-black text-lg leading-tight">Container Queries</div>
+          <div class="text-sm text-white/50 mt-1 leading-snug">뷰포트가 아닌 부모를 보는 미래형 반응형</div>
+          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
+            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
+            <span class="ml-auto group-hover:text-emerald-300 transition">실험실 열기 →</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick path info -->
+      <div class="mt-8 p-4 rounded-2xl bg-white/[0.03] border border-white/10 mono text-xs text-white/40">
+        <div class="text-white/60 font-bold mb-2">📁 GitHub Pages 구조 (지금 파일 위치 기준)</div>
+        Daily Blog/<br>
+        ├─ index.html <span class="text-emerald-300">← 지금 이 파일 (메인 대시보드)</span><br>
+        └─ learning-room/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└─ CSS/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Clamp.html<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Calc-Clamp.html<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Flex-Grid.html<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Position.html<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Transform-Animation.html<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Css-Container-Queries.html
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 mt-16 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between mono text-xs text-white/30">
+      <span>Made for CIAN | Learn CSS by touching</span>
+      <span>cian_citycat · 2026</span>
+    </div>
+  </footer>
 </body>
 </html>
