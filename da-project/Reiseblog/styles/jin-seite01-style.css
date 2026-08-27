@@ -6,6 +6,8 @@ body {
     line-height: 1.4;
     margin: 0;
     width: 100%;
+    height: 100%;
+    min-height: 100vh;
 }
 
 /* Apply specific fonts to headings */
@@ -19,11 +21,13 @@ h4,
 
 
 .main-wrapper {
+    flex: 1;
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     background-color: #FFFFFF;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+    min-height: calc(100vh - (112px + 129px));
 }
 
 h2 {
@@ -742,6 +746,7 @@ li {
     color: white;
     text-decoration: none;
     font-size: var(--font-base);
+    min-width: 80px;
 }
 
 .footer-nav p {
