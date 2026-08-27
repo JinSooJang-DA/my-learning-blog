@@ -1,0 +1,717 @@
+/* ==========================================
+   1. GLOBAL RESET & BASE (기본 초기화 및 폰트 설정)
+   ========================================== */
+
+/* 전체 선택자(*): 모든 태그의 기본 여백을 제거하여 브라우저별 기본 여백 차이 방지 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 앵커 링크(#menu 등) 클릭 시 부드럽게 스크롤되도록 설정 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 외부 웹폰트 로드: Raleway (Regular 400) */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/raleway-v37-latin-regular.woff2') format('woff2');
+}
+
+/* 외부 웹폰트 로드: Raleway (Bold 700) */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/raleway-v37-latin-700.woff2') format('woff2');
+}
+
+/* 외부 웹폰트 로드: Economica (Bold 700) */
+@font-face {
+    font-family: 'Economica';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/economica-v17-latin-700.woff2') format('woff2');
+}
+
+/* 전체 문서 기본 스타일 정의 */
+body {
+    width: 100%;
+    overflow-x: hidden; /* 모바일 등에서 오른쪽으로 의도치 않은 가로 스크롤 방지 */
+    font-family: 'Raleway', sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* ==========================================
+   2. HERO SECTION (첫 번째 메인 비주얼 영역)
+   ========================================== */
+
+.hero-section {
+    width: 100%;
+    height: 100vh; /* 뷰포트 높이 100% (화면 전체를 채움) */
+    background-image: url('./assets/img/hero-bg.jpg');
+    background-size: cover; /* 배경 이미지가 비율을 유지하며 영역을 꽉 채움 */
+    background-position: center bottom; /* 이미지를 중앙 하단 기준으로 정렬 */
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column; /* 자식 요소(헤더, 타이틀)를 세로로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    color: #ffffff;
+}
+
+/* Upper Header (상단 내비게이션 바) */
+.header {
+    width: 100%;
+    max-width: 1120px; /* 시안 기준 최대 폭 고정 */
+    height: 112px;
+    padding: 0 40px; /* 좌우 여백 (반응형 대비) */
+    box-sizing: border-box; /* 패딩이 추가되어도 전체 너비(1120px)를 유지함 */
+    display: flex;
+    justify-content: space-between; /* 로고는 왼쪽, 내비 박스는 오른쪽 끝에 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.logo-img {
+    width: 64px;
+    height: 64px;
+}
+
+/* 오른쪽 내비게이션 + 전화 버튼 묶음 */
+.nav-box {
+    display: flex;
+    align-items: center;
+    gap: 32px; /* 메뉴 항목과 전화 버튼 사이 간격 */
+}
+
+/* 메뉴 링크 묶음 */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px; /* 메뉴 항목들 간의 간격 */
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 24px;
+    font-weight: 400;
+    border-bottom: 2px solid transparent; /* 호버 시 투명 보더가 나타나면서 흔들림 방지 */
+    padding-bottom: 4px;
+    transition: border-color 0.2s ease; /* 호버 시 0.2초 동안 부드럽게 밑줄 표시 */
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* 전화번호 버튼 */
+.phone-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #9f0b0b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.phone-button:hover {
+    background-color: #800000;
+}
+
+.phone-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* 메인 타이틀 영역 */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px; /* 상단 헤더와의 거리 유지 */
+}
+
+.hero-title {
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1; /* 글자 자체 상하 공백 제거 */
+}
+
+.hero-subtitle {
+    font-size: 26px;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+/* ==========================================
+   3. SECTION: HOW TO ORDER (주문 방법 섹션)
+   ========================================== */
+
+#how-to-order {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#how-to-order h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+/* 3단계 카드를 감싸는 컨테이너 */
+.steps-container {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between; /* 3개 카드를 동일 간격으로 양끝 정렬 */
+    align-items: flex-start;
+}
+
+.step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+}
+
+.step-card img {
+    width: 128px;
+    height: 128px;
+    object-fit: contain; /* 이미지 비율을 깨뜨리지 않고 정해진 크기 내에 원본 유지 */
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-family: 'Economica', 'Raleway', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.1;
+}
+
+/* ==========================================
+   4. SECTION: OUR MENU (메뉴 소개 섹션)
+   ========================================== */
+
+#menu {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-image: url('./assets/img/menu-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.menu-container {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 기본 메뉴 카드 (1번, 3번 메뉴) */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 56px;
+    width: fit-content;
+}
+
+.menu-item:last-child {
+    margin-bottom: 0; /* 마지막 메뉴는 아래 마진 제거 */
+}
+
+/* 2번 메뉴: 지그재그 배치를 위한 반대 정렬 및 들여쓰기 설정 */
+.menu-item.reverse {
+    flex-direction: row-reverse; /* 이미지와 텍스트의 순서를 반대로 배치 */
+    margin-left: 176px; /* 시안 디자인에 맞춰 오른쪽으로 들여쓰기 축 조절 */
+}
+
+.menu-item img {
+    width: 352px;
+    height: 352px;
+    object-fit: cover;
+    border-radius: 50%; /* 정원형 이미지 스타일 */
+    flex-shrink: 0; /* 공간이 부족해도 이미지가 축소되지 않도록 고정 */
+}
+
+.menu-info {
+    width: 380px; /* 고정 너비를 두어 가격 표와의 정렬 균형을 잡음 */
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-info h3 {
+    font-family: 'Economica', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+    line-height: 1;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 가격 테이블 스타일 */
+.price-table {
+    width: 100%;
+    border-collapse: collapse; /* 셀 경계선 겹침 제거 */
+}
+
+.price-table td {
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: rgba(103, 94, 84, 1);
+    padding: 4px 0;
+    line-height: 1.2;
+}
+
+.price-num {
+    text-align: right; /* 가격 숫자는 오른쪽 정렬 */
+}
+
+/* ==========================================
+   5. SECTION: FIND US AT (오시는 길 섹션)
+   ========================================== */
+
+#locations {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 0; /* 지도가 푸터와 바로 밀착되도록 하단 패딩을 0으로 설정 */
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#locations h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 64px;
+}
+
+.address img {
+    width: 20px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.map-container {
+    width: 100%;
+}
+
+.map-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block; /* img 하단의 기본 미세 공백을 제거하기 위해 block 지정 */
+}
+
+/* ==========================================
+   6. FOOTER (하단 푸터)
+   ========================================== */
+
+footer {
+    width: 100%;
+    height: 144px;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.foot_name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+}
+
+.shop-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.social-links img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+}
+
+.social-links a:hover img {
+    opacity: 0.8;
+}
+
+/* ==========================================
+   MEDIA QUERIES (반응형 구간 설정)
+   ========================================== */
+
+/* ------------------------------------------
+   [브레이크포인트 1: Max-width 1020px]
+   태블릿 환경: 메뉴 카드의 들여쓰기를 해제하고 중앙 정렬로 전환
+   ------------------------------------------ */
+@media screen and (max-width: 1020px) {
+    .menu-container {
+        align-items: center; /* 메뉴 전체를 중앙으로 배치 */
+    }
+
+    .menu-item {
+        width: 100%;
+        max-width: 688px;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    /* 2번 메뉴 들여쓰기(margin-left) 해제 및 중앙 배치 */
+    .menu-item.reverse {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .menu-item img {
+        width: 333px;
+        height: 333px;
+    }
+
+    .menu-info {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* ------------------------------------------
+   [브레이크포인트 2: Max-width 767px]
+   모바일 가로/작은 태블릿: 폰트 크기 축소, 내비게이션 숨김, 세로 배치 전환
+   ------------------------------------------ */
+@media screen and (max-width: 767px) {
+    .hero-content {
+        margin-top: 110px;
+    }
+
+    .hero-title {
+        font-size: 72px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    /* 섹션 제목 폰트 통합 축소 */
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        font-size: 64px;
+    }
+
+    .step-card h3,
+    .menu-info h3 {
+        font-size: 32px;
+    }
+
+    .price-table td {
+        font-size: 24px;
+    }
+
+    /* 여백 축소 */
+    #how-to-order,
+    #menu {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    #locations {
+        padding-top: 80px;
+        padding-bottom: 0; /* 지도가 푸터에 밀착 유지 */
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        margin-bottom: 40px;
+    }
+
+    /* 패딩 반응형 유연화 */
+    .header,
+    .steps-container,
+    .menu-container,
+    .footer-content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .header {
+        height: 80px;
+    }
+
+    footer {
+        height: 96px;
+    }
+
+    #locations h2 {
+        margin-bottom: 8px;
+    }
+
+    .address {
+        margin-bottom: 32px;
+    }
+
+    .address,
+    .phone-button {
+        font-size: 20px;
+    }
+
+    /* 모바일 화면에서 상단 GNB 내비게이션 링크 숨김 */
+    nav {
+        display: none;
+    }
+
+    /* HOW TO ORDER 카드를 가로에서 세로(column) 정렬로 변경 */
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+    }
+
+    .steps-container img {
+        width: 112px;
+        height: 112px;
+        object-fit: contain;
+    }
+
+    .menu-item img {
+        width: 244px;
+        height: 244px;
+    }
+
+    /* 푸터 텍스트 숨기고 로고만 표시 */
+    .shop-name {
+        display: none;
+    }
+
+    .footer-logo {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+    }
+}
+
+/* ------------------------------------------
+   [브레이크포인트 3: Max-width 650px]
+   모바일 과도기 구간: 라멘 메뉴 카드를 가로에서 세로 정렬로 전환
+   ------------------------------------------ */
+@media screen and (max-width: 650px) {
+    .hero-content {
+        margin-top: 120px !important;
+    }
+
+    .hero-title {
+        font-size: 56px;
+        white-space: nowrap; /* 제목 줄바꿈 방지 */
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    /* 라멘 카드 요소(이미지+텍스트)를 세로로 정렬 */
+    .menu-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    /* 2번 메뉴의 reverse 방향도 일반 세로 정렬로 통일 */
+    .menu-item.reverse {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .menu-info {
+        width: 100%;
+        max-width: 320px;
+        align-items: center;
+    }
+
+    .menu-info h3 {
+        text-align: center;
+    }
+}
+
+/* ------------------------------------------
+   [브레이크포인트 4: Max-width 480px]
+   모바일 최적화 (스마트폰 시안 완벽 일치)
+   ------------------------------------------ */
+@media screen and (max-width: 480px) {
+    /* 모바일 시안 기준: 메인 타이틀을 라멘 그릇 바로 위(가운데 아래) 위치로 내리기 위한 마진 지정 */
+    .hero-content {
+        margin-top: 165px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        font-size: 36px;
+    }
+
+    .step-card h3,
+    .menu-info h3 {
+        font-size: 24px;
+    }
+
+    .price-table td {
+        font-size: 20px;
+    }
+
+    .phone-button {
+        font-size: 16px;
+    }
+
+    /* 최상하단 모바일 여백 밀착 조정 */
+    #how-to-order,
+    #menu {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    #locations {
+        padding-top: 60px;
+        padding-bottom: 0px; /* 지도가 푸터와 완전 밀착되도록 보장 */
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        margin-bottom: 32px;
+    }
+
+    .header,
+    .steps-container,
+    .menu-container,
+    .footer-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header {
+        height: 64px;
+    }
+
+    footer {
+        height: 80px;
+    }
+
+    /* FIND US AT 타이틀과 주소 텍스트의 간격을 바짝 붙임 */
+    #locations h2 {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    .address {
+        margin-top: 4px;
+        margin-bottom: 24px;
+        font-size: 16px;
+    }
+
+    .logo-img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+    }
+}

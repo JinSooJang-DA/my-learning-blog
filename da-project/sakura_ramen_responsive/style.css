@@ -1,0 +1,704 @@
+/* ==========================================
+   1. GLOBAL RESET & BASE
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Raleway - Regular (400) */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/raleway-v37-latin-regular.woff2') format('woff2');
+}
+
+/* Raleway - Bold (700) */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/raleway-v37-latin-700.woff2') format('woff2');
+}
+
+/* Economica - Bold (700) */
+@font-face {
+    font-family: 'Economica';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/economica-v17-latin-700.woff2') format('woff2');
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Raleway', sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* ==========================================
+   2. HERO SECTION
+   ========================================== */
+
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background-image: url('./assets/img/hero-bg.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+}
+
+/* Upper Header */
+.header {
+    width: 100%;
+    max-width: 1120px;
+    height: 112px;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    width: 64px;
+    height: 64px;
+}
+
+.nav-box {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 400;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+    transition: border-color 0.2s ease;
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    border-bottom: 2px solid #ffffff;
+}
+
+.phone-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #9f0b0b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.phone-button:hover {
+    background-color: #800000;
+}
+
+.phone-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hero-title {
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hero-subtitle {
+    font-size: 26px;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+/* ==========================================
+   3. SECTION: HOW TO ORDER
+   ========================================== */
+
+#how-to-order {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#how-to-order h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.steps-container {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+}
+
+.step-card img {
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-family: 'Economica', 'Raleway', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.1;
+}
+
+/* ==========================================
+   4. SECTION: OUR MENU
+   ========================================== */
+
+#menu {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-image: url('./assets/img/menu-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.menu-container {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 56px;
+    width: fit-content;
+}
+
+.menu-item:last-child {
+    margin-bottom: 0;
+}
+
+.menu-item.reverse {
+    flex-direction: row-reverse;
+    margin-left: 176px;
+}
+
+.menu-item img {
+    width: 352px;
+    height: 352px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.menu-info {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-info h3 {
+    font-family: 'Economica', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table td {
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: rgba(103, 94, 84, 1);
+    padding: 4px 0;
+    line-height: 1.2;
+}
+
+.price-num {
+    text-align: right;
+}
+
+/* ==========================================
+   5. SECTION: FIND US AT (LOCATIONS)
+   ========================================== */
+
+#locations {
+    width: 100%;
+    padding-top: 120px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#locations h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #6E1313;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 64px;
+}
+
+.address img {
+    width: 20px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.map-container {
+    width: 100%;
+}
+
+.map-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================
+   6. FOOTER
+   ========================================== */
+
+footer {
+    width: 100%;
+    height: 144px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1120px;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.foot_name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+}
+
+.shop-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.social-links img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+}
+
+.social-links a:hover img {
+    opacity: 0.8;
+}
+
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================== */
+
+/* Max-width: 1020px */
+@media screen and (max-width: 1020px) {
+    .menu-container {
+        align-items: center;
+    }
+
+    .menu-item {
+        width: 100%;
+        max-width: 688px;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .menu-item.reverse {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .menu-item img {
+        width: 333px;
+        height: 333px;
+    }
+
+    .menu-info {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    nav {
+        display: none;
+    }
+}
+
+/* Max-width: 767px */
+@media screen and (max-width: 767px) {
+    .hero-content {
+        margin-top: 110px;
+    }
+
+    .hero-title {
+        font-size: 72px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        font-size: 50px;
+    }
+
+    .step-card h3,
+    .menu-info h3 {
+        font-size: 32px;
+    }
+
+    .price-table td {
+        font-size: 20px;
+    }
+
+    #how-to-order,
+    #menu,
+    #locations {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        margin-bottom: 40px;
+    }
+
+
+    .steps-container,
+    .menu-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .hero-section,
+    footer {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .header {
+        height: 80px;
+    }
+
+    footer {
+        height: 96px;
+    }
+
+    #locations {
+        padding-bottom: 0;
+    }
+
+    #locations h2 {
+        margin-bottom: 8px;
+    }
+
+    .address {
+        margin-bottom: 32px;
+    }
+
+    .address,
+    .phone-button {
+        font-size: 20px;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+    }
+
+    .steps-container img {
+        width: 112px;
+        height: 112px;
+        object-fit: contain;
+    }
+
+    .menu-item {
+        margin-bottom: 16px;
+    }
+
+    .menu-item img {
+        width: 244px;
+        height: 244px;
+    }
+
+    .shop-name {
+        display: none;
+    }
+
+    .footer-logo {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+    }
+}
+
+/* Max-width: 650px */
+@media screen and (max-width: 650px) {
+    .hero-content {
+        margin-top: 120px !important;
+    }
+
+    .hero-title {
+        font-size: 56px;
+        white-space: nowrap;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    .menu-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .menu-item.reverse {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .menu-info {
+        width: 100%;
+        max-width: 320px;
+        align-items: flex-start;
+    }
+
+    .menu-info h3 {
+        text-align: center;
+    }
+}
+
+/* Max-width: 480px */
+@media screen and (max-width: 480px) {
+    .hero-content {
+        margin-top: 165px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        font-size: 36px;
+    }
+
+    .step-card h3 {
+        font-size: 24px;
+    }
+
+
+    .menu-info h3 {
+        font-size: 32px;
+    }
+
+    .price-table td {
+        font-size: 20px;
+    }
+
+    .phone-button {
+        font-size: 16px;
+    }
+
+    #how-to-order,
+    #menu {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+
+    #locations {
+        padding-top: 60px;
+        padding-bottom: 0px;
+    }
+
+    #how-to-order h2,
+    #menu h2,
+    #locations h2 {
+        margin-bottom: 32px;
+    }
+
+    .steps-container,
+    .menu-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero-section,
+    footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header {
+        height: 64px;
+    }
+
+    footer {
+        height: 80px;
+    }
+
+    #locations h2 {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    .address {
+        margin-top: 4px;
+        margin-bottom: 24px;
+        font-size: 16px;
+    }
+
+    .logo-img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+    }
+}
