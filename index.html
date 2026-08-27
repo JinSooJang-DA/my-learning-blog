@@ -1,376 +1,226 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIAN | Daily Frontend Lab</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Noto Sans KR', sans-serif; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIAN | Daily Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .5)
+        }
+    </style>
 </head>
+
 <body class="bg-[#08080a] text-white min-h-screen">
-  <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08080a]/80 border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 grid place-items-center font-black">C</div>
-        <div>
-          <div class="font-black text-lg leading-none">CIAN CITYCAT</div>
-          <div class="mono text-[10px] text-white/50 tracking-widest">DAILY FRONTEND LAB</div>
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08080a]/80 border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 grid place-items-center font-black">
+                    C</div>
+                <div>
+                    <div class="font-black text-lg leading-none">CIAN CITYCAT</div>
+                    <div class="mono text-[10px] text-white/50 tracking-widest">DAILY BLOG</div>
+                </div>
+            </div>
+            <div class="flex gap-1 p-1 rounded-full bg-white/5 border border-white/10"><button onclick="setLang('ko')"
+                    id="btn-ko"
+                    class="px-3 py-1.5 rounded-full text-xs font-bold bg-white text-black">KO</button><button
+                    onclick="setLang('en')" id="btn-en"
+                    class="px-3 py-1.5 rounded-full text-xs font-bold text-white/50">EN</button><button
+                    onclick="setLang('de')" id="btn-de"
+                    class="px-3 py-1.5 rounded-full text-xs font-bold text-white/50">DE</button></div>
         </div>
-      </div>
-      <div class="flex items-center gap-3">
-        <div id="langSwitcher" class="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10">
-          <button onclick="setLang('ko')" id="btn-ko" class="px-3 py-1.5 rounded-full text-xs font-bold transition bg-white text-black">한국어</button>
-          <button onclick="setLang('en')" id="btn-en" class="px-3 py-1.5 rounded-full text-xs font-bold transition text-white/50 hover:text-white">English</button>
-          <button onclick="setLang('de')" id="btn-de" class="px-3 py-1.5 rounded-full text-xs font-bold transition text-white/50 hover:text-white">Deutsch</button>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <section class="mb-14">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs mono text-cyan-300 mb-4">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span data-t="live">LIVE ON
+                    GITHUB PAGES</span></div>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] mb-4"><span
+                    data-t="hero1">매일매일</span><br><span
+                    class="bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300 bg-clip-text text-transparent"
+                    data-t="hero2">프론트엔드 기록</span></h1>
+            <p class="text-white/60 max-w-2xl" data-t="heroDesc">Daily Blog 폴더의 모든 프로젝트를 연결하는 메인 대시보드입니다.</p>
+        </section>
 
-  <main class="max-w-6xl mx-auto px-6 py-12">
-    <!-- Hero -->
-    <section class="mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs mono text-cyan-300 mb-4">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span data-t="live">LIVE ON GITHUB PAGES</span>
-      </div>
-      <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] mb-4">
-        <span data-t="hero1">매일매일</span><br>
-        <span class="bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300 bg-clip-text text-transparent" data-t="hero2">프론트엔드 기록</span>
-      </h1>
-      <p class="text-white/60 text-lg max-w-2xl" data-t="heroDesc">배운 내용을 하나씩 올려두는 연습 공간입니다. 아래 CSS 학교는 9개 인터랙티브 실험실로 구성되어 있고, 전부 3개 언어로 번역되어 있어요.</p>
-    </section>
+        <section class="mb-14">
+            <h2 class="mono text-xs tracking-widest text-white/40 mb-4" data-t="archiveTitle">ARCHIVE / 메인 프로젝트</h2>
+            <div class="grid md:grid-cols-3 gap-3">
+                <a href="./d.a-project/MeinPC_Website/index.html"
+                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+                    <div class="mono text-[11px] text-white/30 mb-1">01</div>
+                    <div class="font-bold" data-t="p1">MeinPC 웹사이트</div>
+                    <div class="text-xs text-white/40 mt-1">./MeinPC_Website/</div>
+                </a>
+                <a href="./d.a-project/Reiseblog/index.html"
+                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+                    <div class="mono text-[11px] text-white/30 mb-1">02</div>
+                    <div class="font-bold" data-t="p2">Reiseblog</div>
+                    <div class="text-xs text-white/40 mt-1">./Reiseblog/</div>
+                </a>
+                <a href="./d.a-project/Sakura_Ramen_Responsive/index.html"
+                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
+                    <div class="mono text-[11px] text-white/30 mb-1">03</div>
+                    <div class="font-bold" data-t="p3">Sakura 라멘 반응형</div>
+                    <div class="text-xs text-white/40 mt-1">./Sakura_Ramen_Responsive/</div>
+                </a>
+            </div>
+        </section>
 
-    <!-- Archive -->
-    <section class="mb-16">
-      <h2 class="mono text-xs tracking-widest text-white/40 mb-4" data-t="archiveTitle">ARCHIVE / 주요 프로젝트</h2>
-      <div class="grid md:grid-cols-3 gap-3">
-        <!-- 01: MeinPC_Website -->
-        <a href="./MeinPC_Website/index.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-          <div class="mono text-[11px] text-white/30 mb-1">01</div>
-          <div class="font-bold group-hover:text-cyan-300 transition" data-t="old1">MeinPC 웹사이트 프로젝트</div>
-          <div class="text-xs text-white/40 mt-1">./MeinPC_Website/</div>
-        </a>
-        <!-- 02: sakura_ramen_responsive -->
-        <a href="./sakura_ramen_responsive/index.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-          <div class="mono text-[11px] text-white/30 mb-1">02</div>
-          <div class="font-bold group-hover:text-fuchsia-300 transition" data-t="old2">사쿠라 라멘 반응형 웹사이트</div>
-          <div class="text-xs text-white/40 mt-1">./sakura_ramen_responsive/</div>
-        </a>
-        <!-- 03: Blog project -->
-        <a href="./Blog-project/index.html" class="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-          <div class="mono text-[11px] text-white/30 mb-1">03</div>
-          <div class="font-bold group-hover:text-amber-300 transition" data-t="old3">블로그 프로젝트</div>
-          <div class="text-xs text-white/40 mt-1">./Blog-project/</div>
-        </a>
-      </div>
-    </section>
-
-    <!-- CSS School -->
-    <section>
-      <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-        <div>
-          <h2 class="text-3xl font-black" data-t="schoolTitle">🎓 CSS 학교 - 9개 실험실</h2>
-          <p class="mono text-xs text-white/40 mt-1" data-t="schoolPath">learning-room / CSS / — 클릭하면 바로 실험실로 이동</p>
-        </div>
-        <div class="flex items-center gap-2 mono text-[11px]">
-          <span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">9 LABS</span>
-          <span class="px-2 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/20">3 LANGS</span>
-          <span class="px-2 py-1 rounded bg-white/5 text-white/50 border border-white/10" data-t="interactive">INTERACTIVE</span>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- 01 -->
-        <a href="./learning-room/CSS/Css-Clamp.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-cyan-400 text-black grid place-items-center font-black mono">01</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-cyan-400 text-black font-bold" data-t="basic">BASIC</div>
-          </div>
-          <div class="mono text-[11px] text-cyan-300/70 mb-1">clamp(MIN, VAL, MAX)</div>
-          <div class="font-black text-lg leading-tight" data-t="lab1Title">clamp() 완전 정복</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab1Desc">min, preferred, max 한 줄로 반응형 끝내기. 그래프 + 라이브 플레이그라운드</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-cyan-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 02 -->
-        <a href="./learning-room/CSS/Css-Calc-Clamp.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-blue-400 text-black grid place-items-center font-black mono">02</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-blue-400 text-black font-bold" data-t="basic">BASIC</div>
-          </div>
-          <div class="mono text-[11px] text-blue-300/70 mb-1">clamp( calc() )</div>
-          <div class="font-black text-lg leading-tight" data-t="lab2Title">calc() + clamp() 꿀조합</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab2Desc">rem + vw 섞는 완벽한 유동 공식. 6개 레시피 + 자동 공식 계산기</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-blue-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 03 -->
-        <a href="./learning-room/CSS/Css-Flex-Grid.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-fuchsia-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-fuchsia-400 text-black grid place-items-center font-black mono">03</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-fuchsia-400 text-black font-bold" data-t="layout">LAYOUT</div>
-          </div>
-          <div class="mono text-[11px] text-fuchsia-300/70 mb-1">display: flex / grid</div>
-          <div class="font-black text-lg leading-tight" data-t="lab3Title">Flex & Grid 실험실</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab3Desc">줄 세우기는 Flex, 판 짜기는 Grid. 드래그 리사이즈 실험</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-fuchsia-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 04 -->
-        <a href="./learning-room/CSS/Css-Position.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">04</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold" data-t="layout">LAYOUT</div>
-          </div>
-          <div class="mono text-[11px] text-amber-300/70 mb-1">static / relative / absolute</div>
-          <div class="font-black text-lg leading-tight" data-t="lab4Title">Position 실험실</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab4Desc">fixed, sticky까지 위치의 모든 것 + z-index 트랩</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-amber-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 05 -->
-        <a href="./learning-room/CSS/Css-Transform-Animation.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-violet-400 text-black grid place-items-center font-black mono">05</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-violet-400 text-black font-bold" data-t="motion">MOTION</div>
-          </div>
-          <div class="mono text-[11px] text-violet-300/70 mb-1">transform / @keyframes</div>
-          <div class="font-black text-lg leading-tight" data-t="lab5Title">Transform & Animation</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab5Desc">cubic-bezier 에디터 + 타임라인 + 60fps 비교</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-violet-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 06 -->
-        <a href="./learning-room/CSS/Css-Container-Queries.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-emerald-400 text-black grid place-items-center font-black mono">06</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-emerald-400 text-black font-bold" data-t="future">FUTURE</div>
-          </div>
-          <div class="mono text-[11px] text-emerald-300/70 mb-1">@container / cqw</div>
-          <div class="font-black text-lg leading-tight" data-t="lab6Title">Container Queries</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab6Desc">뷰포트가 아닌 부모를 보는 미래형 반응형</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-emerald-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 07 -->
-        <a href="./learning-room/CSS/Css-Quiz-Multilingual-Final.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-lime-500/10 border border-amber-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">07</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold" data-t="quiz">QUIZ</div>
-          </div>
-          <div class="mono text-[11px] text-amber-300/70 mb-1">i18n / ko · en · de</div>
-          <div class="font-black text-lg leading-tight" data-t="lab7Title">Multilingual Quiz Lab</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab7Desc">3개 언어 전환 퀴즈 + 점수 시스템 + 로컬 스토리지</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-amber-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 08 -->
-        <a href="./learning-room/CSS/Fotogram-Starter-Lab.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-pink-500/10 to-cyan-500/10 border border-pink-500/20 transition duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-pink-400 text-black grid place-items-center font-black mono">08</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-pink-400 text-black font-bold" data-t="project">PROJECT</div>
-          </div>
-          <div class="mono text-[11px] text-pink-300/70 mb-1">Fotogram / Starter</div>
-          <div class="font-black text-lg leading-tight" data-t="lab8Title">Fotogram Starter Lab</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab8Desc">여행 블로그 스타터 - 히어로 1440 / 슬라이더 1200 / FAQ 1200</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-pink-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-        <!-- 09 - EXAM LAB (NEW) -->
-        <a href="./learning-room/CSS/Fotogram-Exam-Lab.html" class="card-hover group relative p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 transition duration-300 ring-1 ring-amber-500/20">
-          <div class="flex justify-between items-start mb-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">09</div>
-            <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold" data-t="exam">EXAM</div>
-          </div>
-          <div class="mono text-[11px] text-amber-300/70 mb-1">find() / filter() / unshift()</div>
-          <div class="font-black text-lg leading-tight" data-t="lab9Title">Fotogram 시험 랩</div>
-          <div class="text-sm text-white/50 mt-1 leading-snug" data-t="lab9Desc">빈칸 채우기 - 좋아요·삭제·생성 직접 구현 + Run Tests</div>
-          <div class="mt-4 flex items-center gap-2 text-xs mono text-white/30">
-            <span>🇰🇷</span><span>🇺🇸</span><span>🇩🇪</span>
-            <span class="ml-auto group-hover:text-amber-300 transition" data-t="openLab">실험실 열기 →</span>
-          </div>
-        </a>
-
-      </div>
-
-      <div class="mt-8 p-4 rounded-2xl bg-white/[0.03] border border-white/10 mono text-xs text-white/40">
-        <div class="text-white/60 font-bold mb-2" data-t="folderTitle">📁 GitHub Pages 구조</div>
-        <div data-t="folderTree">Daily Blog/<br>├─ index.html ← 지금 이 파일 (메인 대시보드)<br>└─ learning-room/<br>&nbsp;&nbsp;&nbsp;&nbsp;└─ CSS/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Calc-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Flex-Grid.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Position.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Transform-Animation.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Container-Queries.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Quiz-Multilingual-Final.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Fotogram-Starter-Lab.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Fotogram-Exam-Lab.html</div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-white/10 mt-16 py-8">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between mono text-xs text-white/30">
-      <span data-t="footerMade">Made for CIAN | 직접 만지며 배우는 CSS</span>
-      <span>cian_citycat · 2026</span>
-    </div>
-  </footer>
-
-<script>
-const t = {
-  ko: {
-    live: "LIVE ON GITHUB PAGES",
-    hero1: "매일매일",
-    hero2: "프론트엔드 기록",
-    heroDesc: "배운 내용을 하나씩 올려두는 연습 공간입니다. 아래 CSS 학교는 9개 인터랙티브 실험실로 구성되어 있고, 전부 3개 언어로 번역되어 있어요.",
-    archiveTitle: "ARCHIVE / 주요 프로젝트",
-    old1: "MeinPC 웹사이트 프로젝트",
-    old2: "사쿠라 라멘 반응형 웹사이트",
-    old3: "블로그 프로젝트",
-    schoolTitle: "🎓 CSS 학교 - 9개 실험실",
-    schoolPath: "learning-room / CSS / — 클릭하면 바로 실험실로 이동",
-    interactive: "INTERACTIVE",
-    basic: "기초", layout: "레이아웃", motion: "모션", future: "미래",
-    lab1Title: "clamp() 완전 정복",
-    lab1Desc: "min, preferred, max 한 줄로 반응형 끝내기. 그래프 + 라이브 플레이그라운드",
-    lab2Title: "calc() + clamp() 꿀조합",
-    lab2Desc: "rem + vw 섞는 완벽한 유동 공식. 6개 레시피 + 자동 공식 계산기",
-    lab3Title: "Flex & Grid 실험실",
-    lab3Desc: "줄 세우기는 Flex, 판 짜기는 Grid. 드래그 리사이즈 실험",
-    lab4Title: "Position 실험실",
-    lab4Desc: "fixed, sticky까지 위치의 모든 것 + z-index 트랩",
-    lab5Title: "Transform & Animation",
-    lab5Desc: "cubic-bezier 에디터 + 타임라인 + 60fps 비교",
-    lab6Title: "Container Queries",
-    lab6Desc: "뷰포트가 아닌 부모를 보는 미래형 반응형",
-    openLab: "실험실 열기 →",
-    folderTitle: "📁 GitHub Pages 구조",
-    folderTree: "Daily Blog/<br>├─ index.html ← 지금 이 파일 (메인 대시보드)<br>└─ learning-room/<br>&nbsp;&nbsp;&nbsp;&nbsp;└─ CSS/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Calc-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Flex-Grid.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Position.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Transform-Animation.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Container-Queries.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Quiz-Multilingual-Final.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Fotogram-Starter-Lab.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Fotogram-Exam-Lab.html",
-    quiz: "퀴즈", project: "프로젝트",
-    lab7Title: "다국어 퀴즈 실험실",
-    lab7Desc: "3개 언어 전환 퀴즈 + 점수 시스템 + 로컬 스토리지",
-    lab8Title: "Fotogram 스타터 랩",
-    lab8Desc: "여행 블로그 스타터 - 히어로 1440 / 슬라이더 1200 / FAQ 1200",
-    lab9Title: "Fotogram 시험 랩",
-    lab9Desc: "빈칸 채우기 - find/filter로 좋아요·삭제 직접 구현",
-    exam: "시험",
-    footerMade: "Made for CIAN | 직접 만지며 배우는 CSS"
-  },
-  en: {
-    live: "LIVE ON GITHUB PAGES",
-    hero1: "Daily",
-    hero2: "Frontend Lab",
-    heroDesc: "A space to document what I learn every day. The CSS school below has 9 interactive labs, fully translated in 3 languages.",
-    archiveTitle: "ARCHIVE / Key Projects",
-    old1: "MeinPC Website Project",
-    old2: "Sakura Ramen Responsive Website",
-    old3: "Blog Project",
-    schoolTitle: "🎓 CSS School - 9 Labs",
-    schoolPath: "learning-room / CSS / — click to open lab directly",
-    interactive: "INTERACTIVE",
-    basic: "BASIC", layout: "LAYOUT", motion: "MOTION", future: "FUTURE",
-    lab1Title: "Master clamp()",
-    lab1Desc: "Responsive in one line: min, preferred, max. Graph + live playground",
-    lab2Title: "calc() + clamp() Combo",
-    lab2Desc: "Perfect fluid formula mixing rem + vw. 6 recipes + auto calculator",
-    lab3Title: "Flex & Grid Lab",
-    lab3Desc: "Flex for lines, Grid for boards. Drag to resize experiments",
-    lab4Title: "Position Lab",
-    lab4Desc: "Everything about position, fixed, sticky + z-index trap",
-    lab5Title: "Transform & Animation",
-    lab5Desc: "cubic-bezier editor + timeline + 60fps comparison",
-    lab6Title: "Container Queries",
-    lab6Desc: "Future responsive that looks at parent, not viewport",
-    openLab: "Open Lab →",
-    folderTitle: "📁 GitHub Pages Structure",
-    folderTree: "Daily Blog/<br>├─ index.html ← this file (main dashboard)<br>└─ learning-room/<br>&nbsp;&nbsp;&nbsp;&nbsp;└─ CSS/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Calc-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Flex-Grid.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Position.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Transform-Animation.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Container-Queries.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Quiz-Multilingual-Final.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Fotogram-Starter-Lab.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Fotogram-Exam-Lab.html",
-    quiz: "QUIZ", project: "PROJECT",
-    lab7Title: "Multilingual Quiz Lab",
-    lab7Desc: "3-language quiz + scoring + local storage",
-    lab8Title: "Fotogram Starter Lab",
-    lab8Desc: "Travel blog starter - hero 1440 / slider 1200 / FAQ 1200",
-    lab9Title: "Fotogram Exam Lab",
-    lab9Desc: "Fill-in-the-blank - implement like/delete yourself",
-    exam: "EXAM",
-    footerMade: "Made for CIAN | Learn CSS by touching"
-  },
-  de: {
-    live: "LIVE AUF GITHUB PAGES",
-    hero1: "Täglich",
-    hero2: "Frontend Labor",
-    heroDesc: "Ein Ort, um täglich Gelerntes zu dokumentieren. Die CSS-Schule unten hat 9 interaktive Labore, komplett in 3 Sprachen übersetzt.",
-    archiveTitle: "ARCHIV / Hauptprojekte",
-    old1: "MeinPC Website Projekt",
-    old2: "Sakura Ramen Responsive Website",
-    old3: "Blog Projekt",
-    schoolTitle: "🎓 CSS Schule - 9 Labore",
-    schoolPath: "learning-room / CSS / — klicken zum direkten Öffnen",
-    interactive: "INTERAKTIV",
-    basic: "BASIS", layout: "LAYOUT", motion: "MOTION", future: "ZUKUNFT",
-    lab1Title: "clamp() meistern",
-    lab1Desc: "Responsiv in einer Zeile: Min, Ideal, Max. Graph + Live-Playground",
-    lab2Title: "calc() + clamp() Kombi",
-    lab2Desc: "Perfekte fluide Formel rem + vw mischen. 6 Rezepte + Auto-Rechner",
-    lab3Title: "Flex & Grid Labor",
-    lab3Desc: "Flex für Linien, Grid für Raster. Ziehen zum Vergrößern",
-    lab4Title: "Position Labor",
-    lab4Desc: "Alles über Position, fixed, sticky + z-index Falle",
-    lab5Title: "Transform & Animation",
-    lab5Desc: "cubic-bezier Editor + Timeline + 60fps Vergleich",
-    lab6Title: "Container Queries",
-    lab6Desc: "Zukunfts-Responsive schaut auf Elter, nicht Viewport",
-    openLab: "Labor öffnen →",
-    folderTitle: "📁 GitHub Pages Struktur",
-    folderTree: "Daily Blog/<br>├─ index.html ← diese Datei (Haupt-Dashboard)<br>└─ learning-room/<br>&nbsp;&nbsp;&nbsp;&nbsp;└─ CSS/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Calc-Clamp.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Flex-Grid.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Position.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Transform-Animation.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Container-Queries.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Css-Quiz-Multilingual-Final.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Fotogram-Starter-Lab.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Fotogram-Exam-Lab.html",
-    quiz: "QUIZ", project: "PROJEKT",
-    lab7Title: "Mehrsprachiges Quiz Labor",
-    lab7Desc: "3-Sprachen Quiz + Punktesystem + Local Storage",
-    lab8Title: "Fotogram Starter Lab",
-    lab8Desc: "Reiseblog Starter - Hero 1440 / Slider 1200 / FAQ 1200",
-    lab9Title: "Fotogram Exam Lab",
-    lab9Desc: "Lücken füllen - Like/Delete selbst implementieren",
-    exam: "PRÜFUNG",
-    footerMade: "Made for CIAN | CSS durch Anfassen lernen"
-  }
-};
-
-function setLang(lang){
-  localStorage.setItem('cian-lang', lang);
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-t]').forEach(el=>{
-    const key = el.getAttribute('data-t');
-    if(t[lang][key]) el.innerHTML = t[lang][key];
-  });
-  document.querySelectorAll('[id^="btn-"]').forEach(b=>{
-    b.className = "px-3 py-1.5 rounded-full text-xs font-bold transition text-white/50 hover:text-white";
-  });
-  document.getElementById('btn-'+lang).className = "px-3 py-1.5 rounded-full text-xs font-bold transition bg-white text-black";
-}
-
-const saved = localStorage.getItem('cian-lang') || 'ko';
-setLang(saved);
-</script>
+        <section>
+            <div class="flex items-end justify-between mb-6">
+                <h2 class="text-3xl font-black" data-t="schoolTitle">🎓 CSS 학교 - 9개 실험실</h2>
+                <div class="flex gap-2 mono text-[11px]"><span
+                        class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">9
+                        LABS</span><span class="px-2 py-1 rounded bg-white/5 text-white/50 border border-white/10">3
+                        LANGS</span></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="./learning-room/CSS/Css-Clamp.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-cyan-400 text-black grid place-items-center font-black mono">
+                            01</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-cyan-400 text-black font-bold">BASIC
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-cyan-300/70">clamp()</div>
+                    <div class="font-black text-lg" data-t="l1">clamp() 완전 정복</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d1">한 줄 반응형</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Calc-Clamp.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-blue-400 text-black grid place-items-center font-black mono">
+                            02</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-blue-400 text-black font-bold">BASIC
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-blue-300/70">calc() + clamp()</div>
+                    <div class="font-black text-lg" data-t="l2">calc() + clamp()</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d2">유체 공식</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Flex-Grid.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 border border-violet-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-violet-400 text-black grid place-items-center font-black mono">
+                            03</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-violet-400 text-black font-bold">LAYOUT
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-violet-300/70">flex / grid</div>
+                    <div class="font-black text-lg" data-t="l3">Flex & Grid</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d3">선 vs 판</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Position.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-orange-500/10 to-amber-500/10 border border-orange-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-orange-400 text-black grid place-items-center font-black mono">
+                            04</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-orange-400 text-black font-bold">LAYOUT
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-orange-300/70">position</div>
+                    <div class="font-black text-lg" data-t="l4">Position</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d4">sticky, z-index</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Transform-Animation.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-fuchsia-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-fuchsia-400 text-black grid place-items-center font-black mono">
+                            05</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-fuchsia-400 text-black font-bold">MOTION
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-fuchsia-300/70">transform</div>
+                    <div class="font-black text-lg" data-t="l5">Transform</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d5">bezier + timeline</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Container-Queries.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-emerald-400 text-black grid place-items-center font-black mono">
+                            06</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-emerald-400 text-black font-bold">FUTURE
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-emerald-300/70">@container</div>
+                    <div class="font-black text-lg" data-t="l6">Container Queries</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d6">부모 기준 반응형</div>
+                </a>
+                <a href="./learning-room/CSS/Css-Quiz-Multilingual-Final.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-lime-500/10 border border-amber-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">
+                            07</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold">QUIZ
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-amber-300/70">i18n</div>
+                    <div class="font-black text-lg" data-t="l7">퀴즈 랩</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d7">3개 언어 퀴즈</div>
+                </a>
+                <a href="./learning-room/CSS/Fotogram-Starter-Lab.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-pink-500/10 to-cyan-500/10 border border-pink-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-pink-400 text-black grid place-items-center font-black mono">
+                            08</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-pink-400 text-black font-bold">PROJECT
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-pink-300/70">Fotogram</div>
+                    <div class="font-black text-lg" data-t="l8">Fotogram 스타터</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d8">여행 블로그 스타터</div>
+                </a>
+                <a href="./learning-room/CSS/Fotogram-Exam-Lab.html"
+                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 ring-1 ring-amber-500/20">
+                    <div class="flex justify-between mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">
+                            09</div>
+                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold">EXAM
+                        </div>
+                    </div>
+                    <div class="mono text-[11px] text-amber-300/70">find/filter</div>
+                    <div class="font-black text-lg" data-t="l9">Fotogram 시험</div>
+                    <div class="text-sm text-white/50 mt-1" data-t="d9">빈칸 채우기</div>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="border-t border-white/10 mt-16 py-8">
+        <div class="max-w-6xl mx-auto px-6 mono text-xs text-white/30 flex justify-between"><span>CIAN | Daily
+                Blog</span><span>cian_citycat · 2026</span></div>
+    </footer>
+    <script>
+        const t = { ko: { live: "LIVE ON GITHUB PAGES", hero1: "매일매일", hero2: "프론트엔드 기록", heroDesc: "Daily Blog 폴더의 모든 프로젝트를 연결하는 메인 대시보드입니다.", archiveTitle: "ARCHIVE / 메인 프로젝트", p1: "MeinPC 웹사이트", p2: "Reiseblog", p3: "Sakura 라멘 반응형", schoolTitle: "🎓 CSS 학교 - 9개 실험실", l1: "clamp() 완전 정복", d1: "한 줄 반응형", l2: "calc() + clamp()", d2: "유체 공식", l3: "Flex & Grid", d3: "선 vs 판", l4: "Position", d4: "sticky, z-index", l5: "Transform", d5: "bezier + timeline", l6: "Container Queries", d6: "부모 기준 반응형", l7: "퀴즈 랩", d7: "3개 언어 퀴즈", l8: "Fotogram 스타터", d8: "여행 블로그 스타터", l9: "Fotogram 시험", d9: "빈칸 채우기" }, en: { live: "LIVE ON GITHUB PAGES", hero1: "Daily", hero2: "Frontend Lab", heroDesc: "Main dashboard linking all projects.", archiveTitle: "ARCHIVE / Main Projects", p1: "MeinPC Website", p2: "Reiseblog", p3: "Sakura Ramen", schoolTitle: "🎓 CSS School - 9 Labs", l1: "Master clamp()", d1: "one-line responsive", l2: "calc() + clamp()", d2: "fluid formula", l3: "Flex & Grid", d3: "line vs board", l4: "Position", d4: "sticky, z-index", l5: "Transform", d5: "bezier + timeline", l6: "Container Queries", d6: "parent-based", l7: "Quiz Lab", d7: "3-lang quiz", l8: "Fotogram Starter", d8: "travel starter", l9: "Fotogram Exam", d9: "fill blanks" }, de: { live: "LIVE AUF GITHUB PAGES", hero1: "Täglich", hero2: "Frontend Labor", heroDesc: "Haupt-Dashboard für alle Projekte.", archiveTitle: "ARCHIV / Hauptprojekte", p1: "MeinPC Webseite", p2: "Reiseblog", p3: "Sakura Ramen", schoolTitle: "🎓 CSS Schule - 9 Labore", l1: "clamp() meistern", d1: "einzeilig responsiv", l2: "calc() + clamp()", d2: "fluide Formel", l3: "Flex & Grid", d3: "Linie vs Raster", l4: "Position", d4: "sticky, z-index", l5: "Transform", d5: "bezier + timeline", l6: "Container Queries", d6: "elternbasiert", l7: "Quiz Labor", d7: "3-Sprachen Quiz", l8: "Fotogram Starter", d8: "Reiseblog Starter", l9: "Fotogram Prüfung", d9: "Lücken füllen" } };
+        function setLang(l) { localStorage.setItem('cian-lang', l); document.querySelectorAll('[data-t]').forEach(e => { const k = e.getAttribute('data-t'); if (t[l][k]) e.innerHTML = t[l][k] }); document.querySelectorAll('[id^=btn-]').forEach(b => b.className = "px-3 py-1.5 rounded-full text-xs font-bold text-white/50"); document.getElementById('btn-' + l).className = "px-3 py-1.5 rounded-full text-xs font-bold bg-white text-black"; }
+        setLang(localStorage.getItem('cian-lang') || 'ko');
+    </script>
 </body>
+
 </html>
