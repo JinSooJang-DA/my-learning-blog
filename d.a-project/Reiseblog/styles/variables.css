@@ -1,0 +1,28 @@
+/* CSS Variables for easy theme management and consistency */
+:root {
+    /* Font Variables */
+    --font-heading: 'Arima', cursive;
+    --font-body: 'Palanquin', sans-serif;
+
+    /* Fluid Responsive Font Sizes using clamp(min, viewport, max) */
+    --font-base: clamp(0.95rem, 0.9rem + 0.25vw, 1rem);      /* 15px ~ 16px: Base Body Text */
+    --font-lg: clamp(1.2rem, 1rem + 1vw, 1.5rem);           /* 19px ~ 24px: Subheadings / Card Titles */
+    --font-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);         /* 24px ~ 32px: Section Headings */
+    --font-xxl: clamp(1.8rem, 1.4rem + 1.5vw, 2.5rem);      /* 28px ~ 40px: Major Section Titles */
+    --font-xxxl: clamp(2.2rem, 1.5rem + 3vw, 4rem);         /* 35px ~ 64px: Main Landing / Intro Title */
+
+
+    /* Brand Colors */
+    --c-primary: #083D77;
+    /* Regal Navy (Main text and elements) */
+    --c-secondary: #EBEBD3;
+    /* Figma title color  */
+    --c-title: #F1C953;
+    /* Beige (Background accents) */
+    --c-accent: #F95738;
+    /* Tomato (Highlight points) */
+    --c-buttonpoint: #F4D35E;
+    /* Royal Gold (Buttons, hovers) */
+    --c-hoverpoint: #EE964B;
+    /* Sandy Brown */
+}

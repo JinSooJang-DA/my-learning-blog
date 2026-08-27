@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog - Home</title>
+
+    <link rel="icon" type="image/png" href="./assets/image/logo-s.png">
+
+    <!-- Linking the external CSS stylesheet -->
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <!-- Main Page Wrapper Container -->
+    <div class="page-wrapper">
+
+        <header class="header">
+            <div class="header-content">
+                  <a href="index.html" class="header__logo">
+                    <div class="logo-container">
+                        <img src="./assets/image/logo-m-circle.png" class="rotate-circle" alt="Circle Background">
+                        <img src="./assets/image/logo-m-title.png" class="static-title" alt="Travel Blog Title">
+                        <img src="./assets/image/logo-m-airplane.png" class="float-airplane" alt="Airplane">
+                    </div>
+                </a>
+
+              
+                <nav class="nav-bar">
+                    <a href="index.html#highlights" class="nav-highlights">Highlights</a>
+                    <a href="index.html#faq" class="nav-faq">FAQ</a>
+                    <a href="index.html#contact" class="nav-contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Web Section Component -->
+        <section class="hero">
+            <!-- 1. Start Intro Sequence Text -->
+            <div class="hero__intro-text">
+                <span class="title-line--india">Sunrise in India,</span>
+                <span class="title-line--europe">Noon in Europe,</span>
+                <span class="title-line--seoul">Midnight in Seoul.</span>
+            </div>
+
+            <!-- 2. Title for Hero left  -->
+            <div class="hero__card">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        <span class="title-line--india">Sunrise in India,</span><br>
+                        <span class="title-line--europe">Noon in Europe,</span><br>
+                        <span class="title-line--seoul">Midnight in Seoul.</span>
+                    </h1>
+                    <p class="hero__desc">
+                        A continuous voyage through time and space. Discover the world’s hidden pulse through the lens
+                        of three local creators (Jini, Neelima, and Patrick).
+                    </p>
+                    <a class="btn--primary" href="#" onclick="return false;">Begin the Journey</a>
+                </div>
+                <div class="hero__img"></div>
+            </div>
+        </section>
+
+
+        <!-- Main Home Content Section -->
+        <main class="main-content" id="highlights">
+
+            <div class="section-header">
+                <h2 class="section-header__title">📌 Highlights</h2>
+                <p class="section-header__desc">
+                    From vibrant Asian nightscapes to historic European landscapes, discover our creators' top
+                    destinations.
+                </p>
+            </div>
+
+            <!-- Slider Component -->
+            <div class="slider">
+                <input type="radio" name="slider" id="slide1" class="slider__input" checked>
+                <input type="radio" name="slider" id="slide2" class="slider__input">
+                <input type="radio" name="slider" id="slide3" class="slider__input">
+
+                <div class="slider__wrapper">
+                    <a href="jin-seite01.html" class="slider__slide slider__slide--one">
+                        <div class="slider__text">
+                            <h3 class="slider__title">Seoul, Midnight Pulse</h3>
+                            <p class="slider__desc">Discover local stories with Jini</p>
+                        </div>
+                    </a>
+
+                    <a href="Neelima_Index.html" class="slider__slide slider__slide--two">
+                        <div class="slider__text">
+                            <h3 class="slider__title">India, Sunrise Voyage</h3>
+                            <p class="slider__desc">Discover local stories with Neelima</p>
+                        </div>
+
+                        <a href="Patrick.html" class="slider__slide slider__slide--three">
+                            <div class="slider__text">
+                                <h3 class="slider__title">Europe, Noon Passage</h3>
+                                <p class="slider__desc">Discover local stories with Patrick</p>
+                            </div>
+                        </a>
+                </div>
+
+                <!-- Dots navigation -->
+                <div class="slider__dots">
+                    <label for="slide1" class="slider__dot slider__dot--one"></label>
+                    <label for="slide2" class="slider__dot slider__dot--two"></label>
+                    <label for="slide3" class="slider__dot slider__dot--three"></label>
+                </div>
+            </div>
+
+
+
+            <!-- FAQ Details Creator: Patrick -->
+            <article class="faq-section" id="faq">
+
+                <section class="faq-header">
+
+                    <img src="./assets/icon/icon_faq_LP.png" alt="FAQ Icon">
+                    <h2>FAQ</h2>
+
+                </section>
+
+                <section>
+
+                    <details class="faq-info">
+                        <summary>
+                            What’s the story behind my travel blog?
+                        </summary>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo atque cupiditate
+                            voluptatum temporibus ut non quam dolor mollitia beatae possimus corrupti voluptate nam
+                            laboriosam aut repellendus aliquam, dignissimos molestias iure.
+                        </p>
+                    </details>
+
+                    <details class="faq-info">
+                        <summary>
+                            How do I plan, document, and share my travels?
+                        </summary>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo atque cupiditate
+                            voluptatum temporibus ut non quam dolor mollitia beatae possimus corrupti voluptate nam
+                            laboriosam aut repellendus aliquam, dignissimos molestias iure.
+                        </p>
+                    </details>
+
+                    <details class="faq-info">
+                        <summary>
+                            How can brands, companies, or fellow creators collaborate with me or get in touch?
+                        </summary>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo atque cupiditate
+                            voluptatum temporibus ut non quam dolor mollitia beatae possimus corrupti voluptate nam
+                            laboriosam aut repellendus aliquam, dignissimos molestias iure.
+                        </p>
+                    </details>
+
+                    <details class="faq-info">
+                        <summary>
+                            How can readers support this blog and the work behind it?
+                        </summary>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo atque cupiditate
+                            voluptatum temporibus ut non quam dolor mollitia beatae possimus corrupti voluptate nam
+                            laboriosam aut repellendus aliquam, dignissimos molestias iure.
+                        </p>
+                    </details>
+
+                </section>
+
+                <section class="Contact_form" id="contact">
+                    <div class="Contact_row">
+
+                        <img src="./assets/icon/person_pin.png" alt="person_pin">
+                        <h2 class="heading">Contact form</h2>
+                    </div>
+
+                    <div class="sub_lines">
+                        <p>Have a question or an idea to collaborate?<br>
+                            in touch—I'd love to hear from you and explore how we can work together.</p>
+
+                    </div>
+
+
+                    <div class="questions-container">
+                        <div class="question-row">
+                            <div class="field">
+                                <label>What's your name?</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>What's your email?</label>
+                                <input type="email">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>How can I help?</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="bottom-section">
+                        <!-- Checkbox Row -->
+                        <div class="privacy-container">
+                            <input type="checkbox" id="privacy">
+                            <label for="privacy">
+                                I've read the <a>privacy policy</a> and agree to the processing of my data as
+                                outlined.
+                            </label>
+                        </div>
+
+                        <img src="./assets/image/Send_button.png" alt="Send_button">
+                    </div>
+                </section>
+
+            </article>
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer__container">
+                <section class="footer-nav">
+                    <p>
+                        <img src="./assets/icon/copyright.png" alt="Copyright Icon">
+                        Travel Blog 2026
+                    </p>
+                    <a href="#">Imprint</a>
+                    <a href="#">Cookie Preferences</a>
+                </section>
+
+                <section class="footer-links">
+                    <a href="https://www.tiktok.com/" target="_blank">
+                        <img src="./assets/icon/icon_Tiktok.png" alt="Icon Tiktok">
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank">
+                        <img src="./assets/icon/icon_youtube.png" alt="Icon YouTube">
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="./assets/icon/icon_facebook.png" alt="Icon Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <img src="./assets/icon/icon_instagram.png" alt="Icon Instagram">
+                    </a>
+                </section>
+            </div>
+        </footer>
+
+        <nav class="nav-bar-mobile">
+
+            <a href="index.html">
+                <img src="./assets/icon/icon_home.png" alt="Home-Button">
+            </a>
+
+            <a href="index.html#highlights">
+                <img src="./assets/icon/icon_highlights.png" alt="Highlights-Button">
+            </a>
+
+            <a href="index.html#faq">
+                <img src="./assets/icon/icon_faq.png" alt="FAQ-Button">
+            </a>
+
+            <a href="index.html#contact">
+                <img src="./assets/icon/icon_contact.png" alt="Contact-Button">
+            </a>
+
+        </nav>
+
+    </div>
+
+</body>
+
+</html>

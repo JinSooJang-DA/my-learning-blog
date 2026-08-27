@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensures proper rendering and touch zooming on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog - Korea Travel Guide</title>
+
+    <link rel="icon" type="image/png" href="./assets/image/logo-s.png">
+
+    <!-- Linking the external CSS stylesheet -->
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/jin-seite01-style.css">
+</head>
+
+<body>
+
+
+
+    <!-- ==========================================
+             Header Section (Logo and Navigation)
+             ========================================== -->
+    <header class="header">
+        <div class="header-content">
+            <!-- 로고 영역 -->
+            <a href="index.html" class="header__logo">
+                <div class="logo-container">
+                    <img src="./assets/image/logo-m-circle.png" class="rotate-circle" alt="Circle Background">
+                    <img src="./assets/image/logo-m-title.png" class="static-title" alt="Travel Blog Title">
+                    <img src="./assets/image/logo-m-airplane.png" class="float-airplane" alt="Airplane">
+                </div>
+            </a>
+
+            <!-- 네비게이션 영역 -->
+            <nav class="nav-bar">
+                <a href="index.html#highlights" class="nav-highlights">Highlights</a>
+                <a href="index.html#faq" class="nav-faq">FAQ</a>
+                <a href="index.html#contact" class="nav-contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==========================================
+             Main Content Area
+             ========================================== -->
+    <main class="main-wrapper">
+        <div class="container">
+
+            <!-- SECTION 1: Intro Grid (Quote, Facts, and Author Card) -->
+            <section class="intro-grid">
+                <!-- Left Column: Content -->
+                <div class="intro-content">
+                    <p class="intro-subtitle">Where Ancient Royalty Meets Future</p>
+                    <h2 class="intro-title">Korea: Dynamic Energy & Timeless Charm</h2>
+
+                    <!-- Summary Paragraph -->
+                    <p class="intro-summary">
+                        From the tranquil historic palaces of Seoul to the vibrant coastal beaches of Busan and the
+                        volcanic landscapes of Jeju, Korea offers an unforgettable journey where centuries-old
+                        tradition seamlessly coexists with high-tech modern lifestyle.
+                    </p>
+
+                    <!-- Blog Post Meta Bar -->
+                    <div class="post-meta">
+                        <div class="meta-item">
+                            <img src="./assets/icon/calendar_month.svg" alt="Calendar" class="meta-icon">
+                            <span>Date: 26.01.2026</span>
+                        </div>
+                        <div class="meta-item">
+                            <img src="./assets/icon/eyeglasses_2.svg" alt="Reading Time" class="meta-icon">
+                            <span>Reading time: 6 min.</span>
+                        </div>
+                        <div class="meta-item">
+                            <img src="./assets/icon/visibility.svg" alt="Views" class="meta-icon">
+                            <span>Read: 164</span>
+                        </div>
+                        <div class="meta-item">
+                            <img src="./assets/icon/share.svg" alt="Shares" class="meta-icon">
+                            <span>Shared: 18</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Author Profile -->
+                <aside class="author-card">
+                    <img src="./assets/image/jin-avatar.png" alt="Author Profile Picture" class="author-img">
+                    <h3 class="author-name">Jin Soo</h3>
+                    <p class="author-role">Travel Curator &amp; Developer</p>
+                    <p class="author-bio">I’m Jin Soo, a passionate traveler and web developer based in Germany
+                        who loves capturing the vibrant energy of Asian nightscapes and urban cultures. I enjoy
+                        blending tech and creative storytelling—from exploring hidden alleyways in Seoul to curating
+                        digital travel experiences. For me, every journey is an opportunity to discover unique local
+                        atmospheres, create inspiring content, and build engaging web platforms to share those
+                        moments with the world.</p>
+                </aside>
+            </section>
+
+
+            <!-- SECTION 2: Interactive CSS Slider Section -->
+            <section class="slider-section">
+                <div class="section-title">
+                    <h3>Top Recommended Cities to Visit in Korea</h3>
+                </div>
+
+                <!-- Hidden Radio Buttons: These control the slider without JavaScript -->
+                <input type="radio" name="city-slider" id="city1" class="city-slider__input" checked>
+                <input type="radio" name="city-slider" id="city2" class="city-slider__input">
+                <input type="radio" name="city-slider" id="city3" class="city-slider__input">
+                <input type="radio" name="city-slider" id="city4" class="city-slider__input">
+                <input type="radio" name="city-slider" id="city5" class="city-slider__input">
+
+                <!-- Slider Images Container -->
+                <div class="slider-wrap">
+                    <div class="slider-item slider-item--1"
+                        style="background-image: url('./assets/image/city-seoul.jpeg');"></div>
+                    <div class="slider-item slider-item--2"
+                        style="background-image: url('./assets/image/city-busan.jpeg');"></div>
+                    <div class="slider-item slider-item--3"
+                        style="background-image: url('./assets/image/city-gyoungju.jpeg');"></div>
+                    <div class="slider-item slider-item--4"
+                        style="background-image: url('./assets/image/city-jeonju.jpeg');"></div>
+                    <div class="slider-item slider-item--5"
+                        style="background-image: url('./assets/image/city-jeju.jpeg');"></div>
+                </div>
+
+                <!-- Mobile Pagination Dots (Linked to the radio buttons using the 'for' attribute) -->
+                <div class="city-slider__dots">
+                    <label for="city1" class="city-slider__dot"></label>
+                    <label for="city2" class="city-slider__dot"></label>
+                    <label for="city3" class="city-slider__dot"></label>
+                    <label for="city4" class="city-slider__dot"></label>
+                    <label for="city5" class="city-slider__dot"></label>
+                </div>
+
+                <p class="slider-caption">
+                    Korea offers an unforgettable blend of centuries-old tradition and forward-thinking modern
+                    culture. From the bustling nightlife of Seoul to the serene coastal landscapes of Jeju Island,
+                    each region brings its own unique charm and hidden stories waiting to be explored.
+                </p>
+
+                <!-- City Descriptions -->
+                <div class="city-list">
+                    <div class="city-item">
+                        <h4 class="city-title">1. Seoul</h4>
+                        <p class="city-desc">Experience the vibrant pulse of South Korea's bustling capital city.
+                            Modern skyscrapers stand in breathtaking harmony alongside timeless historic palaces.
+                            Indulge in neon-lit night markets, world-class shopping, and endless street food
+                            options.</p>
+                    </div>
+                    <div class="city-item">
+                        <h4 class="city-title">2. Busan</h4>
+                        <p class="city-desc">Discover the ultimate coastal getaway with stunning ocean views and
+                            golden beaches. Savor fresh local seafood at iconic fish markets and stroll through
+                            colorful hillside villages. Feel the energetic rhythm of Korea's most famous harbor
+                            city.</p>
+                    </div>
+                    <div class="city-item">
+                        <h4 class="city-title">3. Gyeongju</h4>
+                        <p class="city-desc">Step into a living museum where ancient Silla Dynasty heritage lives
+                            on. Walk among tranquil royal tombs, historic temples, and serene lotus ponds under
+                            starry skies. A timeless journey for lovers of history, culture, and nature.</p>
+                    </div>
+                    <div class="city-item">
+                        <h4 class="city-title">4. Jeonju</h4>
+                        <p class="city-desc">Immerse yourself in authentic Korean tradition and world-renowned
+                            gastronomy. Wander through hundreds of classic Hanok houses while wearing traditional
+                            clothing. Taste legendary Bibimbap and delicious local snacks at every corner.</p>
+                    </div>
+                    <div class="city-item">
+                        <h4 class="city-title">5. Jeju</h4>
+                        <p class="city-desc">Discover Jeju’s iconic treasures under sunrise light at Seongsan
+                            Ilchulbong. Meet symbolic Dol Hareubang stone statues guarding the path, and witness the
+                            incredible Haenyeo female divers preserving island tradition. A captivating blend of
+                            natural beauty and rich cultural heritage.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2.5: Korea Tourism 8K Video Section -->
+            <section class="video-section">
+                <div class="section-title">
+                    <h2>This Is Why Everyone Is Visiting South Korea in 2026 🇰🇷 | Culture, Luxury &amp; Stunning
+                        Cities</h2>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/yfBHYk8uKWc"
+                        title="This Is Why Everyone Is Visiting South Korea in 2026 🇰🇷 | Culture, Luxury &amp; Stunning Cities"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Travel Tips -->
+            <section class="tips-section">
+                <h2>💡 Essential Travel Tips Before You Go</h2>
+                <ol class="tips-list">
+                    <li class="tip-item"><strong>T-Money Card:</strong> Get a universal transit card at any
+                        convenience store for subways, buses, and taxis.</li>
+                    <li class="tip-item"><strong>Navigation Apps:</strong> Download Naver Map or KakaoMap; Google
+                        Maps has limited walking directions in Korea.</li>
+                    <li class="tip-item"><strong>Zero Tipping:</strong> Tipping is not practiced or expected in
+                        restaurants, taxis, or hotels.</li>
+                    <li class="tip-item"><strong>24/7 Safety:</strong> Cities remain safe late into the night with
+                        bustling night markets and brightly lit streets.</li>
+                    <li class="tip-item"><strong>Public Wi-Fi:</strong> Free, high-speed Wi-Fi is accessible across
+                        public transit, cafes, and main attractions.</li>
+                </ol>
+            </section>
+
+            <!-- SECTION 4: Itinerary -->
+            <section class="itinerary-section">
+                <h2>🗓️ Suggested 7-Day Classic Route</h2>
+                <p class="itinerary-intro">
+                    We recommend taking at least 1 to 2 weeks of vacation to fully experience Korea. Compared to the
+                    high standard of living, accommodation, food, and public transit are remarkably affordable. If
+                    you are staying for a week or two, here is a recommended itinerary:
+                </p>
+                <div class="itinerary-list">
+                    <div class="itinerary-item">
+                        <h3 class="itinerary-title">Day 1 - 3: Seoul</h3>
+                        <p class="itinerary-desc">Palaces, shopping districts, futuristic landmarks, and neon
+                            nightscapes.</p>
+                    </div>
+                    <div class="itinerary-item">
+                        <h3 class="itinerary-title">Day 4: Jeonju or Gyeongju</h3>
+                        <p class="itinerary-desc">Immerse in traditional Hanok architecture or ancient historical
+                            sites.</p>
+                    </div>
+                    <div class="itinerary-item">
+                        <h3 class="itinerary-title">Day 5 - 6: Busan</h3>
+                        <p class="itinerary-desc">Relax by the ocean, visit coastal temples, and enjoy vibrant fish
+                            markets.</p>
+                    </div>
+                    <div class="itinerary-item">
+                        <h3 class="itinerary-title">Day 7: Jeju Island</h3>
+                        <p class="itinerary-desc">Unwind with scenic volcanic landscapes and coastal drives.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <article class="follow-section" tabindex="0">
+
+                <p class="follow-text">
+                    Follow me for more content like this, and
+                    share the article with your friends!
+                </p>
+                <figure class="vector-share">
+                    <img src="./assets/icon/Vector.png" alt="Vector to Share Button">
+                </figure>
+                <figure class="vector-share-alt">
+                    <img src="./assets/icon/Vector_small.png" alt="Vector to Share Button">
+                </figure>
+                <p class="button-share">
+                    <img src="./assets/icon/icon_share_button.png" alt="Share Icon">
+                    Share
+                </p>
+
+                <div class="button-share-alt">
+                    <p>
+                        Share
+                    </p>
+                    <img src="./assets/icon/icon_share_button.png" alt="Share Icon">
+                    <div class="button-links">
+                        <a href="https://de.linkedin.com/" target="_blank">LinkedIn</a>
+                        <a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a>
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+    </main>
+
+    <!-- ==========================================
+             Footer Sections
+             ========================================== -->
+
+    <footer class="footer">
+        <div class="footer__container">
+            <section class="footer-nav">
+                <p>
+                    <img src="./assets/icon/copyright.png" alt="Copyright Icon">
+                    Travel Blog 2026
+                </p>
+                <a href="#">Imprint</a>
+                <a href="#">Cookie Preferences</a>
+            </section>
+
+            <section class="footer-links">
+                <a href="https://www.tiktok.com/" target="_blank">
+                    <img src="./assets/icon/icon_Tiktok.png" alt="Icon Tiktok">
+                </a>
+                <a href="https://www.youtube.com/" target="_blank">
+                    <img src="./assets/icon/icon_youtube.png" alt="Icon YouTube">
+                </a>
+                <a href="https://www.facebook.com/" target="_blank">
+                    <img src="./assets/icon/icon_facebook.png" alt="Icon Facebook">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <img src="./assets/icon/icon_instagram.png" alt="Icon Instagram">
+                </a>
+            </section>
+        </div>
+    </footer>
+
+    <nav class="nav-bar-mobile">
+
+        <a href="index.html">
+            <img src="./assets/icon/icon_home.png" alt="Home-Button">
+        </a>
+
+        <a href="index.html#highlights">
+            <img src="./assets/icon/icon_highlights.png" alt="Highlights-Button">
+        </a>
+
+        <a href="index.html#faq">
+            <img src="./assets/icon/icon_faq.png" alt="FAQ-Button">
+        </a>
+
+        <a href="index.html#contact">
+            <img src="./assets/icon/icon_contact.png" alt="Contact-Button">
+        </a>
+
+    </nav>
+
+
+</body>
+
+</html>
