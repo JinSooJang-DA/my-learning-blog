@@ -1,4 +1,6 @@
-/* Base Body Styles */
+/* =========================================================
+   1. Base & Reset
+========================================================= */
 html, body {
     display: flex;
     flex-direction: column;
@@ -8,25 +10,18 @@ html, body {
     color: var(--c-primary);
     line-height: 1.4;
     width: 100%;
-    height: 100%;
     min-height: 100vh;
 }
 
-main {
+main.main-wrapper {
     flex: 1;
     width: 100%;
     max-width: 1440px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     box-sizing: border-box;
-    
 }
 
-/* Apply specific fonts to headings */
-h1,
-h2,
-h3,
-h4,
-.intro-quote {
+h1, h2, h3, h4 {
     font-family: var(--font-heading);
 }
 
@@ -37,17 +32,25 @@ h2 {
     color: var(--c-primary);
 }
 
-p,
-li {
+p, li {
     font-size: var(--font-base);
     line-height: 1.6;
     color: var(--c-primary);
 }
 
-/* =========================================================
-    2. Header & Navigation
-========================================================= */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
 
+/* =========================================================
+   2. Header & Navigation
+========================================================= */
 .header {
     width: 100%;
     background-color: var(--c-primary);
@@ -57,7 +60,6 @@ li {
     max-width: 1440px;
     margin: 0 auto;
     padding: 24px clamp(24px, 5vw, 96px);
-    
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -91,14 +93,8 @@ li {
     object-fit: contain;
 }
 
-.rotate-circle {
-    animation: rotateGlobe 8s linear infinite;
-}
-
-.float-airplane {
-    animation: floatPlane 1.8s ease-in-out infinite alternate;
-}
-
+.rotate-circle { animation: rotateGlobe 8s linear infinite; }
+.float-airplane { animation: floatPlane 1.8s ease-in-out infinite alternate; }
 
 .nav-bar {
     display: flex;
@@ -113,7 +109,6 @@ li {
     text-decoration: none;
     position: relative;
 }
-
 
 .nav-highlights::after,
 .nav-faq::after,
@@ -133,30 +128,14 @@ li {
 
 .nav-highlights:hover::after,
 .nav-faq:hover::after,
-.nav-contact:hover::after {
-    opacity: 1;
-}
+.nav-contact:hover::after { opacity: 1; }
 
-.nav-highlights::after {
-    background-image: url('../assets/icon/underline_highlights.png');
-}
+.nav-highlights::after { background-image: url('../assets/icon/underline_highlights.png'); }
+.nav-faq::after { background-image: url('../assets/icon/underline_faq.png'); }
+.nav-contact::after { background-image: url('../assets/icon/underline_contact.png'); }
 
-.nav-faq::after {
-    background-image: url('../assets/icon/underline_faq.png');
-}
-
-.nav-contact::after {
-    background-image: url('../assets/icon/underline_contact.png');
-}
-
-.nav-bar a:active::after {
-    opacity: 0;
-}
-
-.nav-bar a:active {
-    color: #F1C953;
-}
-
+.nav-bar a:active::after { opacity: 0; }
+.nav-bar a:active { color: #F1C953; }
 
 @keyframes rotateGlobe {
     0% { transform: rotateY(0deg); }
@@ -168,53 +147,31 @@ li {
     100% { transform: translateY(-4px); }
 }
 
-@media screen and (max-width: 768px) {
-    .header-content {
-        padding: 16px 24px;
-        justify-content: center; 
-    }
-
-    .nav-bar {
-        display: none !important; 
-    }
-}
-
 /* =========================================================
-   3. Main Layout & Intro Grid
+   3. SECTION 1: Intro Card (Jin 스타일 Flex Card 적용)
 ========================================================= */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.intro-card {
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    /* Adds padding so content doesn't touch the screen edge */
-}
-
-/* CSS Grid layout for intro text and author card */
-.intro-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    /* Left column takes up 2 parts, right takes 1 part */
-    gap: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2.5rem;
+    background-color: var(--c-secondary);
+    border-left: 0.5rem solid var(--c-accent);
+    padding: 2.5rem;
+    padding-right: 0;
     margin-top: 1rem;
     margin-bottom: 4rem;
+    box-sizing: border-box;
 }
 
 .intro-content {
-    background-color: var(--c-secondary);
-    padding: 2.5rem;
-    border-radius: 0.5rem;
-    border-left: 0.5rem solid var(--c-accent);
-    /* Colored left border for design */
+    flex: 3.5;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* Intro Subtitle & Title */
 .intro-subtitle {
     color: var(--c-accent);
     font-weight: 700;
@@ -230,8 +187,6 @@ li {
     margin-bottom: 1.2rem;
 }
 
-
-
 .intro-summary {
     font-size: var(--font-base);
     line-height: 1.7;
@@ -239,7 +194,6 @@ li {
     margin-bottom: 2rem;
 }
 
-/* Blog Post Meta Bar */
 .post-meta {
     display: flex;
     flex-wrap: wrap;
@@ -255,7 +209,6 @@ li {
     gap: 0.4rem;
     font-size: 0.7rem;
     color: var(--c-primary);
-    font-weight: 400;
 }
 
 .meta-icon {
@@ -264,11 +217,11 @@ li {
     object-fit: contain;
 }
 
-/* Author Sidebar Card */
 .author-card {
-    background-color: var(--c-secondary);
-    padding: 2.5rem 1.5rem;
-    border-radius: 0.5rem;
+    flex: 1;
+    background-color: var(--c-buttonpoint);
+    padding: 1.75rem 1.25rem;
+    border-radius: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -279,11 +232,8 @@ li {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-
     margin-bottom: 1rem;
     object-fit: cover;
-    /* Ensures the image doesn't stretch */
-
 }
 
 .author-name {
@@ -307,19 +257,23 @@ li {
 }
 
 /* =========================================================
-   4. Slider Rotator Section (Pure CSS Animation)
+   4. SECTION 2: Video Section & City List
 ========================================================= */
 .slider-section {
+    width: 100%;
     margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-/* Hide the actual HTML radio buttons - we only use their state (checked or unchecked) */
-.city-slider__input {
-    display: none;
+.video-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-title {
@@ -333,107 +287,49 @@ li {
     color: var(--c-primary);
 }
 
-/* Slider Container */
-.slider-wrap {
-    height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Individual Slider Items (3D Card Effect for Desktop) */
-.slider-item {
-    z-index: 1;
-    width: clamp(60px, 10vw, 160px);
-    /* Responsive width */
-    height: 220px;
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--c-primary);
-
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
-    border-radius: 0.5rem;
-
-    /* 3D Transform properties for accordion effect */
-    transform: perspective(250px) rotateY(20deg) translateX(-20px);
-    transform-origin: 50% 50%;
-    transition: all 250ms ease-in-out;
+    background-color: #000;
+    overflow: hidden;
 }
 
-/* Expanding the card when hovered (Desktop only) */
-.slider-item:hover {
-    z-index: 2;
-    width: 160px;
-    height: 160px;
-    background-color: var(--c-accent);
-    transform: perspective(250px) rotateY(0deg) translateX(0) scale(2);
-}
-
-/* Shifting siblings when a card is hovered */
-.slider-item:hover~.slider-item {
-    background-color: var(--c-accent);
-    transform: perspective(250px) rotateY(-20deg) translateX(20px);
-}
-
-/* 
-   Advanced CSS Concept: Sibling Combinator (~) 
-   If a specific radio button is :checked, find the sibling '.slider-wrap' 
-   and change the left margin of the first item to slide the entire track.
-*/
-#city1:checked~.slider-wrap .slider-item--1 {
-    margin-left: 0%;
-}
-
-#city2:checked~.slider-wrap .slider-item--1 {
-    margin-left: -100%;
-}
-
-#city3:checked~.slider-wrap .slider-item--1 {
-    margin-left: -200%;
-}
-
-#city4:checked~.slider-wrap .slider-item--1 {
-    margin-left: -300%;
-}
-
-#city5:checked~.slider-wrap .slider-item--1 {
-    margin-left: -400%;
-}
-
-/* Smoothly animate the margin change for mobile swiping visual effect */
-.slider-item--1 {
-    transition: margin-left 0.4s ease-in-out;
-}
-
-/* Mobile dots are hidden on Desktop */
-.city-slider__dots {
-    display: none;
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .slider-caption {
     width: 100%;
     max-width: 1200px;
-    margin: 2rem auto 0;
-    font-size: var(--font-base);
+    margin: 1rem auto 0;
+    margin-top: 2rem;
+    font-family: var(--font-heading);
+    font-size: var(--font-lg);
+    font-weight: 400;
     color: var(--c-primary);
     line-height: 1.7;
-    text-align: left;
 }
 
-/* City Descriptions List */
 .city-list {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     background-color: var(--c-secondary);
-    border-radius: 0.5rem;
     border-left: 0.5rem solid var(--c-accent);
     padding: 2rem;
     margin: 1.5rem auto 0;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    box-sizing: border-box;
 }
 
 .city-item {
@@ -449,70 +345,75 @@ li {
 }
 
 /* =========================================================
-   4.5 Video Section (Responsive 16:9 Youtube Embed)
+   5. SECTION 3: Travel Tips Card 
 ========================================================= */
-.video-section {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
-    background-color: #000;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* =========================================================
-   5. Tips Section
-========================================================= */
-.tips-section {
+.tips-card {
+    position: relative !important; 
     width: 100%;
     max-width: 1200px;
     margin: 2.5rem auto 0;
+    background-color: var(--c-secondary);
+    border-left: 0.5rem solid var(--c-accent);
+    padding: 4.5rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
+}
+
+.tips-badge {
+    position: absolute !important;
+    top: -20px;
+    left: -15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--c-primary);
+    color: #F1C953;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    transform: rotate(-16deg);
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.badge-icon-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.badge-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 .tips-list {
     padding-left: 1.25rem;
-    /* Indents the numbered list slightly */
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
 /* =========================================================
-   6. Itinerary Section
+   6. SECTION 4: Itinerary Section
 ========================================================= */
 .itinerary-section {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     background-color: var(--c-secondary);
-    border-radius: 0.5rem;
     border-left: 0.5rem solid var(--c-accent);
     padding: 2rem;
     margin: 2.5rem auto 0;
+    margin-top: 4rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    box-sizing: border-box;
 }
 
 .itinerary-list {
@@ -535,9 +436,8 @@ li {
 }
 
 /* =========================================================
-   7. Share Section
+   7. Follow & Share Section
 ========================================================= */
-
 .follow-section {
     display: flex;
     flex-direction: column;
@@ -562,9 +462,7 @@ li {
     left: 32px;
 }
 
-.vector-share-alt {
-    display: none;
-}
+.vector-share-alt { display: none; }
 
 .button-share {
     cursor: pointer;
@@ -579,9 +477,7 @@ li {
     font-size: 1.75rem;
 }
 
-.button-share:hover {
-    font-weight: bold;
-}
+.button-share:hover { font-weight: bold; }
 
 .button-share-alt {
     align-items: center;
@@ -609,111 +505,22 @@ li {
     font-size: 1.2rem;
 }
 
-.button-links a {
-    color: var(--c-primary);
-}
+.button-links a { color: var(--c-primary); }
 
-.follow-section:focus-within .button-share {
-    display: none;
-}
-
-.follow-section:focus-within .button-share-alt {
-    display: flex;
-}
-
-@media screen and (min-width: 526px) and (max-width: 743px) {
-    .follow-section {
-        width: 310px;
-    }
-
-    .follow-text {
-        font-size: var(--font-lg);
-    }
-
-    .vector-share {
-        display: none;
-    }
-
-    .vector-share-alt {
-        display: flex;
-        position: absolute;
-        top: 180px;
-        left: 0;
-    }
-
-    .button-share {
-        font-size: 1.2rem;
-    }
-
-    .button-share img {
-        height: 24px;
-    }
-
-    .button-share-alt p {
-        font-size: 1.2rem;
-    }
-
-    .button-links {
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 525px) {
-    .follow-section {
-        width: 280px;
-    }
-
-    .follow-text {
-        font-size: var(--font-lg);
-    }
-
-    .vector-share {
-        display: none;
-    }
-
-    .vector-share-alt {
-        display: flex;
-        position: absolute;
-        top: 180px;
-        left: 0;
-    }
-
-    .button-share {
-        font-size: 1.1rem;
-    }
-
-    .button-share img {
-        height: 20px;
-    }
-
-    .button-share-alt p {
-        font-size: 1.1rem;
-    }
-
-    .button-share-alt img {
-        height: 20px;
-    }
-
-    .button-links {
-        font-size: 1rem;
-    }
-}
+.follow-section:focus-within .button-share { display: none; }
+.follow-section:focus-within .button-share-alt { display: flex; }
 
 /* =========================================================
-   Footer Components (Rem & Single Media Query System)
+   8. Footer & Mobile Bar
 ========================================================= */
-
-.footer p,
-.footer-nav p {
-    color: white;
-}
-
 .footer {
     width: 100%;
     background-color: var(--c-primary);
     color: white;
     padding: 3rem 0;
 }
+
+.footer p, .footer-nav p { color: white; }
 
 .footer__container {
     width: 100%;
@@ -730,7 +537,6 @@ li {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    color: white;
 }
 
 .footer-nav a {
@@ -746,9 +552,7 @@ li {
     gap: 0.5rem;
 }
 
-.footer-nav img {
-    height: 1.25rem;
-}
+.footer-nav img { height: 1.25rem; }
 
 .footer-links {
     display: flex;
@@ -760,95 +564,54 @@ li {
     height: 1.75rem;
 }
 
-.nav-bar-mobile {
-    display: none;
-}
+.nav-bar-mobile { display: none; }
 
-/* =========================================================
-   Footer Navigation & Social Links Hover Effects
-========================================================= */
-
-.footer-nav a:hover {
-    font-weight: bold;
-}
-
-
+.footer-nav a:hover { font-weight: bold; }
 .footer-links img:hover {
     box-shadow: 2px 2px 2px 2px rgba(255, 255, 255, 0.25);
     border-radius: 5px;
 }
 
-
-
+/* =========================================================
+   9. Media Queries (Mobile & Responsive)
+========================================================= */
 @media screen and (max-width: 768px) {
-    body {
-        padding-bottom: 5.5rem; 
+    body { padding-bottom: 5.5rem; }
+
+    .header-content {
+        padding: 16px 24px;
+        justify-content: center;
     }
 
-    .footer {
-        padding: 1.5rem 1rem;
+    .nav-bar { display: none !important; }
+
+    .intro-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 2.5rem;
     }
 
+    .footer { padding: 1.5rem 1rem; }
     .footer__container {
         padding: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end; 
+        align-items: flex-end;
     }
 
     .footer-nav {
-        display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.35rem;
-        font-size: 0.85rem;
     }
 
-    .footer-nav a {
-        font-size: 0.85rem;
-        color: white;
-        text-decoration: none;
-    }
-
-   
-    .footer-nav a:nth-of-type(1) {
-        order: 1;
-    }
-
-   
-    .footer-nav a:nth-of-type(2) {
-        order: 2;
-    }
-
-  
+    .footer-nav a { font-size: 0.85rem; }
     .footer-nav p {
-        order: 3;
         font-size: 0.85rem;
         margin: 0;
         white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
     }
 
-    .footer-nav p img {
-        height: 1rem;
-    }
-
-  
-    .footer-links {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-    }
-
-    .footer-links img {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-   
-    .footer--mobile,
     .nav-bar-mobile {
         display: flex !important;
         position: fixed;
@@ -861,131 +624,41 @@ li {
         justify-content: space-around;
         align-items: center;
     }
+}
 
-    .mobile-nav {
+@media screen and (min-width: 526px) and (max-width: 743px) {
+    .follow-section { width: 310px; }
+    .follow-text { font-size: var(--font-lg); }
+    .vector-share { display: none; }
+    .vector-share-alt {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        padding: 0 1rem;
+        position: absolute;
+        top: 180px;
+        left: 0;
     }
+    .button-share, .button-share-alt p { font-size: 1.2rem; }
+}
 
-    .mobile-nav__item img {
-        width: 2rem;
-        height: 2rem;
+@media screen and (max-width: 525px) {
+    .follow-section { width: 280px; }
+    .follow-text { font-size: var(--font-lg); }
+    .vector-share { display: none; }
+    .vector-share-alt {
+        display: flex;
+        position: absolute;
+        top: 180px;
+        left: 0;
     }
+    .button-share, .button-share-alt p { font-size: 1.1rem; }
 }
 
 /* =========================================================
-   9. Media Queries for Mobile Screens (max-width: 768px)
+   10. Jin-seite Card Outer Border Style Applied
 ========================================================= */
-@media (max-width: 768px) {
-
-    /* Mobile Intro Grid: Changes from 2 columns to 1 column */
-    .intro-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-top: 0rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .intro-content {
-        padding: 1.5rem;
-    }
-
-    .author-card {
-        padding: 1.5rem;
-    }
-
-    /* Mobile Slider Transformation (Accordion -> Carousel) */
-    .slider-wrap {
-        width: 100%;
-        max-width: 400px;
-        height: 240px;
-        /* Hides items outside the container block */
-        border-radius: 1rem;
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
-        justify-content: flex-start;
-        /* Aligns items linearly */
-    }
-
-    .slider-item {
-        min-width: 100%;
-        /* Each image takes up the full container width */
-        height: 100%;
-        transform: none !important;
-        /* Disables the 3D rotation from desktop */
-        transition: transform 0.4s ease-in-out;
-        border-radius: 0;
-    }
-
-    /* Disables desktop hover enlargement effects on mobile */
-    .slider-item:hover,
-    .slider-item:hover~.slider-item {
-        width: 100% !important;
-        height: 100% !important;
-        transform: none !important;
-        background-color: transparent;
-    }
-
-    /* Slide movement logic via transforms (instead of margins) for better mobile performance */
-    #city1:checked~.slider-wrap .slider-item {
-        transform: translateX(0%);
-    }
-
-    #city2:checked~.slider-wrap .slider-item {
-        transform: translateX(-100%);
-    }
-
-    #city3:checked~.slider-wrap .slider-item {
-        transform: translateX(-200%);
-    }
-
-    #city4:checked~.slider-wrap .slider-item {
-        transform: translateX(-300%);
-    }
-
-    #city5:checked~.slider-wrap .slider-item {
-        transform: translateX(-400%);
-    }
-
-
-    /* Reveal Mobile Pagination Dots */
-    .city-slider__dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.6rem;
-        margin-top: 1.2rem;
-    }
-
-    .city-slider__dot {
-        width: 0.8rem;
-        height: 0.8rem;
-        border-radius: 50%;
-        background-color: #D1D5DB;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    /* Change dot appearance based on the checked radio button state */
-    #city1:checked~.city-slider__dots .city-slider__dot:nth-child(1),
-    #city2:checked~.city-slider__dots .city-slider__dot:nth-child(2),
-    #city3:checked~.city-slider__dots .city-slider__dot:nth-child(3),
-    #city4:checked~.city-slider__dots .city-slider__dot:nth-child(4),
-    #city5:checked~.city-slider__dots .city-slider__dot:nth-child(5) {
-        background-color: var(--c-accent);
-        width: 1.8rem;
-        border-radius: 0.4rem;
-        /* Stretches the active dot into a pill shape */
-    }
-}
-
-/* Border Control Section  */
-.intro-content,
-.author-card,
+.intro-card,
 .city-list,
-.itinerary-section {
+.itinerary-section,
+.tips-card {
     border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
-
 }

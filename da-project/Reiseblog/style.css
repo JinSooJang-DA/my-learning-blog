@@ -25,7 +25,7 @@ main.page-wrapper,
     display: flex;
     flex-direction: column;
     flex: 1;
-    }
+}
 
 footer,
 .footer {
@@ -290,7 +290,7 @@ a.btn--primary:active {
 .hero__card {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    max-width: 1440px; 
+    max-width: 1440px;
     width: 100%;
     margin: 0 auto;
     min-height: clamp(450px, 50vh, 520px);
@@ -380,7 +380,7 @@ a.btn--primary:active {
     5. Main Content (Center-aligned content area)
 ========================================================= */
 .main-content {
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: 4rem 1.5rem;
     width: 100%;
@@ -393,6 +393,10 @@ a.btn--primary:active {
 }
 
 .section-header__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
     font-size: var(--font-xl);
 }
 
@@ -405,7 +409,7 @@ a.btn--primary:active {
     6. Slider Component
 ========================================================= */
 .slider {
-    max-width: 1200px; 
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto 4rem auto;
     position: relative;
@@ -592,8 +596,8 @@ details[open] summary::after {
 }
 
 @media screen and (min-width: 540px) and (max-width: 1039px) {
-    
-    
+
+
     .faq-section details {
         width: 500px;
     }
@@ -611,7 +615,7 @@ details[open] summary::after {
 
 .Contact_form {
     padding-top: 120px;
-    max-width: 1100px; 
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -905,15 +909,15 @@ details[open] summary::after {
     }
 
     .footer-nav p {
-    order: 3;
-    font-size: 0.85rem;
-    margin: 0;
-    white-space: normal; 
-    word-break: break-word; 
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
+        order: 3;
+        font-size: 0.85rem;
+        margin: 0;
+        white-space: normal;
+        word-break: break-word;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
 
     .footer-nav p img {
         height: 1rem;
@@ -1003,29 +1007,35 @@ details[open] summary::after {
     .faq-section {
         padding: 24px 16px !important;
     }
+
     .faq-section details {
         width: 100% !important;
         max-width: 100% !important;
     }
+
     .main-content {
         padding: 2rem 16px;
         width: 100%;
         box-sizing: border-box;
     }
+
     .Contact_form {
         padding-left: 16px;
         padding-right: 16px;
     }
+
     .questions-container {
         padding: 24px 0 0 0 !important;
         width: 100% !important;
         max-width: 100% !important;
     }
+
     .slider {
         border-radius: 0.75rem;
         margin-left: 0;
         margin-right: 0;
     }
+
     .slider__slide {
         padding: 1.5rem;
         height: 20rem;
@@ -1033,12 +1043,16 @@ details[open] summary::after {
 }
 
 @media screen and (max-width: 530px) {
-    html, body {
+
+    html,
+    body {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
     }
-    .page-wrapper, main.page-wrapper {
+
+    .page-wrapper,
+    main.page-wrapper {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;

@@ -190,7 +190,7 @@ li {
 }
 
 /* =========================================================
-   3. Main Layout & Intro Grid
+   3. Main Layout & Intro Section (Single Box Layout)
 ========================================================= */
 .container {
     display: flex;
@@ -202,22 +202,29 @@ li {
     padding: 2rem 1.5rem;
 }
 
-/* CSS Grid layout for intro text and author card */
-.intro-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    /* Left column takes up 2 parts, right takes 1 part */
-    gap: 1.5rem;
+/* Single Outer Card Box (Flexbox Wrapper) */
+.intro-card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2.5rem;
+
+    background-color: var(--c-secondary);
+    border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
+    border-left: 0.5rem solid var(--c-accent);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
+
+    padding: 2.5rem;
+    padding-right: 0;
     margin-top: 1rem;
     margin-bottom: 4rem;
+    box-sizing: border-box;
 }
 
+/* Left Column Content Area */
 .intro-content {
-    background-color: var(--c-secondary);
-    padding: 2.5rem;
-    border-radius: 0.5rem;
-    border-left: 0.5rem solid var(--c-accent);
-    /* Colored left border for design */
+    flex: 3.5;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -238,8 +245,6 @@ li {
     line-height: 1.25;
     margin-bottom: 1.2rem;
 }
-
-
 
 .intro-summary {
     font-size: var(--font-base);
@@ -273,25 +278,32 @@ li {
     object-fit: contain;
 }
 
-/* Author Sidebar Card */
+/* Right Column Author Profile Area */
 .author-card {
-    background-color: var(--c-secondary);
-    padding: 2.5rem 1.5rem;
-    border-radius: 0.5rem;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    /* 예시 이미지 스타일 적용 */
+    background-color: var(--c-buttonpoint);
+    /* 예시 이미지 느낌의 연한 초록/아이보리 바탕색 (프로젝트 변수 사용 시 var(--c-secondary) 등) */
+    border-radius: 1.25rem;
+    /* 둥근 모서리 */
+    padding: 1.75rem 1.25rem;
+    /* 박스 안쪽 여백 */
+
+    box-shadow: none !important;
+    /* 바깥쪽 상자 외에 이중 그림자 방지 */
 }
 
 .author-img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    /* Makes the image a perfect circle */
     margin-bottom: 1rem;
     object-fit: cover;
-    /* Ensures the image doesn't stretch */
 }
 
 .author-name {
@@ -313,7 +325,6 @@ li {
     color: var(--c-primary);
     line-height: 1.6;
 }
-
 
 /* =========================================================
    4. Slider Rotator Section (Pure CSS Animation)
@@ -434,7 +445,7 @@ li {
 /* City Descriptions List */
 .city-list {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
     background-color: var(--c-secondary);
     border-radius: 0.5rem;
     border-left: 0.5rem solid var(--c-accent);
@@ -460,7 +471,7 @@ li {
 /* =========================================================
    4.5 Video Section (Responsive 16:9 Youtube Embed)
 ========================================================= */
-.video-section {
+/* .video-section {
     width: 100%;
     max-width: 600px;
     margin: 0 auto 4rem;
@@ -487,26 +498,85 @@ li {
     width: 100%;
     height: 100%;
     border: 0;
-}
+} */
 
 /* =========================================================
-   5. Tips Section
+   5. Tips Section (Badge & Card Layout)
 ========================================================= */
-.tips-section {
+.tips-card {
+    position: relative;
     width: 100%;
     max-width: 1200px;
-    margin: 2.5rem auto 0;
+    background-color: var(--c-secondary);
+    border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
+    
+    /* 💡 중요: 배지가 제목을 가리지 않도록 상단 패딩을 4.5rem으로 늘립니다 */
+    padding: 4.5rem 2.5rem 2.5rem 3.5rem;
+    margin: 4rem auto 0;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+/* 회전된 배지 아트 (예시 스타일과 위치 재조정) */
+.tips-badge {
+    position: absolute;
+    /* 💡 위치와 회전 각도를 예시처럼 더 왼쪽 상단으로 걸쳐지게 조절 */
+    top: -25px;
+    left: -20px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    
+    background-color: var(--c-primary);
+    color: #F1C953;
+    
+    /* 패딩과 둥근 모서리 조정 */
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    
+    /* 예시와 같이 더 경사지게 기울임 (-16deg) */
+    transform: rotate(-16deg);
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+/* 다운받은 SVG 이미지 크기 및 수직 정렬 */
+.badge-icon-img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+}
+
+/* 배지 텍스트 폰트 설정 */
+.badge-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem; /* 글자 크기 업 */
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* 제목 여백 설정 */
+.tips-card h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: var(--font-xxl);
+}
+
+/* 리스트 항목 간격 설정 */
+.tips-list {
+    padding-left: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.tips-list {
-    padding-left: 1.25rem;
-    /* Indents the numbered list slightly */
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+.tip-item {
+    font-size: var(--font-base);
+    line-height: 1.6;
 }
 
 /* =========================================================
@@ -514,7 +584,7 @@ li {
 ========================================================= */
 .itinerary-section {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
     background-color: var(--c-secondary);
     border-radius: 0.5rem;
     border-left: 0.5rem solid var(--c-accent);
@@ -796,6 +866,17 @@ li {
         padding-bottom: 5.5rem;
     }
 
+    .intro-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .intro-content,
+    .author-card {
+        width: 100%;
+    }
+
     .footer {
         padding: 1.5rem 1rem;
     }
@@ -1028,12 +1109,11 @@ li {
     }
 }
 
-/* Border Control Section  */
-.intro-content,
-.author-card,
+/* Border Control Section */
+.intro-card,
 .city-list,
-.itinerary-section {
+.itinerary-section,
+.tips-card {
     border-radius: 0.5rem 3.5rem 0.5rem 0.5rem;
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5);
-
 }
