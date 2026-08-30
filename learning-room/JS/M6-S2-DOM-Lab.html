@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M6 S2 Lab - DOM Manipulation | Jin Soo Jang</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1220;--bg-soft:#101a30;--card:#151e32;--card-hover:#1b2742;--border:#1e2d4a;--border-strong:#2a3c62;--text:#e2e8f0;--text-strong:#f8fafc;--muted:#94a3b8;--accent:#3b82f6;--accent-2:#6366f1;--accent-glow:0 0 0 3px rgba(59,130,246,.15),0 0 20px rgba(59,130,246,.25);--green:#22c55e;--red:#ef4444;--orange:#f97316}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Noto Sans KR',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+header{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:18px 20px}
+.header-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.badge{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.22);color:#93c5fd;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);text-decoration:none;font-size:.78rem;transition:.15s}
+.nav a:hover{border-color:var(--accent);color:var(--text-strong);box-shadow:var(--accent-glow)}
+.container{max-width:1180px;margin:0 auto;padding:28px 20px 120px;display:grid;grid-template-columns:240px 1fr;gap:24px}
+.toc{position:sticky;top:88px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+.toc h4{margin:0 0 10px;font-size:.85rem;color:var(--text-strong)} .toc a{display:block;padding:6px 8px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:.82rem}
+.toc a:hover{background:var(--bg-soft);color:var(--text-strong)} .toc a.active{background:rgba(59,130,246,.12);color:var(--accent)}
+.main{display:flex;flex-direction:column;gap:28px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 22px;box-shadow:0 8px 24px rgba(0,0,0,.22);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent)}
+.card h2{margin:0 0 6px;font-size:1.25rem;color:var(--text-strong)} .card h3{margin:18px 0 8px;font-size:1rem;color:var(--text-strong)}
+.code{background:#0f172a;border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.84rem;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.code .k{color:#7dd3fc} .code .s{color:#fde68a} .code .c{color:#64748b}
+.demo{background:var(--bg-soft);border:1px dashed var(--border-strong);border-radius:12px;padding:16px;margin-top:12px}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.82rem;transition:.15s}
+.btn:hover{border-color:var(--accent);box-shadow:var(--accent-glow)} .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.green_bg{background:green;padding:12px;border-radius:8px;color:#fff} .d_none{display:none !important} .box{padding:12px;border:1px solid var(--border-strong);border-radius:8px;background:var(--card-hover)}
+.input{padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg-soft);color:var(--text);min-width:180px}
+.console{position:fixed;bottom:0;left:0;right:0;background:#0f172a;border-top:1px solid var(--border);z-index:30;max-height:180px;display:flex;flex-direction:column}
+.console-head{display:flex;justify-content:space-between;padding:8px 16px;border-bottom:1px solid var(--border);font-size:.75rem;color:var(--muted)} .console-body{overflow:auto;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:.78rem}
+.log{padding:2px 0} .log.err{color:var(--red)} .log.ok{color:var(--green)}
+@media(max-width:900px){.container{grid-template-columns:1fr}.toc{position:static}}
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div><span class="badge">LEARNING-ROOM / JS</span><h1 style="margin:6px 0 0;font-size:1.45rem;color:var(--text-strong)">M6 S2 – DOM Manipulation Lab</h1><div style="color:var(--muted);font-size:.82rem">getElementById · innerHTML / innerText · classList · setAttribute/value · onclick · on* · addEventListener</div></div>
+<nav class="nav"><a href="../index.html">← learning-room</a><a href="../../index.html">Daily Blog</a><a href="https://jinsoojang-da.github.io/my-learning-blog/learning-room/CSS/Css-Calc-Clamp.html">CSS Lab</a></nav>
+</div>
+</header>
+
+<div class="container">
+<aside class="toc">
+<h4>📚 Labs</h4>
+<a href="#s01" class="active">01-02 getElementById & innerHTML/Text</a>
+<a href="#s04">04 classList add/remove/toggle</a>
+<a href="#s05">05 setAttribute & value</a>
+<a href="#s07">07 onclick + d_none toggle</a>
+<a href="#s08">08 onload/onchange/onkeydown</a>
+<a href="#s10">10 addEventListener Best Practice</a>
+<a href="#aufgaben">✅ Aufgaben</a>
+</aside>
+
+<main class="main">
+<!-- S01 -->
+<section id="s01" class="card">
+<h2>01-02강 – 3가지 필수 개념 (사진 01.02)</h2>
+<p><span class="mono badge">document.getElementById('아이디명')</span> 역할: HTML에서 바꾸고 싶은 태그를 JS로 정확히 집어오는 명령. 핵심은 조작할 태그에 <span class="mono">id</span>가 있어야 함.</p>
+<div class="code"><span class="k">document</span>.getElementById(<span class="s">'아이디명'</span>)
+<span class="c">// HTML 태그를 '집어(선택)'오는 명령</span></div>
+<h3>.innerHTML vs .innerText</h3>
+<div class="code">.innerHTML = <span class="s">"&lt;b&gt;안녕&lt;/b&gt;"</span> → <b>안녕</b> (굵게, 태그 해석 O)
+.innerText  = <span class="s">"&lt;b&gt;안녕&lt;/b&gt;"</span> → &lt;b&gt;안녕&lt;/b&gt; (문자 그대로, 해석 X)</div>
+<div class="demo">
+<div id="lab1_target" class="box">여기가 바뀝니다</div>
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+<input id="lab1_input" class="input" value="<b>안녕</b>">
+<button class="btn primary" onclick="document.getElementById('lab1_target').innerHTML = document.getElementById('lab1_input').value">innerHTML 적용</button>
+<button class="btn" onclick="document.getElementById('lab1_target').innerText = document.getElementById('lab1_input').value">innerText 적용</button>
+</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:8px">💡 한 줄 요약: <span class="mono">getElementById로 집어오고, .innerHTML이나 .innerText로 내용을 교체</span></p>
+</div>
+</section>
+
+<!-- S04 -->
+<section id="s04" class="card">
+<h2>04강 – .classList mit add, remove und toggle</h2>
+<p>JS로 CSS 클래스 <span class="mono">class</span>를 추가(add), 삭제(remove), 스위치처럼 껐다 켜기(toggle)하여 디자인을 동적으로 바꾸는 핵심 문법.</p>
+<div class="code">.classList.add(<span class="s">'클래스명'</span>)    : 추가 (예: 녹색 배경 켜기)
+.classList.remove(<span class="s">'클래스명'</span>) : 제거 (끄기)
+.classList.toggle(<span class="s">'클래스명'</span>) : 없으면 추가, 있으면 제거 (스위치/다크모드 원리)</div>
+<div class="demo">
+<div id="test_div" class="box">test_div</div>
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn" onclick="document.getElementById('test_div').classList.add('green_bg')">add green_bg</button>
+<button class="btn" onclick="document.getElementById('test_div').classList.remove('green_bg')">remove</button>
+<button class="btn primary" onclick="document.getElementById('test_div').classList.toggle('green_bg')">toggle (스위치)</button>
+</div>
+<div style="margin-top:12px" class="code">CSS: .green_bg { background-color: green; ... }
+HTML: &lt;div class="green_bg" id="test_div"&gt; 처럼 직접 클래스 부여하면 초록 상자 보임
+JS: class="green_bg" 지운 뒤 JS로 위 명령 실행</div>
+</div>
+</section>
+
+<!-- S05 -->
+<section id="s05" class="card">
+<h2>05강 – setAttribute und value</h2>
+<p>입력창 <span class="mono">input</span>에 사용자가 입력한 값을 읽거나 수정하는 <span class="mono">.value</span>와, HTML 태그의 속성(type,id,src 등)을 강제로 설정/변경하는 <span class="mono">.setAttribute()</span></p>
+<div class="code"><span class="k">.value</span> : &lt;input&gt; 값 읽기/쓰기
+읽기: document.getElementById('input_id').value → 현재 입력값 가져오기
+쓰기: document.getElementById('input_id').value = 10 → 10으로 바꾸기
+
+.setAttribute('속성명','값') : 속성 강제 지정/변경
+예: input.setAttribute('type','password') → 일반 입력창을 *** 비밀번호창으로 변경</div>
+<div class="demo">
+<input id="test_input" class="input" type="number" value="5">
+<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn" onclick="log('value='+document.getElementById('test_input').value,'ok')">log value</button>
+<button class="btn" onclick="document.getElementById('test_input').value=10; log('value를 10으로 변경','ok')">value=10으로</button>
+<button class="btn" onclick="let i=document.getElementById('test_input'); i.setAttribute('type', i.type==='password'?'number':'password'); log('type → '+i.type,'ok')">setAttribute type toggle</button>
+<button class="btn" onclick="document.getElementById('test_input').setAttribute('title','나는 툴팁! 마우스 올려봐'); log('title 속성 추가','ok')">title 추가</button>
+</div>
+<h3>중요 비교: classList.add vs setAttribute("class")</h3>
+<div class="code">이미 &lt;div class="box"&gt;가 있을 때:
+classList.add("test") → class="box test" (유지+추가)
+setAttribute("class","test") → class="test" (기존 box 날아감! 덮어쓰기)</div>
+<div class="demo">
+<div id="compare_div" class="box">나는 원래 box 클래스가 있음</div>
+<button class="btn" onclick="document.getElementById('compare_div').classList.add('green_bg'); log('add → box + green_bg 유지','ok')">classList.add</button>
+<button class="btn" onclick="document.getElementById('compare_div').setAttribute('class','green_bg'); log('setAttribute → box 사라짐! 덮어쓰기','err')">setAttribute("class")</button>
+<button class="btn" onclick="document.getElementById('compare_div').className='box'; log('원래대로 복구','ok')">reset</button>
+</div>
+</div>
+</section>
+
+<!-- S07 -->
+<section id="s07" class="card">
+<h2>07강 – onclick → auf Events im DOM/HTML reagieren</h2>
+<p>버튼 클릭 시 JS 함수 실행, 특정 요소의 클래스 <span class="mono">d_none</span>을 껐다 켜서 글자를 보였다 안 보였다(숨김/표시)하는 이벤트 제어.</p>
+<div class="code">display: none; ( .d_none 클래스): 화면에서 완전히 숨김
+onclick="함수명('파라미터')" : 클릭하면 지정한 JS 함수 즉시 호출
+classList.toggle('d_none') : id 요소에 d_none 없으면 붙여서 숨기고, 있으면 떼서 다시 보여줌</div>
+<div class="demo">
+<style>.d_none_lab{display:none}</style>
+<button class="btn primary" onclick="toggleDNone('our_p_tag')">bitte ausführen (toggle)</button>
+<p id="our_p_tag">ich bin das p tag – 나는 p 태그</p>
+<div class="code">&lt;style&gt; .d_none { display: none; } &lt;/style&gt;
+&lt;button onclick="toggleDNone('our_p_tag')"&gt;bitte ausführen&lt;/button&gt;
+function toggleDNone(id){
+  document.getElementById(id).classList.toggle('d_none');
+}
+→ 버튼 누를 때마다 문장이 보였다 사라졌다 반복</div>
+</div>
+</section>
+
+<!-- S08 -->
+<section id="s08" class="card">
+<h2>08강 – onclick-Alternativen (onchange, onkeydown usw.)</h2>
+<p>클릭뿐만 아니라 페이지 로딩 completed (<span class="mono">onload</span>), 체크박스/입력값 변경 (<span class="mono">onchange</span>), 키보드 눌림 (<span class="mono">onkeydown</span>) 등 다양한 유저 행동(이벤트)을 감지하는 대체 이벤트 속성들.</p>
+<div class="code">onload="..."  : 웹페이지가 완전히 열리고(로드되고) 나면 자동 즉시 실행. 보통 &lt;body onload="..."&gt;에 사용
+onchange="..." : 체크박스 체크/해제하거나, 입력창 내용 바뀌고 포커스 벗어날 때 실행
+onkeydown="..." : 입력창에서 키보드 자판 누르는 순간 즉시 실행</div>
+<div class="demo">
+<p><b>① onload 시뮬레이션:</b> 이 페이지는 로드되자마자 콘솔에 123이 찍힙니다.</p>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" onchange="log('checkbox onchange → 9 (체크박스 '+ (this.checked?'켜짐':'꺼짐')+')','ok')"> <span>체크박스를 켜고 끄면 콘솔에 9가 찍힘 (사진의 10 9는 10번 건드렸다는 뜻)</span></label>
+<div style="margin-top:10px;display:flex;gap:8px">
+<input id="onkey_input" class="input" placeholder="여기에 타이핑" onkeydown="log('onkeydown: '+event.key+' (눌리는 순간)','ok')" onkeyup="log('onkeyup: '+event.key+' (뗀 순간) value='+this.value,'ok')">
+</div>
+<div class="code">&lt;body onload="console.log(123)"&gt; → 페이지 열리자마자 123
+&lt;input type="checkbox" onchange="console.log(9)"&gt; → 체크할 때마다 9
+onkeydown vs onkeyup: keydown은 value 반영 전, keyup은 반영 후</div>
+</div>
+</section>
+
+<!-- S10 -->
+<section id="s10" class="card">
+<h2>10강 – addEventListener (실무 정석 방식)</h2>
+<p>HTML 태그 안에 <span class="mono">onclick="..."</span>을 직접 적는 대신, 자바스크립트 쪽에서 HTML 요소를 감시(귀를 기울임)하다가 이벤트 발생하면 지정한 함수 실행시키는 실무 정석 방식.</p>
+<div class="code">문법: 요소.addEventListener('이벤트종류', 실행할함수이름)
+특징:
+- HTML에는 아무런 이벤트 속성(onclick 등) 적지 않아도 됨 (HTML과 JS의 완벽한 분리)
+- 두 번째 인자로 전달하는 함수 이름 뒤에는 소괄호 ()를 붙이지 않습니다 (logger O / logger() X)
+  소괄호 붙이면 클릭할 때가 아니라 코드가 읽히는 순간 바로 실행되어 버림</div>
+<div class="demo">
+<h1 id="old_way" onclick="console.log(1)" style="cursor:pointer;background:var(--bg-soft);padding:8px;border-radius:8px">첫 번째 이미지 (HTML) &lt;h1 onclick="console.log(1)" ...&gt; - 기존 방식 (클릭하면 1)</h1>
+<p id="our_p_tag2" style="cursor:pointer;background:var(--bg-soft);padding:8px;border-radius:8px">두 번째 - our_p_tag에 addEventListener로 연결됨 (클릭하면 55555)</p>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="btn" id="bug_btn1">addEventListener("click", logger) O - 정상</button>
+<button class="btn" id="bug_btn2">addEventListener("click", logger()) X - 버그 시뮬</button>
+</div>
+<div class="code">document.getElementById("our_p_tag").addEventListener("click", logger);
+→ our_p_tag라는 ID를 가진 &lt;p&gt; 태그를 누르면(click), JS의 logger() 함수가 호출되어 콘솔에 55555 출력
+
+logger vs logger(): 
+logger → 함수 자체를 전달 (클릭할 때 실행)
+logger() → 지금 당장 실행한 결과를 전달 (페이지 로드시 바로 실행됨, 버그!)</div>
+</div>
+</section>
+
+<!-- Aufgaben -->
+<section id="aufgaben" class="card" style="border-color:var(--accent);box-shadow:var(--accent-glow)">
+<h2>✅ Aufgaben – 섹션 2 실습 과제 (네가 준 독일어 원문)</h2>
+
+<h3>Aufgabe 1-2: Button in div per JS</h3>
+<div class="code">Aufgabe 1: Erstelle mit Hilfe von JavaScript einen Button innerhalb einer div. Tipp: Im besten Fall bekommt der Button hier schon eine id.
+Aufgabe 2: Füge diesem Button wieder mit Hilfe von JavaScript den Text hinzu "Klick mich"</div>
+<div class="demo">
+<div id="aufgabe1_div" class="box">여기가 div – 여기에 JS로 버튼이 생길 예정</div>
+<button class="btn primary" onclick="runAufgabe1()">Aufgabe 1+2 실행</button>
+<div class="code" id="aufgabe1_code"></div>
+</div>
+
+<h3>1-4 Aufgabe: p-tag + title + class 비교</h3>
+<div class="code">1. Erstelle ein p-tag mit einer selbst gewählten id und Inhalt.
+2. Füge mit JavaScript dem p-tag einen title hinzu. (title은 Tooltip)
+3. Probiere: Kannst du auch eine css class mit setAttribute hinzufügen?
+4. Unterschied classList.add("test_class") vs setAttribute("class","test_class")? Hinweis: Füge hierzu vorher schon einmal eine andere class ein!
+Wichtiger Tipp: Wenn du nicht sicher bist, wie oder ob etwas geht, dann probier es aus! Genau das macht dich zum Entwickler!!</div>
+<div class="demo">
+<div id="aufgabe2_sandbox" class="box"></div>
+<button class="btn" onclick="runAufgabe2()">p-tag 생성 + title + class 실험</button>
+</div>
+
+<h3>Vorbereitung nächstes Video: d_none + toggle</h3>
+<div class="code">Erstelle im CSS eine Klasse d_none, diese sollte "display:none;" beinhalten.
+Bau nun eine Funktion, die die Klasse "d_none" mit classList.toggle() hinzufügt/entfernt bei einem beliebigen HTML Element.
+Hinweis: Beliebig heißt hier, dass die id aus dem Parameter der Funktion genommen wird.</div>
+<div class="demo">
+<p id="toggle_target">나는 토글 대상 – d_none으로 숨겨질 p</p>
+<button class="btn" onclick="toggleDNone('toggle_target')">toggleDNone('toggle_target')</button>
+</div>
+
+<h3>01-03 Aufgabe: input value + onkeyup vs onkeydown</h3>
+<div class="code">01 Erstelle ein inputfeld mit einer selbst gewählten id
+02 Erstelle eine Funktion, die den Value dieses inputfeldes aus loggt.
+03 Probiere aus: Vergleiche nun den log von onkeyup und onkeydown. Siehst du einen Unterschied?</div>
+<div class="demo">
+<input id="myInput" class="input" placeholder="myInput – 여기에 입력">
+<button class="btn" onclick="log('myInput value = '+document.getElementById('myInput').value,'ok')">logValue()</button>
+<div style="margin-top:8px" class="code">onkeyup: 키 뗄 때 value가 이미 바뀐 뒤 로그
+onkeydown: 키 누르는 순간, 아직 value 반영 전 로그 → 차이 있음!</div>
+<input class="input" placeholder="onkeyup vs onkeydown 비교" onkeydown="log('[keydown] key='+event.key+' value(이전)='+this.value,'ok')" onkeyup="log('[keyup] key='+event.key+' value(이후)='+this.value,'ok')">
+</div>
+
+<p style="margin-top:16px;font-size:.85rem;color:var(--muted)">⚠ Hinweis: createElement + appendChild는 더 복잡하고 고급 기술이라 지금은 쓰지 마세요! (w3schools createElement) – 지금 배운 getElementById + innerHTML/innerText로 시작!</p>
+</section>
+
+</main>
+</div>
+
+<div class="console">
+<div class="console-head"><span>🖥️ CONSOLE (onload 123 / onchange 9 / 55555 / Klick mich)</span><div><button class="btn" style="padding:2px 8px" onclick="clearLogs()">Clear</button></div></div>
+<div id="console_body" class="console-body"></div>
+</div>
+
+<script>
+function log(msg, type='ok'){const c=document.getElementById('console_body');const d=document.createElement('div');d.className='log '+type;const t=new Date().toLocaleTimeString();d.textContent='['+t+'] '+msg;c.appendChild(d);c.scrollTop=c.scrollHeight;console.log(msg);}
+function clearLogs(){document.getElementById('console_body').innerHTML='';}
+window.addEventListener('load',()=>{log('123 – body onload completed (페이지 로딩 완료)','ok')});
+function toggleDNone(id){const el=document.getElementById(id);if(!el){log('ID '+id+' not found','err');return;}el.classList.toggle('d_none');log('toggleDNone("'+id+'") → d_none '+ (el.classList.contains('d_none')?'추가(숨김)':'제거(표시)'),'ok');}
+function logger(){log('55555 – logger() 호출됨 (addEventListener 정석)','ok');}
+document.getElementById('our_p_tag2')?.addEventListener('click', logger);
+document.getElementById('bug_btn1')?.addEventListener('click', logger);
+document.getElementById('bug_btn2')?.addEventListener('click', logger()); // bug: immediate execution
+log('버그 데모: logger()로 등록한 버튼은 페이지 로드시 이미 실행됨 (아래 로그 확인)','err');
+
+function runAufgabe1(){
+  const div=document.getElementById('aufgabe1_div');
+  div.innerHTML=''; // reset
+  const btn=document.createElement('button'); // we use createElement for demo even though course says don't yet, but show both ways
+  btn.id='meinButton';
+  btn.className='btn primary';
+  btn.innerText='Klick mich';
+  btn.onclick=()=>log('Klick mich 버튼 클릭! (Aufgabe 2 성공)','ok');
+  div.appendChild(btn);
+  // also show innerHTML way (recommended per course)
+  document.getElementById('aufgabe1_code').textContent = 'JS: document.getElementById("aufgabe1_div").innerHTML = \'<button id="meinButton">Klick mich</button>\'';
+  log('Aufgabe 1+2: div 안에 id=meinButton, text=Klick mich 버튼 생성','ok');
+}
+function runAufgabe2(){
+  const sb=document.getElementById('aufgabe2_sandbox');
+  sb.innerHTML='<p id="meinP" class="box">내가 만든 p-tag (id=meinP)</p>';
+  const p=document.getElementById('meinP');
+  p.setAttribute('title','나는 툴팁! title 속성 (w3schools att_global_title)');
+  p.classList.add('green_bg');
+  log('p-tag 생성 + title="툴팁" 추가 + classList.add green_bg','ok');
+  setTimeout(()=>{
+    p.setAttribute('class','green_bg');
+    log('setAttribute("class","green_bg") 실행 → 기존 box 클래스 사라짐! (덮어쓰기 버그 시연)','err');
+    setTimeout(()=>{p.className='box green_bg'; log('복구: className="box green_bg"로 다시 설정','ok');},1200);
+  },1200);
+}
+// old h1 click
+document.getElementById('old_way')?.addEventListener('click',()=>log('1 – old onclick="console.log(1)" 방식','ok'));
+</script>
+</body>
+</html>

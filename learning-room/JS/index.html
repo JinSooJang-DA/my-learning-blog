@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS School - Theme List</title>
+<style>
+:root{--bg:#0b0b0f;--card:#15151e;--border:#262631;--text:#f5f5f7;--muted:#9ca3af;--accent:#3b82f6;--green:#22c55e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(11,11,15,.9);position:sticky;top:0}
+.lang{display:flex;gap:4px;background:#1a1a1f;border:1px solid var(--border);border-radius:999px;padding:3px}
+.lang button{border:0;padding:5px 12px;border-radius:999px;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
+.lang button.active{background:#fff;color:#000}
+.wrap{max-width:900px;margin:0 auto;padding:24px 20px}
+.theme{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;display:flex;justify-content:space-between;align-items:center;transition:.2s;margin-top:14px}
+.theme:hover{border-color:var(--accent);transform:translateY(-2px)}
+.theme.active{border-color:var(--accent);box-shadow:0 0 0 1px rgba(59,130,246,.2)}
+.theme.project{border-color:rgba(34,197,94,.25)} .theme.project:hover{border-color:var(--green)}
+.btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.85rem}
+.btn.green{background:var(--green);color:#000}
+.pill{font-family:monospace;font-size:.7rem;padding:3px 8px;border-radius:999px;background:#1a1a2a;border:1px solid #333;color:var(--muted)}
+.muted{color:var(--muted)}
+.section{margin-top:28px} .section h2{font-size:1.1rem;margin:0 0 8px}
+</style>
+</head>
+<body>
+<header>
+<a href="../../" style="color:var(--muted);text-decoration:none">← Main</a>
+<div class="lang"><button class="active" data-lang="ko" onclick="setLang('ko')">KO</button><button data-lang="en" onclick="setLang('en')">EN</button><button data-lang="de" onclick="setLang('de')">DE</button></div>
+</header>
+<div class="wrap">
+<h1 id="title">⚡ JS 학교</h1>
+<p id="sub" class="muted">테마 선택 → 정리 페이지로 이동. Fotogram 2개는 JS 공부용이라 CSS에서 여기로 이동.</p>
+
+<div class="section">
+<h2 id="sec-theme">📚 테마</h2>
+<div class="theme active">
+<div>
+<div><span class="pill">ACTIVE</span> <span class="pill">M6 S2</span> <span class="pill">6 lessons</span></div>
+<h3 id="dom-title" style="margin:8px 0 4px">DOM — Document Object Model</h3>
+<p id="dom-desc" class="muted" style="margin:0;font-size:.85rem">getElementById, innerHTML/innerText, classList, setAttribute/value, Events, addEventListener</p>
+</div>
+<a id="dom-btn" class="btn" href="./M6-S2-DOM-Lab.html">테마 열기 →</a>
+</div>
+</div>
+
+<div class="section">
+<h2 id="sec-project">🧪 JS 프로젝트 랩 (Fotogram)</h2>
+<div class="theme project">
+<div>
+<div><span class="pill" style="border-color:rgba(34,197,94,.3);color:#4ade80">PROJECT</span> <span class="pill">DOM 활용</span></div>
+<h3 id="foto-starter-title" style="margin:8px 0 4px">Fotogram Starter Lab</h3>
+<p id="foto-starter-desc" class="muted" style="margin:0;font-size:.85rem">DOM 기초로 만드는 갤러리 스타터 - CSS에서 JS로 이동</p>
+</div>
+<a class="btn green" href="./Fotogram-Starter-Lab.html">랩 열기 →</a>
+</div>
+<div class="theme project">
+<div>
+<div><span class="pill" style="border-color:rgba(34,197,94,.3);color:#4ade80">PROJECT</span> <span class="pill">EXAM</span></div>
+<h3 id="foto-exam-title" style="margin:8px 0 4px">Fotogram Exam Lab</h3>
+<p id="foto-exam-desc" class="muted" style="margin:0;font-size:.85rem">Fotogram 시험 - JS 최종 적용</p>
+</div>
+<a class="btn green" href="./Fotogram-Exam-Lab.html">랩 열기 →</a>
+</div>
+</div>
+
+<div style="margin-top:24px;padding:14px;border:1px dashed #2a2a35;border-radius:12px;background:#101015;color:var(--muted);font-size:.78rem;font-family:monospace">
+이동 방법:<br>
+learning-room/CSS/Fotogram-Starter-Lab.html → learning-room/JS/Fotogram-Starter-Lab.html 로 이동<br>
+learning-room/CSS/Fotogram-Exam-Lab.html → learning-room/JS/Fotogram-Exam-Lab.html 로 이동<br>
+그 후 CSS 포탈에서는 7개만 남음
+</div>
+</div>
+<script>
+const dict={
+ko:{title:'⚡ JS 학교',sub:'테마 선택 → 정리 페이지로 이동. Fotogram 2개는 JS 공부용이라 CSS에서 여기로 이동.',secTheme:'📚 테마',domTitle:'DOM — Document Object Model',domDesc:'getElementById, innerHTML/innerText, classList, setAttribute/value, Events, addEventListener',domBtn:'테마 열기 →',secProject:'🧪 JS 프로젝트 랩 (Fotogram)',fotoStarterTitle:'Fotogram Starter Lab',fotoStarterDesc:'DOM 기초로 만드는 갤러리 스타터 - CSS에서 JS로 이동',fotoExamTitle:'Fotogram Exam Lab',fotoExamDesc:'Fotogram 시험 - JS 최종 적용'},
+en:{title:'⚡ JS School',sub:'Choose theme → open summary. Fotogram 2 moved from CSS to JS.',secTheme:'📚 Themes',domTitle:'DOM — Document Object Model',domDesc:'getElementById, innerHTML/innerText, classList, setAttribute/value, Events, addEventListener',domBtn:'Open Theme →',secProject:'🧪 JS Project Labs (Fotogram)',fotoStarterTitle:'Fotogram Starter Lab',fotoStarterDesc:'Gallery starter with DOM basics - moved from CSS to JS',fotoExamTitle:'Fotogram Exam Lab',fotoExamDesc:'Fotogram exam - final JS application'},
+de:{title:'⚡ JS Schule',sub:'Thema wählen → Zusammenfassung öffnen. Fotogram 2 von CSS nach JS verschoben.',secTheme:'📚 Themen',domTitle:'DOM — Document Object Model',domDesc:'getElementById, innerHTML/innerText, classList, setAttribute/value, Events, addEventListener',domBtn:'Thema öffnen →',secProject:'🧪 JS Projekt Labs (Fotogram)',fotoStarterTitle:'Fotogram Starter Lab',fotoStarterDesc:'Galerie Starter mit DOM Grundlagen - von CSS nach JS verschoben',fotoExamTitle:'Fotogram Exam Lab',fotoExamDesc:'Fotogram Prüfung - finale JS Anwendung'}
+};
+function setLang(l){
+localStorage.setItem('cian_lang',l);
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+const d=dict[l];
+document.getElementById('title').textContent=d.title;
+document.getElementById('sub').textContent=d.sub;
+document.getElementById('sec-theme').textContent=d.secTheme;
+document.getElementById('dom-title').textContent=d.domTitle;
+document.getElementById('dom-desc').textContent=d.domDesc;
+document.getElementById('dom-btn').textContent=d.domBtn;
+document.getElementById('sec-project').textContent=d.secProject;
+document.getElementById('foto-starter-title').textContent=d.fotoStarterTitle;
+document.getElementById('foto-starter-desc').textContent=d.fotoStarterDesc;
+document.getElementById('foto-exam-title').textContent=d.fotoExamTitle;
+document.getElementById('foto-exam-desc').textContent=d.fotoExamDesc;
+document.documentElement.lang=l;
+}
+setLang(localStorage.getItem('cian_lang')||'ko');
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# 환경 변수 파일 (API 키 보호)
+.env
+
+# Node.js 관련 의존성 폴더 (용량이 크므로 제외)
+node_modules/
+
+# OS 부산물 파일
+.DS_Store
+Thumbs.db

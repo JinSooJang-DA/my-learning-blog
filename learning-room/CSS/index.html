@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS School - 7 Labs</title>
+<style>
+:root{--bg:#0b0b0f;--card:#17171d;--border:#262631;--text:#f5f5f7;--muted:#9ca3af}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,11,15,.9)}
+.lang{display:flex;gap:4px;background:#1a1a1f;border:1px solid var(--border);border-radius:999px;padding:3px}
+.lang button{border:0;padding:5px 12px;border-radius:999px;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
+.lang button.active{background:#fff;color:#000}
+.wrap{max-width:1000px;margin:0 auto;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+.btn{display:inline-block;margin-top:10px;padding:6px 12px;background:#fff;color:#000;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none}
+.muted{color:var(--muted)} .note{margin-top:20px;padding:12px;border:1px dashed #2a2a35;border-radius:12px;background:#101015;color:var(--muted);font-size:.78rem;font-family:monospace}
+</style>
+</head>
+<body>
+<header>
+<a href="../../" style="color:var(--muted);text-decoration:none">← Main</a>
+<div class="lang"><button class="active" data-lang="ko" onclick="setLang('ko')">KO</button><button data-lang="en" onclick="setLang('en')">EN</button><button data-lang="de" onclick="setLang('de')">DE</button></div>
+</header>
+<div class="wrap">
+<h1 id="title">🎨 CSS 학교 - 7개 실험실</h1>
+<p id="sub" class="muted">Fotogram 2개는 JS 공용이므로 JS 학교로 이동 - CSS는 순수 CSS 7개만</p>
+<div class="grid">
+<div class="card"><h3>01 clamp()</h3><p class="muted" style="font-size:.8rem">clamp() 완전 정복</p><a class="btn" href="./Css-Calc-Clamp.html">열기 →</a></div>
+<div class="card"><h3>02 calc() + clamp</h3><p class="muted" style="font-size:.8rem">calc + clamp 조합</p><a class="btn" href="./Css-Calc-Clamp.html">열기 →</a></div>
+<div class="card"><h3>03 Flex & Grid</h3><a class="btn" href="./Css-Flex-Grid.html">열기 →</a></div>
+<div class="card"><h3>04 Position</h3><a class="btn" href="./Css-Position.html">열기 →</a></div>
+<div class="card"><h3>05 Transform & Animation</h3><a class="btn" href="./Css-Transform-Animation.html">열기 →</a></div>
+<div class="card"><h3>06 Container Queries</h3><a class="btn" href="./Css-Container-Queries.html">열기 →</a></div>
+<div class="card"><h3>07 Quiz Lab</h3><p class="muted" style="font-size:.8rem">Multilingual Quiz Final</p><a class="btn" href="./Css-Quiz-Multilingual-Final.html">열기 →</a></div>
+</div>
+<div class="note" id="note">Fotogram Starter/Exam 2개는 JS 학교로 이동 → learning-room/JS/ 로 파일 옮기기<br>CSS 폴더에는 Fotogram-*.html 더 이상 없음</div>
+</div>
+<script>
+const dict={
+ko:{title:'🎨 CSS 학교 - 7개 실험실',sub:'Fotogram 2개는 JS 공용이므로 JS 학교로 이동 - CSS는 순수 CSS 7개만',note:'Fotogram Starter/Exam 2개는 JS 학교로 이동 → learning-room/JS/ 로 파일 옮기기'},
+en:{title:'🎨 CSS School - 7 Labs',sub:'Fotogram 2 moved to JS School - CSS has pure CSS 7 labs only',note:'Fotogram Starter/Exam moved to JS School → move files to learning-room/JS/'},
+de:{title:'🎨 CSS Schule - 7 Labs',sub:'Fotogram 2 nach JS Schule verschoben - CSS nur 7 reine CSS Labs',note:'Fotogram Starter/Exam nach JS Schule verschoben → Dateien nach learning-room/JS/ verschieben'}
+};
+function setLang(l){
+localStorage.setItem('cian_lang',l);
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+document.getElementById('title').textContent=dict[l].title;
+document.getElementById('sub').textContent=dict[l].sub;
+document.getElementById('note').innerText=dict[l].note;
+document.documentElement.lang=l;
+}
+setLang(localStorage.getItem('cian_lang')||'ko');
+</script>
+</body>
+</html>

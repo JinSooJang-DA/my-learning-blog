@@ -1,222 +1,102 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIAN | Daily Blog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap"
-        rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Noto Sans KR', sans-serif
-        }
-
-        .mono {
-            font-family: 'JetBrains Mono', monospace
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, .5)
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIAN CITYCAT - Learning Room</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0f;--card:#17171d;--border:#262631;--text:#f5f5f7;--muted:#9ca3af;--accent:#3b82f6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
+header{position:sticky;top:0;z-index:20;background:rgba(11,11,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;gap:10px;align-items:center}.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#22d3ee,#a78bfa,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000}
+.lang{display:flex;gap:4px;background:#1a1a1f;border:1px solid var(--border);border-radius:999px;padding:3px}
+.lang button{border:0;padding:5px 12px;border-radius:999px;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
+.lang button.active{background:#fff;color:#000}
+.wrap{max-width:960px;margin:0 auto;padding:28px 20px 80px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);margin:0;line-height:1.1} .hero h1 span{background:linear-gradient(90deg,#22d3ee,#a78bfa,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin:10px 0 0;max-width:720px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:#3a3a4a}
+.btn{display:inline-block;margin-top:16px;padding:12px 20px;border-radius:12px;background:#fff;color:#000;font-weight:800;text-decoration:none}
+.btn.blue{background:var(--accent);color:#fff}
+.ext{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.ext a{padding:8px 14px;border-radius:999px;background:#1a1a20;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem}
+.ext a:hover{border-color:var(--accent)}
+.note{margin-top:20px;padding:12px 14px;border:1px dashed #2a2a35;border-radius:12px;background:#101015;color:var(--muted);font-size:.78rem;font-family:'JetBrains Mono'}
+</style>
 </head>
+<body>
+<header>
+<div class="logo"><div class="logo-icon">C</div><div><div style="font-weight:800">CIAN CITYCAT</div><div style="font-family:'JetBrains Mono';font-size:.68rem;color:var(--muted)">DAILY BLOG / Learning Room</div></div></div>
+<div class="lang"><button class="active" data-lang="ko" onclick="setLang('ko')">KO</button><button data-lang="en" onclick="setLang('en')">EN</button><button data-lang="de" onclick="setLang('de')">DE</button></div>
+</header>
+<div class="wrap">
+<div class="hero">
+<h1 id="hero-title">매일매일 <span>프론트엔드 기록</span></h1>
+<p id="hero-sub">메인에는 포탈 입장만. 들어가서 테마 선택. 3개 언어 지원.</p>
+</div>
+<div class="grid">
+<div class="card">
+<div style="font-size:2.4rem">🎨</div>
+<h2 id="css-title">CSS 학교</h2>
+<p id="css-sub" style="color:var(--muted);font-size:.9rem">포탈 입장</p>
+<a id="css-btn" class="btn" href="./learning-room/CSS/index.html">CSS 포탈 입장 →</a>
+</div>
+<div class="card" style="border-color:#3b82f6;box-shadow:0 0 24px rgba(59,130,246,.15)">
+<div style="font-size:2.4rem">⚡</div>
+<h2 id="js-title">JS 학교</h2>
+<p id="js-sub" style="color:var(--muted);font-size:.9rem">포탈 입장</p>
+<a id="js-btn" class="btn blue" href="./learning-room/JS/index.html">JS 포탈 입장 →</a>
+</div>
+</div>
 
-<body class="bg-[#08080a] text-white min-h-screen">
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08080a]/80 border-b border-white/10">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 grid place-items-center font-black">
-                    C</div>
-                <div>
-                    <div class="font-black text-lg leading-none">CIAN CITYCAT</div>
-                    <div class="mono text-[10px] text-white/50 tracking-widest">DAILY BLOG / d.a-project</div>
-                </div>
-            </div>
-            <div class="flex gap-1 p-1 rounded-full bg-white/5 border border-white/10"><button onclick="setLang('ko')"
-                    id="btn-ko"
-                    class="px-3 py-1.5 rounded-full text-xs font-bold bg-white text-black">KO</button><button
-                    onclick="setLang('en')" id="btn-en"
-                    class="px-3 py-1.5 rounded-full text-xs font-bold text-white/50">EN</button><button
-                    onclick="setLang('de')" id="btn-de"
-                    class="px-3 py-1.5 rounded-full text-xs font-bold text-white/50">DE</button></div>
-        </div>
-    </header>
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <section class="mb-14">
-            <div
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs mono text-cyan-300 mb-4">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span data-t="live">LIVE ON
-                    GITHUB PAGES</span>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] mb-4"><span
-                    data-t="hero1">매일매일</span><br><span
-                    class="bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300 bg-clip-text text-transparent"
-                    data-t="hero2">프론트엔드 기록</span></h1>
-            <p class="text-white/60 max-w-2xl" data-t="heroDesc">현재 VSCode 구조(d.a-project 안에 3개 프로젝트)에 맞춰 경로 수정된 메인
-                대시보드입니다.</p>
-        </section>
+<div class="ext">
+<a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/MeinPC_Website/index.html" target="_blank">💻 MeinPC</a>
+<a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/Reiseblog/index.html" target="_blank">✈️ Reiseblog</a>
+<a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/sakura_ramen_responsive/index.html" target="_blank">🍜 Sakura</a>
+<a href="https://jinsoojang-da.github.io/learning_diary/" target="_blank">📓 Diary</a>
+</div>
+<div class="note">구조: index.html(포탈 입장 + KO/EN/DE) → learning-room/CSS/index.html / learning-room/JS/index.html (각각 테마 목록 + 언어 토글) → 상세 실험실</div>
+</div>
 
-        <section class="mb-14">
-            <h2 class="mono text-xs tracking-widest text-white/40 mb-4" data-t="archiveTitle">ARCHIVE / 메인 프로젝트 -
-                d.a-project 안에 있음</h2>
-            <div class="grid md:grid-cols-3 gap-3">
-                <a href="./da-project/MeinPC_Website/index.html"
-                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-                    <div class="mono text-[11px] text-white/30 mb-1">01 / d.a-project/</div>
-                    <div class="font-bold" data-t="p1">MeinPC 웹사이트</div>
-                    <div class="text-xs text-white/40 mt-1">d.a-project/MeinPC_Website/</div>
-                </a>
-                <a href="./da-project/Reiseblog/index.html"
-                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-                    <div class="mono text-[11px] text-white/30 mb-1">02 / d.a-project/</div>
-                    <div class="font-bold" data-t="p2">Reiseblog</div>
-                    <div class="text-xs text-white/40 mt-1">d.a-project/Reiseblog/</div>
-                </a>
-                <a href="./da-project/sakura_ramen_responsive/index.html"
-                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] transition">
-                    <div class="mono text-[11px] text-white/30 mb-1">03 / d.a-project/</div>
-                    <div class="font-bold" data-t="p3">Sakura 라멘 반응형</div>
-                    <div class="text-xs text-white/40 mt-1">d.a-project/Sakura_Ramen_Responsive/</div>
-                </a>
-            </div>
-            <div
-                class="mt-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 mono text-[11px] text-emerald-200">
-            </div>
-        </section>
-
-        <section>
-            <div class="flex items-end justify-between mb-6">
-                <h2 class="text-3xl font-black" data-t="schoolTitle">🎓 CSS 학교 - 9개 실험실</h2>
-                <div class="flex gap-2 mono text-[11px]"><span
-                        class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">9
-                        LABS</span></div>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <a href="./learning-room/CSS/Css-Clamp.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-cyan-400 text-black grid place-items-center font-black mono">
-                            01</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-cyan-400 text-black font-bold">BASIC
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-cyan-300/70">clamp()</div>
-                    <div class="font-black text-lg" data-t="l1">clamp() 완전 정복</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Calc-Clamp.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-blue-500/10 to-violet-500/10 border border-blue-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-blue-400 text-black grid place-items-center font-black mono">
-                            02</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-blue-400 text-black font-bold">BASIC
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-blue-300/70">calc() + clamp()</div>
-                    <div class="font-black text-lg" data-t="l2">calc() + clamp()</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Flex-Grid.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 border border-violet-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-violet-400 text-black grid place-items-center font-black mono">
-                            03</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-violet-400 text-black font-bold">LAYOUT
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-violet-300/70">flex / grid</div>
-                    <div class="font-black text-lg" data-t="l3">Flex & Grid</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Position.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-orange-500/10 to-amber-500/10 border border-orange-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-orange-400 text-black grid place-items-center font-black mono">
-                            04</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-orange-400 text-black font-bold">LAYOUT
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-orange-300/70">position</div>
-                    <div class="font-black text-lg" data-t="l4">Position</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Transform-Animation.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-fuchsia-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-fuchsia-400 text-black grid place-items-center font-black mono">
-                            05</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-fuchsia-400 text-black font-bold">MOTION
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-fuchsia-300/70">transform</div>
-                    <div class="font-black text-lg" data-t="l5">Transform</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Container-Queries.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-emerald-400 text-black grid place-items-center font-black mono">
-                            06</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-emerald-400 text-black font-bold">FUTURE
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-emerald-300/70">@container</div>
-                    <div class="font-black text-lg" data-t="l6">Container Queries</div>
-                </a>
-                <a href="./learning-room/CSS/Css-Quiz-Multilingual-Final.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-lime-500/10 border border-amber-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">
-                            07</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold">QUIZ
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-amber-300/70">i18n</div>
-                    <div class="font-black text-lg" data-t="l7">퀴즈 랩</div>
-                </a>
-                <a href="./learning-room/CSS/Fotogram-Starter-Lab.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-pink-500/10 to-cyan-500/10 border border-pink-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-pink-400 text-black grid place-items-center font-black mono">
-                            08</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-pink-400 text-black font-bold">PROJECT
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-pink-300/70">Fotogram</div>
-                    <div class="font-black text-lg" data-t="l8">Fotogram 스타터</div>
-                </a>
-                <a href="./learning-room/CSS/Fotogram-Exam-Lab.html"
-                    class="card-hover p-5 rounded-[20px] bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 ring-1 ring-amber-500/20">
-                    <div class="flex justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-amber-400 text-black grid place-items-center font-black mono">
-                            09</div>
-                        <div class="mono text-[10px] px-2 py-1 rounded-full bg-amber-400 text-black font-bold">EXAM
-                        </div>
-                    </div>
-                    <div class="mono text-[11px] text-amber-300/70">find/filter</div>
-                    <div class="font-black text-lg" data-t="l9">Fotogram 시험</div>
-                </a>
-            </div>
-        </section>
-    </main>
-    <footer class="border-t border-white/10 mt-16 py-8">
-        <div class="max-w-6xl mx-auto px-6 mono text-xs text-white/30 flex justify-between"><span>CIAN | Daily Blog -
-                fixed for d.a-project structure</span><span>cian_citycat · 2026</span></div>
-    </footer>
-    <script>
-        const t = { ko: { live: "LIVE ON GITHUB PAGES", hero1: "매일매일", hero2: "프론트엔드 기록", heroDesc: "현재 VSCode 구조(d.a-project 안에 3개 프로젝트)에 맞춰 경로 수정된 메인 대시보드입니다.", archiveTitle: "ARCHIVE / 메인 프로젝트 - d.a-project 안에 있음", p1: "MeinPC 웹사이트", p2: "Reiseblog", p3: "Sakura 라멘 반응형", schoolTitle: "🎓 CSS 학교 - 9개 실험실", l1: "clamp() 완전 정복", l2: "calc() + clamp()", l3: "Flex & Grid", l4: "Position", l5: "Transform", l6: "Container Queries", l7: "퀴즈 랩", l8: "Fotogram 스타터", l9: "Fotogram 시험" }, en: { live: "LIVE ON GITHUB PAGES", hero1: "Daily", hero2: "Frontend Lab", heroDesc: "Dashboard fixed for your current VSCode structure (projects inside d.a-project).", archiveTitle: "ARCHIVE / Main Projects - inside d.a-project", p1: "MeinPC Website", p2: "Reiseblog", p3: "Sakura Ramen", schoolTitle: "🎓 CSS School - 9 Labs", l1: "Master clamp()", l2: "calc() + clamp()", l3: "Flex & Grid", l4: "Position", l5: "Transform", l6: "Container Queries", l7: "Quiz Lab", l8: "Fotogram Starter", l9: "Fotogram Exam" }, de: { live: "LIVE AUF GITHUB PAGES", hero1: "Täglich", hero2: "Frontend Labor", heroDesc: "Dashboard für deine aktuelle Struktur (Projekte in d.a-project).", archiveTitle: "ARCHIV / Hauptprojekte - in d.a-project", p1: "MeinPC Webseite", p2: "Reiseblog", p3: "Sakura Ramen", schoolTitle: "🎓 CSS Schule - 9 Labore", l1: "clamp() meistern", l2: "calc() + clamp()", l3: "Flex & Grid", l4: "Position", l5: "Transform", l6: "Container Queries", l7: "Quiz Labor", l8: "Fotogram Starter", l9: "Fotogram Prüfung" } };
-        function setLang(l) { localStorage.setItem('cian-lang', l); document.querySelectorAll('[data-t]').forEach(e => { const k = e.getAttribute('data-t'); if (t[l][k]) e.innerHTML = t[l][k] }); document.querySelectorAll('[id^=btn-]').forEach(b => b.className = "px-3 py-1.5 rounded-full text-xs font-bold text-white/50"); document.getElementById('btn-' + l).className = "px-3 py-1.5 rounded-full text-xs font-bold bg-white text-black"; }
-        setLang(localStorage.getItem('cian-lang') || 'ko');
-    </script>
+<script>
+const dict={
+ko:{
+heroTitle:'매일매일 <span>프론트엔드 기록</span>',
+heroSub:'메인에는 포탈 입장만. 들어가서 테마 선택. 3개 언어 지원.',
+cssTitle:'CSS 학교',cssSub:'포탈 입장',cssBtn:'CSS 포탈 입장 →',
+jsTitle:'JS 학교',jsSub:'포탈 입장',jsBtn:'JS 포탈 입장 →'
+},
+en:{
+heroTitle:'Daily <span>Frontend Log</span>',
+heroSub:'Main shows only portal entrances. Enter to choose a theme. 3 languages supported.',
+cssTitle:'CSS School',cssSub:'Enter Portal',cssBtn:'Enter CSS Portal →',
+jsTitle:'JS School',jsSub:'Enter Portal',jsBtn:'Enter JS Portal →'
+},
+de:{
+heroTitle:'Tägliches <span>Frontend Log</span>',
+heroSub:'Main zeigt nur Portaleingänge. Eintreten um Thema zu wählen. 3 Sprachen.',
+cssTitle:'CSS Schule',cssSub:'Portal betreten',cssBtn:'CSS Portal betreten →',
+jsTitle:'JS Schule',jsSub:'Portal betreten',jsBtn:'JS Portal betreten →'
+}
+};
+function setLang(l){
+localStorage.setItem('cian_lang',l);
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+const d=dict[l];
+document.getElementById('hero-title').innerHTML=d.heroTitle;
+document.getElementById('hero-sub').textContent=d.heroSub;
+document.getElementById('css-title').textContent=d.cssTitle;
+document.getElementById('css-sub').textContent=d.cssSub;
+document.getElementById('css-btn').textContent=d.cssBtn;
+document.getElementById('js-title').textContent=d.jsTitle;
+document.getElementById('js-sub').textContent=d.jsSub;
+document.getElementById('js-btn').textContent=d.jsBtn;
+document.documentElement.lang=l;
+}
+setLang(localStorage.getItem('cian_lang')||'ko');
+</script>
 </body>
-
 </html>
