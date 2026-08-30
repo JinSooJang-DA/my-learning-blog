@@ -1,102 +1,46 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CIAN CITYCAT - Learning Room</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Learning Room - Hub</title>
 <style>
-:root{--bg:#0b0b0f;--card:#17171d;--border:#262631;--text:#f5f5f7;--muted:#9ca3af;--accent:#3b82f6}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
-header{position:sticky;top:0;z-index:20;background:rgba(11,11,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;gap:10px;align-items:center}.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#22d3ee,#a78bfa,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000}
-.lang{display:flex;gap:4px;background:#1a1a1f;border:1px solid var(--border);border-radius:999px;padding:3px}
-.lang button{border:0;padding:5px 12px;border-radius:999px;background:transparent;color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
-.lang button.active{background:#fff;color:#000}
-.wrap{max-width:960px;margin:0 auto;padding:28px 20px 80px}
-.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);margin:0;line-height:1.1} .hero h1 span{background:linear-gradient(90deg,#22d3ee,#a78bfa,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--muted);margin:10px 0 0;max-width:720px;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
-@media(max-width:720px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center;transition:.2s}
-.card:hover{transform:translateY(-3px);border-color:#3a3a4a}
+body{margin:0;background:#0b0b0f;color:#f5f5f7;font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.wrap{max-width:900px;width:100%}
+h1{font-size:2.6rem;margin:0} h1 span{background:linear-gradient(90deg,#22d3ee,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:#17171d;border:1px solid #262631;border-radius:20px;padding:28px;text-align:center;transition:.2s}
+.card:hover{transform:translateY(-4px)}
 .btn{display:inline-block;margin-top:16px;padding:12px 20px;border-radius:12px;background:#fff;color:#000;font-weight:800;text-decoration:none}
-.btn.blue{background:var(--accent);color:#fff}
-.ext{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
-.ext a{padding:8px 14px;border-radius:999px;background:#1a1a20;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem}
-.ext a:hover{border-color:var(--accent)}
-.note{margin-top:20px;padding:12px 14px;border:1px dashed #2a2a35;border-radius:12px;background:#101015;color:var(--muted);font-size:.78rem;font-family:'JetBrains Mono'}
+.btn.blue{background:#3b82f6;color:#fff}
+.ext{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.ext a{padding:8px 14px;border-radius:999px;background:#1a1a20;border:1px solid #262631;color:#f5f5f7;text-decoration:none;font-size:.85rem}
 </style>
 </head>
 <body>
-<header>
-<div class="logo"><div class="logo-icon">C</div><div><div style="font-weight:800">CIAN CITYCAT</div><div style="font-family:'JetBrains Mono';font-size:.68rem;color:var(--muted)">DAILY BLOG / Learning Room</div></div></div>
-<div class="lang"><button class="active" data-lang="ko" onclick="setLang('ko')">KO</button><button data-lang="en" onclick="setLang('en')">EN</button><button data-lang="de" onclick="setLang('de')">DE</button></div>
-</header>
 <div class="wrap">
-<div class="hero">
-<h1 id="hero-title">매일매일 <span>프론트엔드 기록</span></h1>
-<p id="hero-sub">메인에는 포탈 입장만. 들어가서 테마 선택. 3개 언어 지원.</p>
-</div>
+<h1>📚 Learning Room</h1>
+<p style="color:#9ca3af">Main shows only portal entrances. Enter to choose a theme.</p>
 <div class="grid">
 <div class="card">
-<div style="font-size:2.4rem">🎨</div>
-<h2 id="css-title">CSS 학교</h2>
-<p id="css-sub" style="color:var(--muted);font-size:.9rem">포탈 입장</p>
-<a id="css-btn" class="btn" href="./learning-room/CSS/index.html">CSS 포탈 입장 →</a>
+<div style="font-size:2.5rem">🎨</div>
+<h2>CSS School</h2>
+<p style="color:#9ca3af;font-size:.9rem">7 labs - pure CSS</p>
+<a class="btn" href="./learning-room/CSS/index.html">Enter CSS Portal →</a>
 </div>
 <div class="card" style="border-color:#3b82f6;box-shadow:0 0 24px rgba(59,130,246,.15)">
-<div style="font-size:2.4rem">⚡</div>
-<h2 id="js-title">JS 학교</h2>
-<p id="js-sub" style="color:var(--muted);font-size:.9rem">포탈 입장</p>
-<a id="js-btn" class="btn blue" href="./learning-room/JS/index.html">JS 포탈 입장 →</a>
+<div style="font-size:2.5rem">⚡</div>
+<h2>JS School</h2>
+<p style="color:#9ca3af;font-size:.9rem">DOM + Fotogram projects</p>
+<a class="btn blue" href="./learning-room/JS/index.html">Enter JS Portal →</a>
 </div>
 </div>
-
 <div class="ext">
 <a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/MeinPC_Website/index.html" target="_blank">💻 MeinPC</a>
-<a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/Reiseblog/index.html" target="_blank">✈️ Reiseblog</a>
+<a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/Reiseblog/index.html" target="_blank">✈ Reiseblog</a>
 <a href="https://jinsoojang-da.github.io/my-learning-blog/da-project/sakura_ramen_responsive/index.html" target="_blank">🍜 Sakura</a>
 <a href="https://jinsoojang-da.github.io/learning_diary/" target="_blank">📓 Diary</a>
 </div>
-<div class="note">구조: index.html(포탈 입장 + KO/EN/DE) → learning-room/CSS/index.html / learning-room/JS/index.html (각각 테마 목록 + 언어 토글) → 상세 실험실</div>
 </div>
-
-<script>
-const dict={
-ko:{
-heroTitle:'매일매일 <span>프론트엔드 기록</span>',
-heroSub:'메인에는 포탈 입장만. 들어가서 테마 선택. 3개 언어 지원.',
-cssTitle:'CSS 학교',cssSub:'포탈 입장',cssBtn:'CSS 포탈 입장 →',
-jsTitle:'JS 학교',jsSub:'포탈 입장',jsBtn:'JS 포탈 입장 →'
-},
-en:{
-heroTitle:'Daily <span>Frontend Log</span>',
-heroSub:'Main shows only portal entrances. Enter to choose a theme. 3 languages supported.',
-cssTitle:'CSS School',cssSub:'Enter Portal',cssBtn:'Enter CSS Portal →',
-jsTitle:'JS School',jsSub:'Enter Portal',jsBtn:'Enter JS Portal →'
-},
-de:{
-heroTitle:'Tägliches <span>Frontend Log</span>',
-heroSub:'Main zeigt nur Portaleingänge. Eintreten um Thema zu wählen. 3 Sprachen.',
-cssTitle:'CSS Schule',cssSub:'Portal betreten',cssBtn:'CSS Portal betreten →',
-jsTitle:'JS Schule',jsSub:'Portal betreten',jsBtn:'JS Portal betreten →'
-}
-};
-function setLang(l){
-localStorage.setItem('cian_lang',l);
-document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
-const d=dict[l];
-document.getElementById('hero-title').innerHTML=d.heroTitle;
-document.getElementById('hero-sub').textContent=d.heroSub;
-document.getElementById('css-title').textContent=d.cssTitle;
-document.getElementById('css-sub').textContent=d.cssSub;
-document.getElementById('css-btn').textContent=d.cssBtn;
-document.getElementById('js-title').textContent=d.jsTitle;
-document.getElementById('js-sub').textContent=d.jsSub;
-document.getElementById('js-btn').textContent=d.jsBtn;
-document.documentElement.lang=l;
-}
-setLang(localStorage.getItem('cian_lang')||'ko');
-</script>
 </body>
 </html>
