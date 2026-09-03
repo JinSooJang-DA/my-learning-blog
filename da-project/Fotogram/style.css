@@ -162,7 +162,7 @@ main {
 }
 
 .modal-filename {
-    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
 
 .close-btn {
@@ -215,8 +215,8 @@ main {
 }
 
 .photo-counter {
-    font-weight: 600;
-    font-size: clamp(0.7rem, 2vw, 0.8rem);
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.125rem);
     color: white;
 }
 
@@ -263,7 +263,7 @@ footer {
 
 .footer-container>p,
 .footer-copyright {
-    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-size: clamp(1rem, 2vw, 1.125rem);
 }
 
 .footer-container img {
@@ -304,15 +304,17 @@ footer {
         margin-bottom: 20px;
     }
 
+    /* 1. 터치 접근성(Touch Target)을 위해 20px -> 24px로 변경 */
     .modal-header .close-btn {
         align-self: flex-end;
         margin-bottom: 12px;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
 
+    /* 2. 16px(1rem) 이상 규격 준수 (1.125rem = 18px) */
     .modal-filename {
-        font-size: 1.15rem;
+        font-size: 1.125rem;
         font-weight: 700;
         color: white;
     }
