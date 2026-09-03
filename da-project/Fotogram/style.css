@@ -4,7 +4,7 @@
     font-family: 'Figtree';
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/figtree-v9-latin-regular.woff2') format('woff2');
+    src: url('./fonts/figtree-v9-latin-regular.woff2') format('woff2');
 }
 
 /* figtree-600 - latin */
@@ -13,7 +13,7 @@
     font-family: 'Figtree';
     font-style: normal;
     font-weight: 600;
-    src: url('../fonts/figtree-v9-latin-600.woff2') format('woff2');
+    src: url('./fonts/figtree-v9-latin-600.woff2') format('woff2');
 }
 
 /* figtree-700 - latin */
@@ -22,7 +22,7 @@
     font-family: 'Figtree';
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/figtree-v9-latin-700.woff2') format('woff2');
+    src: url('./fonts/figtree-v9-latin-700.woff2') format('woff2');
 }
 
 *,
