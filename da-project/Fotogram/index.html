@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotogram</title>
+    <link rel="icon" type="image/svg+xml" href="./icons/group.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="showPhoto()">
+    <header>
+        <div class="header-container">
+            <img src="./icons/group.svg" alt="Fotogram Logo">
+            <h2>FOTOGRAM</h2>
+        </div>
+    </header>
+    <main class="main-container">
+        <h1>Your personal foto album</h1>
+        <div class="main-gallery" id="gallery-root"></div>
+
+        <!-- Modal Overlay (Background click closes modal) -->
+        <div id="overlay" class="overlay d-none" onclick="closePhoto()">
+
+            <!-- Modal Box (Stop click event propagation inside modal) -->
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <span id="modal-filename" class="modal-filename">pic01.webp</span>
+                    <button type="button" class="close-btn" onclick="closePhoto()" aria-label="Close modal"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <img id="overlay-img" class="modal-img" src="" alt="Zoomed Image view">
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="nav-btn" onclick="prevPhoto()" aria-label="Previous photo">
+                        <img src="./icons/button-left.svg" alt="Previous">
+                    </button>
+
+                    <span id="photo-counter" class="photo-counter">1/12</span>
+
+                    <button class="nav-btn" onclick="nextPhoto()" aria-label="Next photo">
+                        <img src="./icons/button-right.svg" alt="Next">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <img src="./icons/icon.svg" alt="Developer Akademie Logo">
+            <p>Developer<br> Akademie</p>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Fotogram. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
