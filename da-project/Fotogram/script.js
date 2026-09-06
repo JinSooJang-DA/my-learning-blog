@@ -62,6 +62,8 @@ function openPhoto(index) {
 
     let overlayElement = document.getElementById('overlay');
     overlayElement.classList.remove('d-none');
+    // hide scroll Bar, when the modalwindow opened
+    document.body.style.overflow = 'hidden';
     updateModal();
 }
 
@@ -71,6 +73,9 @@ function openPhoto(index) {
 function closePhoto() {
     let overlayElement = document.getElementById('overlay');
     overlayElement.classList.add('d-none');
+    // show scroll Bar, when the modalwindow closed
+    document.body.style.overflow = '';
+
 }
 
 /**
