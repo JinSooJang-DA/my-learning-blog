@@ -3,28 +3,28 @@
  * @param {KeyboardEvent} event - The keyboard event object.
  */
 function handleKeyDown(event) {
-    if (event.key === 'Escape') {
-        closePhoto();
-    }
+  if (event.key === 'Escape') {
+    closePhoto();
+  }
 }
 
 // Register global keyboard event listener
 window.addEventListener('keydown', handleKeyDown);
 
 // Array containing relative image file paths
-let photoFiles = [
-    "./images/Afternoon_Drift.webp",
-    "./images/Cedric.webp",
-    "./images/Sascha.webp",
-    "./images/Dante.webp",
-    "./images/Devon.webp",
-    "./images/Maya.webp",
-    "./images/Malik.webp",
-    "./images/Marcus.webp",
-    "./images/Otis.webp",
-    "./images/Raven.webp",
-    "./images/Trey.webp",
-    "./images/Citycat.webp"
+const photoFiles = [
+  "./images/Afternoon_Drift.webp",
+  "./images/Cedric.webp",
+  "./images/Sascha.webp",
+  "./images/Dante.webp",
+  "./images/Devon.webp",
+  "./images/Maya.webp",
+  "./images/Malik.webp",
+  "./images/Marcus.webp",
+  "./images/Otis.webp",
+  "./images/Raven.webp",
+  "./images/Trey.webp",
+  "./images/Citycat.webp"
 ];
 
 // Stores current active photo index in modal
@@ -36,85 +36,82 @@ let currentPhotoIndex = 0;
  * @returns {string} HTML string.
  */
 function getPhotoTemplate(i) {
-    return `<img src="${photoFiles[i]}" alt="Photo ${i + 1}" onclick="openPhoto(${i})">`;
+  return `<img src="${photoFiles[i]}" alt="Photo ${i + 1}" onclick="openPhoto(${i})">`;
 }
 
 /**
  * Renders all photo thumbnails into the gallery container.
  */
 function showPhoto() {
-    let galleryRef = document.getElementById('gallery-root');
-    galleryRef.innerHTML = ""; // Clear existing content
+  const galleryRef = document.getElementById('gallery-root');
+  galleryRef.innerHTML = ""; // Clear existing content
 
-    for (let i = 0; i < photoFiles.length; i++) {
-        galleryRef.innerHTML += getPhotoTemplate(i);
-    }
+  for (let i = 0; i < photoFiles.length; i++) {
+    galleryRef.innerHTML += getPhotoTemplate(i);
+  }
 }
 
-showPhoto();
 /**
  * Opens photo modal at specific index.
  * @param {number} index - Selected photo index.
  */
-
 function openPhoto(index) {
-    currentPhotoIndex = index;
+  currentPhotoIndex = index;
 
-    let overlayElement = document.getElementById('overlay');
-    overlayElement.classList.remove('d-none');
-    // hide scroll Bar, when the modalwindow opened
-    document.body.style.overflow = 'hidden';
-    updateModal();
+  const overlayElement = document.getElementById('overlay');
+  overlayElement.classList.remove('d-none');
+  // hide scroll Bar, when the modalwindow opened
+  document.body.style.overflow = 'hidden';
+  updateModal();
 }
 
 /**
  * Closes the photo modal overlay.
  */
 function closePhoto() {
-    let overlayElement = document.getElementById('overlay');
-    overlayElement.classList.add('d-none');
-    // show scroll Bar, when the modalwindow closed
-    document.body.style.overflow = '';
-
+  const overlayElement = document.getElementById('overlay');
+  overlayElement.classList.add('d-none');
+  // show scroll Bar, when the modalwindow closed
+  document.body.style.overflow = '';
 }
 
 /**
  * Navigates to the next photo in modal.
  */
 function nextPhoto() {
-    if (currentPhotoIndex == photoFiles.length - 1) {
-        currentPhotoIndex = 0;
-    }
-    else {
-        currentPhotoIndex = currentPhotoIndex + 1;
-    }
-    updateModal();
+  if (currentPhotoIndex == photoFiles.length - 1) {
+    currentPhotoIndex = 0;
+  } else {
+    currentPhotoIndex = currentPhotoIndex + 1;
+  }
+  updateModal();
 }
 
 /**
  * Navigates to the previous photo in modal.
  */
 function prevPhoto() {
-    if (currentPhotoIndex == 0) {
-        currentPhotoIndex = photoFiles.length - 1;
-    }
-    else {
-        currentPhotoIndex = currentPhotoIndex - 1;
-    }
-    updateModal();
+  if (currentPhotoIndex == 0) {
+    currentPhotoIndex = photoFiles.length - 1;
+  } else {
+    currentPhotoIndex = currentPhotoIndex - 1;
+  }
+  updateModal();
 }
 
 /**
  * Updates image source, filename, and photo counter in modal.
  */
-
 function updateModal() {
-    let imgElement = document.getElementById('overlay-img');
-    imgElement.src = photoFiles[currentPhotoIndex];
-    /*  File Processing: Remove File Extension */
-    let imageFileName = photoFiles[currentPhotoIndex].split('/').pop().split('.')[0];
-    document.querySelector('#modal-filename').textContent = imageFileName;
+  const imgElement = document.getElementById('overlay-img');
+  imgElement.src = photoFiles[currentPhotoIndex];
+  /* File Processing: Remove File Extension */
+  const imageFileName = photoFiles[currentPhotoIndex].split('/').pop().split('.')[0];
+  document.querySelector('#modal-filename').textContent = imageFileName;
 
-    document.querySelector('#photo-counter').textContent =
-        (currentPhotoIndex + 1) + ' / ' + photoFiles.length;
+  document.querySelector('#photo-counter').textContent =
+    (currentPhotoIndex + 1) + ' / ' + photoFiles.length;
 }
+
+// Initial rendering call
+showPhoto();

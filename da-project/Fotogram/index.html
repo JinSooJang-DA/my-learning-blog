@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fotogram - Your personal foto album gallery project.">
-    <title>Fotogram</title>
+    <meta name="description" content="Fotogram - Personal photo album gallery project showcasing CityCat Band.">
+    <title>Fotogram - CityCat Band Foto Album</title>
     <link rel="icon" type="image/svg+xml" href="./icons/group.svg">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,16 +13,16 @@
 <body onload="showPhoto()">
     <header>
         <div class="header-container">
-            <img src="./icons/group.svg" alt="Fotogram Logo">
-            <h2>FOTOGRAM</h2>
+            <img src="./icons/mainlogo.svg" alt="Fotogram Logo">
         </div>
     </header>
     <main class="main-container">
         <h1>CityCat Band foto album</h1>
-        <div class="main-gallery" id="gallery-root"></div>
+
+        <section class="main-gallery" id="gallery-root" aria-label="Photo Gallery"></section>
 
         <!-- Modal Overlay (Background click closes modal) -->
-        <div id="overlay" class="overlay d-none" onclick="closePhoto()">
+        <section id="overlay" class="overlay d-none" onclick="closePhoto()">
 
             <!-- Modal Box (Stop click event propagation inside modal) -->
             <div class="modal-box" onclick="event.stopPropagation()">
@@ -48,20 +48,19 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
+
     <footer>
-        <div class="footer-container">
-            <a href="https://developerakademie.com/" target="_blank" rel="noopener noreferrer">
-                <img src="./icons/icon.svg" alt="Developer Akademie Logo">
-            </a>
-            <p>Developer<br> Akademie</p>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2026 Fotogram. All rights reserved.</p>
-        </div>
-    </footer>
-    <script src="script.js"></script>
+  <div class="footer-container">
+    <a href="https://developerakademie.com" target="_blank" rel="noopener noreferrer">
+      <img src="./icons/footlogo.svg" alt="Developer Akademie Logo">
+    </a>
+    <p class="footer-copyright">© 2023 Developer Akademie GmbH</p>
+  </div>
+</footer>
+    <script src=" script.js">
+    </script>
 </body>
 
 </html>
