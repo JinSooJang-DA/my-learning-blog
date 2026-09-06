@@ -13,18 +13,18 @@ window.addEventListener('keydown', handleKeyDown);
 
 // Array containing relative image file paths
 let photoFiles = [
-    "./images/pic01.webp",
-    "./images/pic02.webp",
-    "./images/pic03.webp",
-    "./images/pic04.webp",
-    "./images/pic05.webp",
-    "./images/pic06.webp",
-    "./images/pic07.webp",
-    "./images/pic08.webp",
-    "./images/pic09.webp",
-    "./images/pic10.webp",
-    "./images/pic11.webp",
-    "./images/pic12.webp"
+    "./images/Afternoon_Drift.webp",
+    "./images/Cedric.webp",
+    "./images/Sascha.webp",
+    "./images/Dante.webp",
+    "./images/Devon.webp",
+    "./images/Maya.webp",
+    "./images/Malik.webp",
+    "./images/Marcus.webp",
+    "./images/Otis.webp",
+    "./images/Raven.webp",
+    "./images/Trey.webp",
+    "./images/Citycat.webp"
 ];
 
 // Stores current active photo index in modal
@@ -102,15 +102,14 @@ function prevPhoto() {
 /**
  * Updates image source, filename, and photo counter in modal.
  */
+
 function updateModal() {
     let imgElement = document.getElementById('overlay-img');
     imgElement.src = photoFiles[currentPhotoIndex];
-
-    let imageFileName = photoFiles[currentPhotoIndex].split('/').pop();
+    /*  File Processing: Remove File Extension */
+    let imageFileName = photoFiles[currentPhotoIndex].split('/').pop().split('.')[0];
     document.querySelector('#modal-filename').textContent = imageFileName;
 
     document.querySelector('#photo-counter').textContent =
         (currentPhotoIndex + 1) + ' / ' + photoFiles.length;
-
 }
-
