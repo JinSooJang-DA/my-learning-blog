@@ -21,19 +21,19 @@
 
         <section class="main-gallery" id="gallery-root" aria-label="Photo Gallery"></section>
 
-        <!-- Modal Overlay (Background click closes modal) -->
-        <section id="overlay" class="overlay d-none" onclick="closePhoto()">
+        <!-- Modal Overlay -->
+        <section id="overlay" class="overlay d-none" onclick="closePhoto()" role="dialog" aria-modal="true" aria-label="Image detail view">
 
-            <!-- Modal Box (Stop click event propagation inside modal) -->
+            <!-- Modal Box -->
             <div class="modal-box" onclick="event.stopPropagation()">
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <span id="modal-filename" class="modal-filename">pic01.webp</span>
-                    <button type="button" class="close-btn" onclick="closePhoto()" aria-label="Close modal"></button>
+                    <button type="button" class="close-btn" onclick="closePhoto()" aria-label="Close modal">&times;</button>
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
-                    <img id="overlay-img" class="modal-img" src="" alt="Zoomed Image view">
+                    <img id="overlay-img" class="modal-img" src="" alt="">
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">
@@ -52,15 +52,14 @@
     </main>
 
     <footer>
-  <div class="footer-container">
-    <a href="https://developerakademie.com" target="_blank" rel="noopener noreferrer">
-      <img src="./icons/footlogo.svg" alt="Developer Akademie Logo">
-    </a>
-    <p class="footer-copyright">© 2023 Developer Akademie GmbH</p>
-  </div>
-</footer>
-    <script src=" script.js">
-    </script>
+        <div class="footer-container">
+            <a href="https://developerakademie.com" target="_blank" rel="noopener noreferrer">
+                <img src="./icons/footlogo.svg" alt="Developer Akademie Logo">
+            </a>
+            <p class="footer-copyright">© 2023 Developer Akademie GmbH</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>

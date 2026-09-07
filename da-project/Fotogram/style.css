@@ -43,6 +43,10 @@ body {
     font-family: 'Figtree', sans-serif;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 .d-none,
 .overlay.d-none {
     display: none;
@@ -209,7 +213,7 @@ main {
 
 .modal-footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     padding: 40px 20px;
     color: white;
@@ -220,13 +224,16 @@ main {
     font-weight: 400;
     font-size: clamp(1rem, 2vw, 1.125rem);
     color: white;
+    min-width: 4rem;       
+    text-align: center;    
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 .nav-btn {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0 40px;
     display: flex;
     align-items: center;
 }
@@ -358,11 +365,8 @@ footer {
     }
 
     .modal-footer {
-        justify-content: space-between;
-        padding: 16px 8px;
-    }
-
-    .nav-btn {
-        padding: 12px 24px;
+        justify-content: center;
+        gap: 24px;
+       
     }
 }

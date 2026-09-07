@@ -1,34 +1,123 @@
+// Array containing photo file paths and accurate descriptive alt texts
+const photoData = [
+  { 
+    path: "./images/Afternoon_Drift.webp", 
+    alt: "Pink doughnut tube floating in a pool with a cat relaxing under sunset sky" 
+  },
+  { 
+    path: "./images/Cedric.webp", 
+    alt: "Cedric in a green velvet jacket playing red electric guitar and singing into a microphone on stage" 
+  },
+  { 
+    path: "./images/Sascha.webp", 
+    alt: "Sascha in a green velvet jacket and purple trousers singing into a vintage stand microphone" 
+  },
+  { 
+    path: "./images/Dante.webp", 
+    alt: "Dante in a green suit playing dark electric guitar on stage under spotlight" 
+  },
+  { 
+    path: "./images/Devon.webp", 
+    alt: "Devon in a blue jacket playing trumpet under spotlight" 
+  },
+  { 
+    path: "./images/Maya.webp", 
+    alt: "Maya in a green velvet jacket singing into a golden microphone under spotlight" 
+  },
+  { 
+    path: "./images/Malik.webp", 
+    alt: "Malik in a purple jacket playing white grand piano on glowing stage" 
+  },
+  { 
+    path: "./images/Marcus.webp", 
+    alt: "Marcus in a green velvet jacket singing passionately into a vintage stand microphone" 
+  },
+  { 
+    path: "./images/Otis.webp", 
+    alt: "Otis in a burgundy suit singing into a vintage microphone under spotlight" 
+  },
+  { 
+    path: "./images/Raven.webp", 
+    alt: "Raven in a green suit playing red bass guitar in front of neon light background" 
+  },
+  { 
+    path: "./images/Trey.webp", 
+    alt: "Trey in a burgundy jacket playing a drum set with CITYCAT logo" 
+  },
+  { 
+    path: "./images/Citycat.webp", 
+    alt: "Cat producer Cian wearing headphones and sunglasses operating audio mixing console in studio" 
+  }
+];
+
+// Stores current active photo index in modal
+let currentPhotoIndex = 0;
+
+// ==========================================
+// Keyboard Navigation & Accessibility Helpers
+// ==========================================
+
 /**
- * Handles keyboard accessibility (Esc key to close modal).
+ * Opens photo via Enter or Space key for keyboard accessibility.
+ * @param {KeyboardEvent} event 
+ * @param {number} index 
+ */
+function handleKeyOpen(event, index) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openPhoto(index);
+  }
+}
+
+/**
+ * Handles keyboard accessibility (Esc to close, Arrow keys to navigate, Tab focus trap).
  * @param {KeyboardEvent} event - The keyboard event object.
  */
 function handleKeyDown(event) {
+  const overlayElement = document.getElementById('overlay');
+  
+  if (overlayElement.classList.contains('d-none')) return;
+
   if (event.key === 'Escape') {
     closePhoto();
+    return;
+  } 
+
+  if (event.key === 'ArrowRight') {
+    nextPhoto();
+    return;
+  } 
+
+  if (event.key === 'ArrowLeft') {
+    prevPhoto();
+    return;
+  }
+
+  if (event.key === 'Tab') {
+    const focusableElements = overlayElement.querySelectorAll('button, [tabindex="0"]');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey) { 
+      if (document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+    } else { 
+      if (document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
   }
 }
 
 // Register global keyboard event listener
 window.addEventListener('keydown', handleKeyDown);
 
-// Array containing relative image file paths
-const photoFiles = [
-  "./images/Afternoon_Drift.webp",
-  "./images/Cedric.webp",
-  "./images/Sascha.webp",
-  "./images/Dante.webp",
-  "./images/Devon.webp",
-  "./images/Maya.webp",
-  "./images/Malik.webp",
-  "./images/Marcus.webp",
-  "./images/Otis.webp",
-  "./images/Raven.webp",
-  "./images/Trey.webp",
-  "./images/Citycat.webp"
-];
-
-// Stores current active photo index in modal
-let currentPhotoIndex = 0;
+// ==========================================
+// Gallery & Modal Functions
+// ==========================================
 
 /**
  * Returns HTML string template for a single thumbnail.
@@ -36,7 +125,11 @@ let currentPhotoIndex = 0;
  * @returns {string} HTML string.
  */
 function getPhotoTemplate(i) {
-  return `<img src="${photoFiles[i]}" alt="Photo ${i + 1}" onclick="openPhoto(${i})">`;
+  return `<img src="${photoData[i].path}" 
+               alt="${photoData[i].alt}" 
+               tabindex="0" 
+               onclick="openPhoto(${i})" 
+               onkeydown="handleKeyOpen(event, ${i})">`;
 }
 
 /**
@@ -44,15 +137,15 @@ function getPhotoTemplate(i) {
  */
 function showPhoto() {
   const galleryRef = document.getElementById('gallery-root');
-  galleryRef.innerHTML = ""; // Clear existing content
+  galleryRef.innerHTML = ""; 
 
-  for (let i = 0; i < photoFiles.length; i++) {
+  for (let i = 0; i < photoData.length; i++) {
     galleryRef.innerHTML += getPhotoTemplate(i);
   }
 }
 
 /**
- * Opens photo modal at specific index.
+ * Opens photo modal at specific index and disables background scrolling via CSS class.
  * @param {number} index - Selected photo index.
  */
 function openPhoto(index) {
@@ -60,26 +153,34 @@ function openPhoto(index) {
 
   const overlayElement = document.getElementById('overlay');
   overlayElement.classList.remove('d-none');
-  // hide scroll Bar, when the modalwindow opened
-  document.body.style.overflow = 'hidden';
+  
+  // Refactored: Uses CSS class instead of direct JS inline styles
+  document.body.classList.add('no-scroll');
+  
   updateModal();
+
+  const closeBtn = overlayElement.querySelector('.close-btn');
+  if (closeBtn) {
+    closeBtn.focus();
+  }
 }
 
 /**
- * Closes the photo modal overlay.
+ * Closes the photo modal overlay and restores background scrolling.
  */
 function closePhoto() {
   const overlayElement = document.getElementById('overlay');
   overlayElement.classList.add('d-none');
-  // show scroll Bar, when the modalwindow closed
-  document.body.style.overflow = '';
+  
+  // Refactored: Removes CSS class to restore scrolling
+  document.body.classList.remove('no-scroll');
 }
 
 /**
  * Navigates to the next photo in modal.
  */
 function nextPhoto() {
-  if (currentPhotoIndex == photoFiles.length - 1) {
+  if (currentPhotoIndex === photoData.length - 1) {
     currentPhotoIndex = 0;
   } else {
     currentPhotoIndex = currentPhotoIndex + 1;
@@ -91,8 +192,8 @@ function nextPhoto() {
  * Navigates to the previous photo in modal.
  */
 function prevPhoto() {
-  if (currentPhotoIndex == 0) {
-    currentPhotoIndex = photoFiles.length - 1;
+  if (currentPhotoIndex === 0) {
+    currentPhotoIndex = photoData.length - 1;
   } else {
     currentPhotoIndex = currentPhotoIndex - 1;
   }
@@ -100,17 +201,18 @@ function prevPhoto() {
 }
 
 /**
- * Updates image source, filename, and photo counter in modal.
+ * Updates image source, alt text, filename, and photo counter in modal.
  */
 function updateModal() {
   const imgElement = document.getElementById('overlay-img');
-  imgElement.src = photoFiles[currentPhotoIndex];
-  /* File Processing: Remove File Extension */
-  const imageFileName = photoFiles[currentPhotoIndex].split('/').pop().split('.')[0];
+  imgElement.src = photoData[currentPhotoIndex].path;
+  imgElement.alt = photoData[currentPhotoIndex].alt;
+
+  const imageFileName = photoData[currentPhotoIndex].path.split('/').pop().split('.')[0];
   document.querySelector('#modal-filename').textContent = imageFileName;
 
   document.querySelector('#photo-counter').textContent =
-    (currentPhotoIndex + 1) + ' / ' + photoFiles.length;
+    (currentPhotoIndex + 1) + ' / ' + photoData.length;
 }
 
 // Initial rendering call
