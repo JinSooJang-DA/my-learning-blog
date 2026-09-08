@@ -1,4 +1,7 @@
-// Array containing photo file paths and accurate descriptive alt texts
+/**
+ * Array containing photo object data with paths and descriptive alt texts.
+ * @type {Array<{path: string, alt: string}>}
+ */
 const photoData = [
   { 
     path: "./images/Afternoon_Drift.webp", 
@@ -50,17 +53,16 @@ const photoData = [
   }
 ];
 
-// Stores current active photo index in modal
+/**
+ * Stores current active photo index in modal.
+ * @type {number}
+ */
 let currentPhotoIndex = 0;
-
-// ==========================================
-// Keyboard Navigation & Accessibility Helpers
-// ==========================================
 
 /**
  * Opens photo via Enter or Space key for keyboard accessibility.
- * @param {KeyboardEvent} event 
- * @param {number} index 
+ * @param {KeyboardEvent} event - The keyboard event object.
+ * @param {number} index - Index of the selected photo.
  */
 function handleKeyOpen(event, index) {
   if (event.key === 'Enter' || event.key === ' ') {
@@ -112,12 +114,10 @@ function handleKeyDown(event) {
   }
 }
 
-// Register global keyboard event listener
+/**
+ * Global keyboard event listener registration for modal navigation.
+ */
 window.addEventListener('keydown', handleKeyDown);
-
-// ==========================================
-// Gallery & Modal Functions
-// ==========================================
 
 /**
  * Returns HTML string template for a single thumbnail.
@@ -145,7 +145,7 @@ function showPhoto() {
 }
 
 /**
- * Opens photo modal at specific index and disables background scrolling via CSS class.
+ * Opens photo modal at specific index and disables background scrolling.
  * @param {number} index - Selected photo index.
  */
 function openPhoto(index) {
@@ -154,7 +154,6 @@ function openPhoto(index) {
   const overlayElement = document.getElementById('overlay');
   overlayElement.classList.remove('d-none');
   
-  // Refactored: Uses CSS class instead of direct JS inline styles
   document.body.classList.add('no-scroll');
   
   updateModal();
@@ -172,7 +171,6 @@ function closePhoto() {
   const overlayElement = document.getElementById('overlay');
   overlayElement.classList.add('d-none');
   
-  // Refactored: Removes CSS class to restore scrolling
   document.body.classList.remove('no-scroll');
 }
 
@@ -215,5 +213,7 @@ function updateModal() {
     (currentPhotoIndex + 1) + ' / ' + photoData.length;
 }
 
-// Initial rendering call
+/**
+ * Initial rendering call to populate the gallery on page load.
+ */
 showPhoto();
