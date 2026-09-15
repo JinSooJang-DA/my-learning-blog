@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 11 - Bookstore CRUD Lab</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>*{font-family:'Noto Sans KR',sans-serif}.mono{font-family:'JetBrains Mono',monospace}
+pre{white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body class="bg-[#08080a] text-white min-h-screen">
+<header class="sticky top-0 z-30 backdrop-blur-xl bg-[#08080a]/90 border-b border-white/10 px-6 py-3 flex justify-between items-center">
+<div class="flex items-center gap-3"><div class="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 grid place-items-center font-black">11</div><div><div class="font-black leading-none">BOOKSTORE CRUD LAB</div><div class="mono text-[10px] text-white/40">books 배열 + 좋아요 + 댓글 + LocalStorage</div></div></div>
+<div class="flex items-center gap-3"><div class="mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">데이터 기반 렌더링</div><button onclick="resetStorage()" class="mono text-[10px] px-2 py-1 rounded bg-red-500/20 text-red-300 border border-red-500/20">LocalStorage 초기화</button></div>
+</header>
+
+<div class="max-w-[1600px] mx-auto grid lg:grid-cols-[360px_1fr_380px] gap-0 min-h-[calc(100vh-56px)]">
+
+<aside class="border-r border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div class="mono text-[11px] tracking-widest text-white/40">CODE FLOW / 어떻게 흘러가나?</div>
+
+<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+<div class="mono text-[11px] font-bold text-cyan-300 mb-1">1. 데이터 초기화</div>
+<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg text-white/70">let books = JSON.parse(localStorage.getItem('books'))
+            || [...initialBooks];
+
+function saveBooks(){
+  localStorage.setItem('books', JSON.stringify(books));
+}</pre>
+<div class="text-[10px] text-white/40 mt-2">문자열↔객체 변환: 저장=stringify, 불러오기=parse</div>
+</div>
+
+<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+<div class="mono text-[11px] font-bold text-fuchsia-300 mb-1">2. Read - render()</div>
+<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg text-white/70">function render(){
+  contentRef.innerHTML='';
+  for(let i=0;i&lt;books.length;i++){
+    let book=books[i];
+    let commentsHTML='';
+    for(let j=0;j&lt;book.comments.length;j++){
+      commentsHTML+=`<p>${book.comments[j].name}</p>`;
+    }
+    contentRef.innerHTML+=`
+      &lt;div&gt;${book.name}&lt;/div&gt;
+      ${commentsHTML}
+    `;
+  }
+}</pre>
+<div class="text-[10px] text-white/40 mt-2">i는 책 번호, j는 댓글 번호</div>
+</div>
+
+<div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
+<div class="mono text-[11px] font-bold text-amber-300 mb-1">3. Update - toggleLike()</div>
+<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg text-white/70">function toggleLike(index){
+  books[index].liked = !books[index].liked;
+  if(books[index].liked){
+    books[index].likes++;
+  } else {
+    books[index].likes--;
+  }
+  saveBooks();
+  render();
+}</pre>
+<div class="text-[10px] text-amber-200/60 mt-2">!는 반대: true↔false 토글</div>
+</div>
+
+<div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+<div class="mono text-[11px] font-bold text-emerald-300 mb-1">4. Create - addComment()</div>
+<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg text-white/70">function addComment(index){
+  let nameRef = document.getElementById(`name-input-${index}`);
+  let commentRef = document.getElementById(`comment-input-${index}`);
+  let nameVal = nameRef.value.trim();
+  let commentVal = commentRef.value.trim();
+  if(nameVal===''||commentVal==='') return;
+  books[index].comments.push({name:nameVal, comment:commentVal});
+  saveBooks(); render();
+}</pre>
+</div>
+
+<div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+<div class="mono text-[11px] font-bold text-red-300 mb-1">5. Delete - deleteComment()</div>
+<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg text-white/70">function deleteComment(bookIndex, commentIndex){
+  books[bookIndex].comments.splice(commentIndex,1);
+  saveBooks(); render();
+}</pre>
+<div class="text-[10px] text-white/40 mt-1">splice(시작,개수): 1개 삭제</div>
+</div>
+
+</aside>
+
+<main class="bg-[#0a0a0a] p-6 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div class="max-w-[680px] mx-auto">
+<div class="mb-4 mono text-[11px] text-white/40">가운데 피드에서 직접 만져보세요 — 좋아요, 댓글, LocalStorage 유지됨</div>
+<div id="content" class="space-y-6"></div>
+</div>
+</main>
+
+<aside class="border-l border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div>
+<div class="flex justify-between items-center mb-3"><div class="mono text-[11px] tracking-widest text-white/40">LIVE JSON / books 배열</div><button onclick="copyJSON()" class="mono text-[10px] px-2 py-1 rounded bg-white/10">복사</button></div>
+<pre id="jsonViewer" class="mono text-[10px] leading-[1.6] p-3 rounded-xl bg-black/60 border border-white/10 max-h-[400px] overflow-auto text-white/60"></pre>
+</div>
+<div class="space-y-2">
+<div class="mono text-[11px] tracking-widest text-white/40">TASKS / 이해 체크</div>
+<div class="space-y-2 text-[11px]">
+<div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><div class="font-bold">변수 구분</div><div class="text-white/50">Ref(태그) vs Value(글자) vs Index(숫자) 구분 가능?</div></div>
+<div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><div class="font-bold">i와 j</div><div class="text-white/50">i는 책, j는 댓글 — 이중 for문 이해?</div></div>
+<div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><div class="font-bold">saveBooks() 위치</div><div class="text-white/50">좋아요/댓글 변경 후 항상 저장 + 렌더</div></div>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+<div class="mono text-[11px] font-bold text-white/60 mb-2">통계</div>
+<div class="grid grid-cols-2 gap-2 mono text-[11px]">
+<div class="p-2 rounded bg-black/40"><div class="text-white/40">책 수</div><div id="statBooks" class="text-lg font-bold text-white">0</div></div>
+<div class="p-2 rounded bg-black/40"><div class="text-white/40">총 댓글</div><div id="statComments" class="text-lg font-bold text-white">0</div></div>
+<div class="p-2 rounded bg-black/40"><div class="text-white/40">총 좋아요</div><div id="statLikes" class="text-lg font-bold text-red-400">0</div></div>
+<div class="p-2 rounded bg-black/40"><div class="text-white/40">저장됨?</div><div id="statSaved" class="text-lg font-bold text-emerald-300">Yes</div></div>
+</div>
+</div>
+</aside>
+
+</div>
+
+<script>
+let initialBooks = [
+  {name:"Atomic Habits", author:"James Clear", likes:42, liked:false, price:18, publishedYear:2018, genre:"자기계발", comments:[{name:"지민", comment:"습관 만들기 최고!"}]},
+  {name:"Clean Code", author:"Robert C. Martin", likes:89, liked:true, price:32, publishedYear:2008, genre:"개발", comments:[{name:"수진", comment:"개발자 필독서"}, {name:"Alex", comment:"변수 이름 짓는 법 배웠어요"}]},
+  {name:"Deep Work", author:"Cal Newport", likes:27, liked:false, price:22, publishedYear:2016, genre:"생산성", comments:[]},
+];
+
+let books = JSON.parse(localStorage.getItem('teigel_books_lab11')) || [...initialBooks];
+
+function saveBooks(){ localStorage.setItem('teigel_books_lab11', JSON.stringify(books)); updateStats(); }
+
+function render(){
+  let contentRef = document.getElementById('content');
+  contentRef.innerHTML='';
+  for(let i=0;i<books.length;i++){
+    let book=books[i];
+    let commentsHTML='';
+    for(let j=0;j<book.comments.length;j++){
+      let c=book.comments[j];
+      commentsHTML+=`<div class="flex justify-between items-center py-1.5 px-2 rounded bg-white/[0.03]"><div class="text-xs"><b>${c.name}:</b> ${c.comment}</div><button onclick="deleteComment(${i},${j})" class="mono text-[10px] px-2 py-1 rounded bg-red-500/20 text-red-300">삭제</button></div>`;
+    }
+    let heartIcon = book.liked ? '💖' : '🤍';
+    contentRef.innerHTML+=`
+      <div class="rounded-[20px] bg-[#141414] border border-white/10 p-5">
+        <div class="flex justify-between items-start mb-2"><h2 class="font-black text-lg">${book.name}</h2><div class="mono text-[11px] px-2 py-1 rounded-full bg-white/5">${book.genre}</div></div>
+        <div class="mono text-[11px] text-white/40 mb-3">저자: ${book.author} · ${book.publishedYear} · ${book.price}€</div>
+        <div class="flex items-center gap-2 mb-4"><button onclick="toggleLike(${i})" class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 hover:bg-white/15">${heartIcon} 좋아요</button><span class="mono text-sm font-bold">${book.likes}</span><span class="mono text-[11px] text-white/30">index: ${i}</span></div>
+        <div class="space-y-2 mb-3">${commentsHTML || '<div class="mono text-[11px] text-white/30">아직 댓글이 없어요</div>'}</div>
+        <div class="flex gap-2"><input id="name-input-${i}" placeholder="이름 (value)" class="flex-1 px-3 py-2 rounded-xl bg-white/[0.06] border border-white/10 text-xs outline-none"><input id="comment-input-${i}" placeholder="댓글 내용 (value)" class="flex-1 px-3 py-2 rounded-xl bg-white/[0.06] border border-white/10 text-xs outline-none"><button onclick="addComment(${i})" class="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold">등록 (${i})</button></div>
+        <div class="mono text-[9px] text-white/20 mt-2">name-input-${i} / comment-input-${i} → value → push</div>
+      </div>
+    `;
+  }
+  updateStats();
+}
+
+function toggleLike(index){
+  books[index].liked = !books[index].liked;
+  if(books[index].liked){ books[index].likes++; } else { books[index].likes--; }
+  saveBooks(); render();
+}
+function addComment(index){
+  let nameInputRef = document.getElementById(`name-input-${index}`);
+  let commentInputRef = document.getElementById(`comment-input-${index}`);
+  let nameValue = nameInputRef.value.trim();
+  let commentValue = commentInputRef.value.trim();
+  if(nameValue===''||commentValue===''){ alert('이름과 댓글을 입력!'); return; }
+  books[index].comments.push({name:nameValue, comment:commentValue});
+  nameInputRef.value=''; commentInputRef.value='';
+  saveBooks(); render();
+}
+function deleteComment(bookIndex, commentIndex){
+  books[bookIndex].comments.splice(commentIndex,1);
+  saveBooks(); render();
+}
+function updateStats(){
+  document.getElementById('statBooks').textContent=books.length;
+  document.getElementById('statComments').textContent=books.reduce((a,b)=>a+b.comments.length,0);
+  document.getElementById('statLikes').textContent=books.reduce((a,b)=>a+b.likes,0);
+  document.getElementById('jsonViewer').textContent=JSON.stringify(books, null, 2);
+}
+function copyJSON(){ navigator.clipboard.writeText(JSON.stringify(books,null,2)); alert('복사됨'); }
+function resetStorage(){ localStorage.removeItem('teigel_books_lab11'); books=[...initialBooks]; render(); }
+
+render();
+</script>
+</body>
+</html>

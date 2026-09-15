@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 12 - Logic Builder Lab</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>*{font-family:'Noto Sans KR',sans-serif}.mono{font-family:'JetBrains Mono',monospace}
+.logic-step{transition:all 0.2s}
+.logic-step.active{border-color:#22d3ee;background:rgba(34,211,238,0.08)}
+</style>
+</head>
+<body class="bg-[#08080a] text-white min-h-screen">
+<header class="sticky top-0 z-30 backdrop-blur-xl bg-[#08080a]/90 border-b border-white/10 px-6 py-3 flex justify-between items-center">
+<div class="flex items-center gap-3"><div class="w-8 h-8 rounded-xl bg-gradient-to-br from-fuchsia-500 to-violet-500 grid place-items-center font-black">12</div><div><div class="font-black leading-none">LOGIC BUILDER LAB</div><div class="mono text-[10px] text-white/40">변수 정하기 → 로직 생각하기 → 응용하기</div></div></div>
+<div class="mono text-[11px] px-2.5 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300">생각을 코드로 바꾸는 실험실</div>
+</header>
+
+<div class="max-w-[1600px] mx-auto grid lg:grid-cols-[380px_1fr_380px] gap-0 min-h-[calc(100vh-56px)]">
+
+<aside class="border-r border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div class="mono text-[11px] tracking-widest text-white/40">THINKING FRAMEWORK / 어떻게 생각하나?</div>
+
+<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+<div class="mono text-[11px] font-bold text-white mb-2">로직 4단계 공식</div>
+<div class="space-y-2 text-[11px] text-white/60 leading-snug">
+<div class="flex gap-2"><span class="text-cyan-300 font-bold">1. 목표:</span><span>무엇을 하고 싶은가? (추가? 삭제? 토글?)</span></div>
+<div class="flex gap-2"><span class="text-fuchsia-300 font-bold">2. 필요:</span><span>뭐가 필요한가? (입력값? 번호? 전체 배열?)</span></div>
+<div class="flex gap-2"><span class="text-amber-300 font-bold">3. 순서:</span><span>어떤 순서로? (가져오기 → 가공 → 저장 → 그리기)</span></div>
+<div class="flex gap-2"><span class="text-emerald-300 font-bold">4. 코드:</span><span>어떤 함수/문법? (push/splice/!/?)</span></div>
+</div>
+</div>
+
+<div class="space-y-3">
+<div class="logic-step p-3 rounded-xl bg-white/[0.03] border border-white/10" id="step1">
+<div class="mono text-[11px] font-bold text-cyan-300">STEP 1 — 목표 정하기</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<button onclick="setGoal('add')" class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px]">➕ 추가 (Create)</button>
+<button onclick="setGoal('delete')" class="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-[11px]">🗑️ 삭제 (Delete)</button>
+<button onclick="setGoal('toggle')" class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px]">💖 토글 (Update)</button>
+<button onclick="setGoal('edit')" class="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20 text-[11px]">✏️ 수정 (Update)</button>
+</div>
+</div>
+
+<div class="logic-step p-3 rounded-xl bg-white/[0.03] border border-white/10" id="step2">
+<div class="mono text-[11px] font-bold text-fuchsia-300">STEP 2 — 필요한 변수 생각</div>
+<div id="needVars" class="mono text-[10px] text-white/50 mt-2">목표를 먼저 선택하세요</div>
+</div>
+
+<div class="logic-step p-3 rounded-xl bg-white/[0.03] border border-white/10" id="step3">
+<div class="mono text-[11px] font-bold text-amber-300">STEP 3 — 순서도</div>
+<div id="flowChart" class="mono text-[10px] text-white/50 mt-2">목표 선택 후 순서가 표시됩니다</div>
+</div>
+
+<div class="logic-step p-3 rounded-xl bg-white/[0.03] border border-white/10" id="step4">
+<div class="mono text-[11px] font-bold text-emerald-300">STEP 4 — 코드 템플릿</div>
+<pre id="codeTemplate" class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/60">목표 선택 시 코드가 생성됩니다</pre>
+</div>
+</div>
+
+<div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
+<div class="mono text-[11px] font-bold text-amber-200">💡 자주 틀리는 패턴</div>
+<div class="text-[11px] text-amber-100/70 leading-snug mt-1">
+• <b>Ref vs Value:</b> getElementById는 태그, .value가 글자<br>
+• <b>${i} 빼먹음:</b> 백틱 안에서 숫자 변환 안 하면 문자 i 들어감<br>
+• <b>! 빼먹음:</b> liked = !liked 해야 토글, liked = liked 하면 그대로<br>
+• <b>save + render 빼먹음:</b> 배열 바꾸고 저장+그리기 꼭 해야 화면에 보임
+</div>
+</div>
+</aside>
+
+<main class="bg-[#0a0a0a] p-6 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div class="max-w-[680px] mx-auto space-y-6">
+
+<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+<div class="mono text-[11px] text-violet-300 mb-3">BUILDER — 직접 조립해보기</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="mono text-[11px] text-white/40">나는</span>
+<select id="goalSelect" onchange="setGoal(this.value)" class="px-3 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 text-sm">
+<option value="">-- 목표 선택 --</option>
+<option value="add">할 일을 추가하고 싶다</option>
+<option value="delete">할 일을 삭제하고 싶다</option>
+<option value="toggle">좋아요를 토글하고 싶다</option>
+<option value="edit">수정 모드로 바꾸고 싶다</option>
+</select>
+<span class="mono text-[11px] text-white/40">어떻게 할까?</span>
+</div>
+
+<div id="builderArea" class="space-y-4">
+<div class="p-4 rounded-xl bg-black/40 border border-white/10 mono text-[11px] text-white/40">위에서 목표를 선택하면, 필요한 변수와 순서가 자동으로 조립됩니다. 그리고 오른쪽에서 테스트해보세요.</div>
+</div>
+</div>
+
+<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+<div class="mono text-[11px] text-cyan-300 mb-3">MINI TODO — 조립한 로직으로 실제 동작</div>
+<div class="flex gap-2 mb-4"><input id="todoInput" placeholder="할 일 (value 실험)" class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-sm"><button onclick="addTodo()" class="px-4 py-2.5 rounded-xl bg-white text-black font-bold text-sm">추가</button></div>
+<div id="todoList" class="space-y-2"></div>
+</div>
+
+<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+<div class="mono text-[11px] text-amber-300 mb-3">BOOK LIKE — 토글 로직 실험</div>
+<div id="bookList" class="space-y-3"></div>
+</div>
+
+</div>
+</main>
+
+<aside class="border-l border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+<div>
+<div class="mono text-[11px] tracking-widest text-white/40 mb-3">LIVE STATE / 현재 상태</div>
+<div class="space-y-2">
+<div class="p-2.5 rounded-xl bg-black/40"><div class="mono text-[10px] text-white/40">목표 (Goal)</div><div id="liveGoal" class="mono text-[11px] font-bold text-white">-</div></div>
+<div class="p-2.5 rounded-xl bg-black/40"><div class="mono text-[10px] text-white/40">필요 변수들</div><div id="liveVars" class="mono text-[10px] text-white/70">-</div></div>
+<pre id="liveTodos" class="mono text-[10px] p-2.5 rounded-xl bg-black/60 border border-white/10 max-h-[200px] overflow-auto text-white/60">[]</pre>
+</div>
+</div>
+
+<div class="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20">
+<div class="mono text-[11px] font-bold text-violet-300 mb-2">연습 문제 — 빈칸 채우기</div>
+<div class="space-y-3 text-[11px]">
+<div><div class="text-white/70">1. 입력값 가져오기: input._____</div><input id="ex1" placeholder="value / i / ${i}" class="mt-1 w-full px-2 py-1.5 rounded bg-black/40 border border-white/10 mono text-[11px]" oninput="checkEx()"><div id="ex1r" class="mono text-[10px] mt-1"></div></div>
+<div><div class="text-white/70">2. 좋아요 토글: liked = ____liked</div><input id="ex2" placeholder="! / ?" class="mt-1 w-full px-2 py-1.5 rounded bg-black/40 border border-white/10 mono text-[11px]" oninput="checkEx()"><div id="ex2r" class="mono text-[10px] mt-1"></div></div>
+<div><div class="text-white/70">3. 삭제: todos.____(index,1)</div><input id="ex3" placeholder="splice / push / map" class="mt-1 w-full px-2 py-1.5 rounded bg-black/40 border border-white/10 mono text-[11px]" oninput="checkEx()"><div id="ex3r" class="mono text-[10px] mt-1"></div></div>
+<div><div class="text-white/70">4. 백틱 안에서 번호: onclick="del(____)"</div><input id="ex4" placeholder="${i} / i / value" class="mt-1 w-full px-2 py-1.5 rounded bg-black/40 border border-white/10 mono text-[11px]" oninput="checkEx()"><div id="ex4r" class="mono text-[10px] mt-1"></div></div>
+</div>
+</div>
+
+<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 mono text-[10px] text-white/50 leading-snug">
+<b class="text-white">오늘의 암기 공식:</b><br>
+"가져오기 → 가공 → 저장 → 그리기"<br><br>
+모든 CRUD는 이 4단계.<br>
+추가: Ref → Value → push → render<br>
+삭제: Index → splice → render<br>
+토글: Index → ! → render
+</div>
+</aside>
+
+</div>
+
+<script>
+let todos = ["첫 번째 할 일"];
+let books = [{title:"Atomic Habits", liked:false, likes:12},{title:"Clean Code", liked:true, likes:45}];
+let currentGoal = '';
+
+function setGoal(goal){
+  currentGoal = goal;
+  document.querySelectorAll('.logic-step').forEach(el=>el.classList.remove('active'));
+  const need = document.getElementById('needVars');
+  const flow = document.getElementById('flowChart');
+  const code = document.getElementById('codeTemplate');
+  const builder = document.getElementById('builderArea');
+  const liveGoal = document.getElementById('liveGoal');
+  const liveVars = document.getElementById('liveVars');
+  
+  if(goal==='add'){
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step2').classList.add('active');
+    document.getElementById('step3').classList.add('active');
+    document.getElementById('step4').classList.add('active');
+    need.innerHTML = `• <span class="text-cyan-300">inputRef</span> = document.getElementById(...) → 태그<br>• <span class="text-fuchsia-300">value</span> = inputRef.value.trim() → 글자<br>• <span class="text-white">todos 배열</span> 자체`;
+    flow.innerHTML = `1. 입력창 Ref 가져오기<br>2. .value로 글자 꺼내기<br>3. trim()으로 공백 제거<br>4. 빈값 체크 → alert<br>5. push()로 배열에 추가<br>6. input.value=''로 비우기<br>7. render()로 화면 그리기`;
+    code.textContent = `function addTodo(){
+  const inputRef = document.getElementById('todoInput');
+  const value = inputRef.value.trim();
+  if(value===''){ alert('입력!'); return; }
+  todos.push(value);
+  inputRef.value='';
+  render();
+}`;
+    builder.innerHTML = `<div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 mono text-[11px]"><div class="font-bold text-emerald-300">추가 로직 조립 완료</div><div class="text-white/60 mt-1">Ref → Value → push → render 순서! 아래 투두에서 테스트해보세요.</div></div>`;
+    liveGoal.textContent = 'Create - 추가';
+    liveVars.textContent = 'inputRef, value, todos';
+  } else if(goal==='delete'){
+    need.innerHTML = `• <span class="text-amber-300">index (i)</span> → 몇 번째인지 숫자<br>• <span class="text-white">todos 배열</span> 자체`;
+    flow.innerHTML = `1. 몇 번째(i)를 삭제할지 받기<br>2. splice(i,1)로 1개 삭제<br>3. render()로 화면 다시 그리기`;
+    code.textContent = `function deleteTodo(index){
+  // index는 숫자 (0,1,2...)
+  todos.splice(index,1);
+  render();
+}
+// HTML에서는
+// \`<button onclick="deleteTodo(\${i})">\``;
+    builder.innerHTML = `<div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20 mono text-[11px]"><div class="font-bold text-red-300">삭제 로직 조립 완료</div><div class="text-white/60 mt-1">i는 숫자, \${i}는 HTML에서 숫자로 변환! splice(i,1) 기억.</div></div>`;
+    liveGoal.textContent = 'Delete - 삭제';
+    liveVars.textContent = 'index(i), todos';
+  } else if(goal==='toggle'){
+    need.innerHTML = `• <span class="text-amber-300">index</span> → 몇 번째 책/할 일<br>• <span class="text-white">liked 불리언</span> → true/false`;
+    flow.innerHTML = `1. index로 배열에서 찾기 (books[index])<br>2. liked = !liked 로 토글 (반대로 뒤집기)<br>3. if(liked) likes++ else likes--<br>4. save + render`;
+    code.textContent = `function toggleLike(index){
+  books[index].liked = !books[index].liked;
+  if(books[index].liked){
+    books[index].likes++;
+  } else {
+    books[index].likes--;
+  }
+  render();
+}`;
+    builder.innerHTML = `<div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 mono text-[11px]"><div class="font-bold text-amber-300">토글 로직 조립 완료</div><div class="text-white/60 mt-1">!는 반대! true→false, false→true. 아래 책 좋아요로 테스트.</div></div>`;
+    liveGoal.textContent = 'Update - 토글';
+    liveVars.textContent = 'index, liked(!), likes';
+  } else if(goal==='edit'){
+    need.innerHTML = `• <span class="text-violet-300">editIndex</span> → 지금 수정 중인 번호<br>• <span class="text-cyan-300">editInputRef</span> + <span class="text-fuchsia-300">Value</span>`;
+    flow.innerHTML = `1. 수정 시작: editIndex = index → render (input으로 바뀜)<br>2. 저장: editInput.value 가져오기<br>3. 빈값 체크<br>4. todos[index] = newValue<br>5. editIndex = null → render`;
+    code.textContent = `let editIndex = null;
+function startEdit(index){
+  editIndex = index;
+  render();
+}
+function saveTodo(index){
+  const newVal = document.getElementById('editInput').value;
+  todos[index] = newVal;
+  editIndex = null;
+  render();
+}`;
+    builder.innerHTML = `<div class="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 mono text-[11px]"><div class="font-bold text-violet-300">수정 로직 조립 완료</div><div class="text-white/60 mt-1">editIndex가 핵심! 같은 index면 input, 아니면 일반 카드.</div></div>`;
+    liveGoal.textContent = 'Update - 수정';
+    liveVars.textContent = 'editIndex, editInputRef, value';
+  }
+  renderAll();
+}
+
+function renderTodos(){
+  document.getElementById('todoList').innerHTML = todos.map((t,i)=>`
+    <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/10">
+      <div class="text-sm">${t} <span class="mono text-[10px] text-white/30">#${i}</span></div>
+      <button onclick="deleteTodo(${i})" class="mono text-[10px] px-2 py-1 rounded bg-red-500/20 text-red-300">삭제 (${i})</button>
+    </div>
+  `).join('');
+  document.getElementById('liveTodos').textContent = JSON.stringify(todos, null, 2);
+}
+function addTodo(){
+  const ref = document.getElementById('todoInput');
+  const val = ref.value.trim();
+  if(!val) return;
+  todos.push(val);
+  ref.value='';
+  renderTodos();
+}
+function deleteTodo(i){ todos.splice(i,1); renderTodos(); }
+
+function renderBooks(){
+  document.getElementById('bookList').innerHTML = books.map((b,i)=>`
+    <div class="flex justify-between items-center p-3 rounded-xl bg-white/[0.03] border border-white/10">
+      <div><div class="font-bold text-sm">${b.title}</div><div class="mono text-[10px] text-white/40">liked: ${b.liked} · likes: ${b.likes} · index: ${i}</div></div>
+      <button onclick="toggleBook(${i})" class="px-3 py-1.5 rounded-full ${b.liked?'bg-red-500 text-white':'bg-white/10 text-white/60'} mono text-[11px]">${b.liked?'💖':'🤍'} ${b.likes}</button>
+    </div>
+  `).join('');
+}
+function toggleBook(i){
+  books[i].liked = !books[i].liked;
+  if(books[i].liked) books[i].likes++; else books[i].likes--;
+  renderBooks();
+}
+
+function checkEx(){
+  const a1 = document.getElementById('ex1').value.trim();
+  const a2 = document.getElementById('ex2').value.trim();
+  const a3 = document.getElementById('ex3').value.trim();
+  const a4 = document.getElementById('ex4').value.trim();
+  document.getElementById('ex1r').textContent = a1==='value' ? '✅ 정답! 입력창 글자' : a1? '❌ .value가 글자' : '';
+  document.getElementById('ex2r').textContent = a2==='!' ? '✅ 정답! !가 반대' : a2? '❌ ! 붙여야 토글' : '';
+  document.getElementById('ex3r').textContent = a3==='splice' ? '✅ 정답! splice(index,1)' : a3? '❌ 삭제는 splice' : '';
+  document.getElementById('ex4r').textContent = a4==='${i}' ? '✅ 정답! 백틱 안에서 숫자 변환' : a4? '❌ ${i}로 변환' : '';
+}
+function renderAll(){ renderTodos(); renderBooks(); }
+renderAll();
+</script>
+</body>
+</html>

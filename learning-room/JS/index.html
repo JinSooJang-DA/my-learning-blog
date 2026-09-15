@@ -11,15 +11,25 @@
   
   <style>
     :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --accent-color: #ff5a5f;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.4);
+      --radius-card: 14px;
+    }
+
+    body.light-mode {
       --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border-color: #e2e8f0;
-      --accent-color: #ff5a5f;
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.08);
-      --radius-card: 14px;
     }
 
     * {
@@ -260,6 +270,47 @@
       font-size: 0.75rem;
       margin-top: 40px;
     }
+  
+    body {
+      transition: background-color 0.2s, color 0.2s;
+    }
+    header {
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .theme-toggle-btn {
+      background: var(--bg-color);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    body.light-mode header {
+      background: #ffffff;
+    }
+    body.light-mode .back-link {
+      background: #f1f5f9;
+    }
+    body.light-mode .lab-number,
+    body.light-mode .lab-tag {
+      background: #f1f5f9;
+    }
+    
   </style>
 </head>
 <body>
@@ -271,9 +322,14 @@
       <span>JavaScript Playground</span>
     </div>
     <!-- Back to Main Hub Link -->
-    <a href="https://jinsoojang-da.github.io/" class="back-link">
-      ← Back to Main Hub
-    </a>
+    <div class="header-actions">
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <span id="themeIcon">☀️</span><span id="themeText">Light Mode</span>
+      </button>
+      <a href="https://jinsoojang-da.github.io/" class="back-link">
+        ← Back to Main Hub
+      </a>
+    </div>
   </header>
 
   <div class="container">
@@ -356,11 +412,103 @@
       </div>
     </section>
 
+
+    <hr class="divider">
+
+    <!-- 3. NEW: Variable & CRUD Mastery - User's Weak Points -->
+    <section>
+      <div class="section-title">
+        <h2>🧠 JS Intensive — Variable & CRUD Mastery</h2>
+        <span class="badge-count" style="background:#22c55e;color:white">NEW 3 · Custom for You</span>
+      </div>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;line-height:1.5;">
+        현재 배우는 Bookstore + Todolist에서 가장 헷갈리는 <code style="background:#fef9c3;padding:2px 6px;border-radius:6px;font-size:0.8rem">value / i / ${i}</code> 를 시각적으로 해결. 변수 정하는 법부터 로직 조립까지.
+      </p>
+
+      <div class="labs-grid">
+        <!-- Lab 10 -->
+        <a href="./Lab10_Variable_Decision_Lab.html" class="lab-card" style="border-left:4px solid #06b6d4">
+          <div>
+            <div class="lab-header">
+              <span class="lab-tag active">NEW</span>
+              <span class="lab-tag">Lab 10</span>
+            </div>
+            <div class="lab-title">Variable Decision Lab</div>
+            <p class="lab-desc" style="margin-top: 6px;">
+              언제 value / i / ${i} 쓸까? Ref(태그 자체) vs Value(진짜 글자) vs Index(숫자) 실시간 실험 + 퀴즈 3개
+            </p>
+          </div>
+          <span class="lab-action">Open Lab →</span>
+        </a>
+
+        <!-- Lab 11 -->
+        <a href="./Lab11_Bookstore_CRUD_Lab.html" class="lab-card" style="border-left:4px solid #f59e0b">
+          <div>
+            <div class="lab-header">
+              <span class="lab-tag active">NEW</span>
+              <span class="lab-tag">Lab 11</span>
+            </div>
+            <div class="lab-title">Bookstore CRUD Lab</div>
+            <p class="lab-desc" style="margin-top: 6px;">
+              Teigel-Bookstore 그대로. 좋아요 toggle(!), 댓글 push/splice, LocalStorage 저장 유지까지. 네 이론 01 기반
+            </p>
+          </div>
+          <span class="lab-action">Open Lab →</span>
+        </a>
+
+        <!-- Lab 12 -->
+        <a href="./Lab12_Logic_Builder_Lab.html" class="lab-card" style="border-left:4px solid #8b5cf6">
+          <div>
+            <div class="lab-header">
+              <span class="lab-tag active">NEW</span>
+              <span class="lab-tag">Lab 12</span>
+            </div>
+            <div class="lab-title">Logic Builder Lab</div>
+            <p class="lab-desc" style="margin-top: 6px;">
+              생각을 코드로 바꾸는 법. 목표→필요변수→순서→템플릿 자동 조립. 혼자 짜기 힘든 로직 훈련장
+            </p>
+          </div>
+          <span class="lab-action">Open Lab →</span>
+        </a>
+      </div>
+
+      <div class="info-note" style="border-left-color:#06b6d4">
+        💡 <b>학습 팁:</b> Lab 10에서 변수 감각 잡고 → Lab 11에서 Bookstore로 CRUD 복습 → Lab 12에서 "목표→변수→순서→코드" 공식으로 혼자 짜보는 순서로 하세요.
+      </div>
+    </section>
+
     <footer>
+
       <p>© 2026 Jin Soo Jang. Learning & Practice at Developer Akademie.</p>
     </footer>
 
   </div>
+
+
+  <script>
+    // Load saved theme
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light'){
+      document.body.classList.add('light-mode');
+      document.getElementById('themeIcon').textContent = '🌙';
+      document.getElementById('themeText').textContent = 'Dark Mode';
+    }
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('light-mode');
+      const icon = document.getElementById('themeIcon');
+      const text = document.getElementById('themeText');
+      if (body.classList.contains('light-mode')) {
+        icon.textContent = '🌙';
+        text.textContent = 'Dark Mode';
+        localStorage.setItem('theme','light');
+      } else {
+        icon.textContent = '☀️';
+        text.textContent = 'Light Mode';
+        localStorage.setItem('theme','dark');
+      }
+    }
+  </script>
 
 </body>
 </html>
