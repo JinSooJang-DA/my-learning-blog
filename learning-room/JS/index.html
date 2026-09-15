@@ -1,514 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Playground - Jin Soo Jang</title>
-  <!-- Google Fonts for Clean Modern Look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-      --accent-color: #ff5a5f;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.4);
-      --radius-card: 14px;
-    }
-
-    body.light-mode {
-      --bg-color: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.4;
-      padding-bottom: 60px;
-    }
-
-    /* Compact Header matching Main Hub */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border-color);
-      padding: 12px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text-main);
-    }
-
-    .logo-badge {
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #fef9c3, #facc15);
-      color: #ca8a04;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.75rem;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: #f1f5f9;
-      transition: all 0.2s ease;
-    }
-
-    .back-link:hover {
-      background: #e2e8f0;
-      color: var(--text-main);
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 30px 20px 0;
-    }
-
-    /* Hero Banner */
-    .hero {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .hero h1 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* Section Title */
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .section-title h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .badge-count {
-      background: #fef9c3;
-      color: #ca8a04;
-      font-size: 0.72rem;
-      padding: 3px 8px;
-      border-radius: 99px;
-      font-weight: 700;
-    }
-
-    .badge-project {
-      background: #dcfce7;
-      color: #16a34a;
-      font-size: 0.72rem;
-      padding: 3px 8px;
-      border-radius: 99px;
-      font-weight: 700;
-    }
-
-    /* Grid Layout */
-    .labs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-
-    /* Card Style */
-    .lab-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-card);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-color);
-      transition: all 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .lab-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-      border-color: #cbd5e1;
-    }
-
-    .lab-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .lab-tag {
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      background: #f1f5f9;
-      color: #475569;
-    }
-
-    .lab-tag.active {
-      background: #fef9c3;
-      color: #854d0e;
-    }
-
-    .lab-tag.project {
-      background: #dcfce7;
-      color: #15803d;
-    }
-
-    .lab-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-top: 4px;
-    }
-
-    .lab-desc {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
-
-    .lab-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #ca8a04;
-    }
-
-    .lab-action.green {
-      color: #16a34a;
-    }
-
-    .lab-card:hover .lab-action {
-      color: var(--accent-color);
-    }
-
-    hr.divider {
-      border: 0;
-      height: 1px;
-      background: var(--border-color);
-      margin: 10px 0 30px;
-    }
-
-    /* Note Box */
-    .info-note {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-left: 4px solid #16a34a;
-      border-radius: 10px;
-      padding: 14px 18px;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      line-height: 1.4;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      margin-top: 40px;
-    }
-  
-    body {
-      transition: background-color 0.2s, color 0.2s;
-    }
-    header {
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-    .theme-toggle-btn {
-      background: var(--bg-color);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 6px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .theme-toggle-btn:hover {
-      border-color: var(--accent-color);
-      color: var(--accent-color);
-    }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    body.light-mode header {
-      background: #ffffff;
-    }
-    body.light-mode .back-link {
-      background: #f1f5f9;
-    }
-    body.light-mode .lab-number,
-    body.light-mode .lab-tag {
-      background: #f1f5f9;
-    }
-    
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Playground - Jin Soo Jang</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg-color:#0f172a;--card-bg:#1e293b;--text-main:#f8fafc;--text-muted:#94a3b8;--border-color:#334155;--accent-color:#ff5a5f;--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--shadow-hover:0 8px 18px rgba(0,0,0,0.4);--radius-card:14px}
+body.light-mode{--bg-color:#f8fafc;--card-bg:#ffffff;--text-main:#0f172a;--text-muted:#64748b;--border-color:#e2e8f0;--shadow-sm:0 2px 8px rgba(0,0,0,0.04);--shadow-hover:0 8px 18px rgba(0,0,0,0.08)}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-color);color:var(--text-main);line-height:1.4;padding-bottom:60px;transition:background-color 0.2s,color 0.2s}
+header{background:var(--card-bg);border-bottom:1px solid var(--border-color);padding:12px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;transition:background-color 0.2s,border-color 0.2s}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.95rem;color:var(--text-main)} .logo-badge{width:28px;height:28px;background:linear-gradient(135deg,#fef9c3,#facc15);color:#ca8a04;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem}
+.header-actions{display:flex;align-items:center;gap:12px} .theme-toggle-btn{background:var(--bg-color);color:var(--text-main);border:1px solid var(--border-color);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:600;display:flex;align-items:center;gap:4px;transition:all 0.2s} .theme-toggle-btn:hover{border-color:var(--accent-color);color:var(--accent-color)}
+.back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-muted);font-weight:600;font-size:0.85rem;padding:6px 12px;border-radius:8px;background:var(--card-bg);border:1px solid var(--border-color);transition:all 0.2s} .back-link:hover{background:var(--border-color);color:var(--text-main)}
+.container{max-width:960px;margin:0 auto;padding:30px 20px 0} .hero{text-align:center;margin-bottom:36px} .hero h1{font-size:1.75rem;font-weight:800;letter-spacing:-0.3px;margin-bottom:6px} .hero p{color:var(--text-muted);font-size:0.9rem}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px} .section-title h2{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:8px} .badge-count{background:#0369a1;color:#e0f2fe;font-size:0.72rem;padding:3px 8px;border-radius:99px;font-weight:700} body.light-mode .badge-count{background:#e0f2fe;color:#0284c7} .badge-project{background:#dcfce7;color:#16a34a;font-size:0.72rem;padding:3px 8px;border-radius:99px;font-weight:700}
+.labs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:36px} .lab-card{background:var(--card-bg);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);border:1px solid var(--border-color);transition:all 0.2s ease;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:space-between} .lab-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:#64748b}
+.lab-header{display:flex;align-items:center;gap:10px;margin-bottom:10px} .lab-number{width:32px;height:32px;background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-muted);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem} .lab-tag{font-size:0.68rem;font-weight:800;padding:2px 6px;border-radius:6px;text-transform:uppercase;background:var(--bg-color);border:1px solid var(--border-color);color:var(--text-muted)} .lab-tag.active{background:#fef9c3;color:#854d0e;border-color:#fde68a} body.light-mode .lab-tag.active{background:#fef9c3;color:#854d0e} .lab-tag.new{background:#22c55e;color:white;border-color:#22c55e} .lab-tag.project{background:#dcfce7;color:#15803d;border-color:#bbf7d0} .lab-title{font-weight:700;font-size:0.95rem} .lab-desc{color:var(--text-muted);font-size:0.8rem;line-height:1.4;margin-bottom:16px} .lab-action{display:inline-flex;align-items:center;gap:4px;font-size:0.8rem;font-weight:700;color:#0284c7} .lab-action.green{color:#16a34a} .lab-card:hover .lab-action{color:var(--accent-color)} hr.divider{border:0;height:1px;background:var(--border-color);margin:10px 0 30px} .info-note{background:var(--card-bg);border:1px solid var(--border-color);border-left:4px solid #0284c7;border-radius:10px;padding:14px 18px;color:var(--text-muted);font-size:0.8rem;line-height:1.4} footer{text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+</style>
 </head>
 <body>
-
-  <!-- Header Navigation -->
-  <header>
-    <div class="logo">
-      <div class="logo-badge">JS</div>
-      <span>JavaScript Playground</span>
-    </div>
-    <!-- Back to Main Hub Link -->
-    <div class="header-actions">
-      <button class="theme-toggle-btn" onclick="toggleTheme()">
-        <span id="themeIcon">☀️</span><span id="themeText">Light Mode</span>
-      </button>
-      <a href="https://jinsoojang-da.github.io/" class="back-link">
-        ← Back to Main Hub
-      </a>
-    </div>
-  </header>
-
-  <div class="container">
-    
-    <!-- Hero Banner -->
-    <section class="hero">
-      <h1>JavaScript Practice & DOM Labs</h1>
-      <p>Mastering Document Object Model manipulation, events, and dynamic features.</p>
-    </section>
-
-    <!-- 1. Core Learning Section -->
-    <section>
-      <div class="section-title">
-        <h2>📚 Core Learning Modules</h2>
-        <span class="badge-count">M6 S2 · Active</span>
-      </div>
-
-      <div class="labs-grid">
-        <!-- Module 6 Session 2: DOM -->
-        <a href="./M6-S2-DOM-Lab.html" class="lab-card">
+<header>
+<div class="logo"><div class="logo-badge">JS</div><span>JavaScript Playground</span></div>
+<div class="header-actions">
+<button class="theme-toggle-btn" onclick="toggleTheme()"><span id="themeIcon">☀️</span><span id="themeText">Light Mode</span></button>
+<a href="../../index.html" class="back-link">← Back to Main Hub</a>
+</div>
+</header>
+<div class="container">
+<section class="hero"><h1>JavaScript Practice & DOM Labs</h1><p>Mastering DOM manipulation, events, and dynamic features + NEW variable & CRUD labs.</p></section>
+<section><div class="section-title"><h2>🎨 Core Labs & Projects</h2><span class="badge-count">6 Labs</span></div>
+<div class="labs-grid">
+        <a href="./M6-S2-DOM-Lab.html" class="lab-card" style="">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag active">Active</span>
-              <span class="lab-tag">6 Lessons</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag active">Active</span><span class="lab-tag">6 Lessons</span></div>
             <div class="lab-title">DOM — Document Object Model</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              getElementByID, innerHTML, textContent, classList, setAttribute, and addEventListener methods.
-            </p>
+            <p class="lab-desc" style="margin-top:6px">getElementByID, innerHTML, textContent, classList, setAttribute, and addEventListener methods.</p>
           </div>
-          <span class="lab-action">Open Module →</span>
+          <span class="lab-action ">Open Lab →</span>
         </a>
-      </div>
-    </section>
-
-    <hr class="divider">
-
-    <!-- 2. Interactive Projects Section -->
-    <section>
-      <div class="section-title">
-        <h2>🧪 Interactive Project Labs</h2>
-        <span class="badge-project">Fotogram Series</span>
-      </div>
-
-      <div class="labs-grid">
-        <!-- Fotogram Starter -->
-        <a href="./Fotogram-Starter-Lab.html" class="lab-card">
+        <a href="./Fotogram-Starter-Lab.html" class="lab-card" style="">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag project">Project</span>
-              <span class="lab-tag">DOM Practice</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag active">Project</span><span class="lab-tag">DOM Practice</span></div>
             <div class="lab-title">Fotogram Starter Lab</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              Building an interactive image gallery using fundamental DOM selection and manipulation.
-            </p>
+            <p class="lab-desc" style="margin-top:6px">Building an interactive image gallery using fundamental DOM selection and manipulation.</p>
           </div>
-          <span class="lab-action green">Open Project →</span>
+          <span class="lab-action green">Open Lab →</span>
         </a>
-
-        <!-- Fotogram Exam -->
-        <a href="./Fotogram-Exam-Lab.html" class="lab-card">
+        <a href="./Fotogram-Exam-Lab.html" class="lab-card" style="">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag project">Exam</span>
-              <span class="lab-tag">Final App</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag active">Exam</span><span class="lab-tag">Final App</span></div>
             <div class="lab-title">Fotogram Exam Lab</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              Complete Fotogram project implementing full dynamic features, events, and logic integration.
-            </p>
+            <p class="lab-desc" style="margin-top:6px">Complete Fotogram project implementing full dynamic features, events, and logic integration.</p>
           </div>
-          <span class="lab-action green">Open Project →</span>
+          <span class="lab-action green">Open Lab →</span>
         </a>
-      </div>
-
-      <!-- Info Note -->
-      <div class="info-note">
-        💡 <b>Note:</b> Fotogram Starter & Exam modules have been relocated here from the CSS section to combine layout structure with active JS logic practice.
-      </div>
-    </section>
-
-
-    <hr class="divider">
-
-    <!-- 3. NEW: Variable & CRUD Mastery - User's Weak Points -->
-    <section>
-      <div class="section-title">
-        <h2>🧠 JS Intensive — Variable & CRUD Mastery</h2>
-        <span class="badge-count" style="background:#22c55e;color:white">NEW 3 · Custom for You</span>
-      </div>
-      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;line-height:1.5;">
-        현재 배우는 Bookstore + Todolist에서 가장 헷갈리는 <code style="background:#fef9c3;padding:2px 6px;border-radius:6px;font-size:0.8rem">value / i / ${i}</code> 를 시각적으로 해결. 변수 정하는 법부터 로직 조립까지.
-      </p>
-
-      <div class="labs-grid">
-        <!-- Lab 10 -->
         <a href="./Lab10_Variable_Decision_Lab.html" class="lab-card" style="border-left:4px solid #06b6d4">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag active">NEW</span>
-              <span class="lab-tag">Lab 10</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag new">NEW</span><span class="lab-tag">Lab 10</span></div>
             <div class="lab-title">Variable Decision Lab</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              언제 value / i / ${i} 쓸까? Ref(태그 자체) vs Value(진짜 글자) vs Index(숫자) 실시간 실험 + 퀴즈 3개
-            </p>
+            <p class="lab-desc" style="margin-top:6px">언제 value / i / ${i} 쓸까? Ref vs Value vs Index 실시간 실험 + 퀴즈</p>
           </div>
-          <span class="lab-action">Open Lab →</span>
+          <span class="lab-action ">Open Lab →</span>
         </a>
-
-        <!-- Lab 11 -->
         <a href="./Lab11_Bookstore_CRUD_Lab.html" class="lab-card" style="border-left:4px solid #f59e0b">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag active">NEW</span>
-              <span class="lab-tag">Lab 11</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag new">NEW</span><span class="lab-tag">Lab 11</span></div>
             <div class="lab-title">Bookstore CRUD Lab</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              Teigel-Bookstore 그대로. 좋아요 toggle(!), 댓글 push/splice, LocalStorage 저장 유지까지. 네 이론 01 기반
-            </p>
+            <p class="lab-desc" style="margin-top:6px">Teigel-Bookstore 그대로. 좋아요 toggle(!), 댓글 push/splice, LocalStorage 저장</p>
           </div>
-          <span class="lab-action">Open Lab →</span>
+          <span class="lab-action ">Open Lab →</span>
         </a>
-
-        <!-- Lab 12 -->
         <a href="./Lab12_Logic_Builder_Lab.html" class="lab-card" style="border-left:4px solid #8b5cf6">
           <div>
-            <div class="lab-header">
-              <span class="lab-tag active">NEW</span>
-              <span class="lab-tag">Lab 12</span>
-            </div>
+            <div class="lab-header"><span class="lab-tag new">NEW</span><span class="lab-tag">Lab 12</span></div>
             <div class="lab-title">Logic Builder Lab</div>
-            <p class="lab-desc" style="margin-top: 6px;">
-              생각을 코드로 바꾸는 법. 목표→필요변수→순서→템플릿 자동 조립. 혼자 짜기 힘든 로직 훈련장
-            </p>
+            <p class="lab-desc" style="margin-top:6px">생각을 코드로 바꾸는 법. 목표→필요변수→순서→템플릿 자동 조립</p>
           </div>
-          <span class="lab-action">Open Lab →</span>
-        </a>
-      </div>
-
-      <div class="info-note" style="border-left-color:#06b6d4">
-        💡 <b>학습 팁:</b> Lab 10에서 변수 감각 잡고 → Lab 11에서 Bookstore로 CRUD 복습 → Lab 12에서 "목표→변수→순서→코드" 공식으로 혼자 짜보는 순서로 하세요.
-      </div>
-    </section>
-
-    <footer>
-
-      <p>© 2026 Jin Soo Jang. Learning & Practice at Developer Akademie.</p>
-    </footer>
-
-  </div>
-
-
-  <script>
-    // Load saved theme
-    const saved = localStorage.getItem('theme');
-    if(saved === 'light'){
-      document.body.classList.add('light-mode');
-      document.getElementById('themeIcon').textContent = '🌙';
-      document.getElementById('themeText').textContent = 'Dark Mode';
-    }
-    function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle('light-mode');
-      const icon = document.getElementById('themeIcon');
-      const text = document.getElementById('themeText');
-      if (body.classList.contains('light-mode')) {
-        icon.textContent = '🌙';
-        text.textContent = 'Dark Mode';
-        localStorage.setItem('theme','light');
-      } else {
-        icon.textContent = '☀️';
-        text.textContent = 'Light Mode';
-        localStorage.setItem('theme','dark');
-      }
-    }
-  </script>
-
+          <span class="lab-action ">Open Lab →</span>
+        </a></div>
+<div class="info-note">💡 <b>학습 팁:</b> Lab 10에서 변수 감각 잡고 → Lab 11에서 Bookstore로 CRUD 복습 → Lab 12에서 공식으로 혼자 짜보는 순서로 하세요.</div>
+</section>
+<footer><p>© 2026 Jin Soo Jang. Learning & Practice at Developer Akademie.</p></footer>
+</div>
+<script>
+const saved=localStorage.getItem('theme'); if(saved==='light'){document.body.classList.add('light-mode'); document.getElementById('themeIcon').textContent='🌙'; document.getElementById('themeText').textContent='Dark Mode';}
+function toggleTheme(){const b=document.body; b.classList.toggle('light-mode'); const ic=document.getElementById('themeIcon'); const tx=document.getElementById('themeText'); if(b.classList.contains('light-mode')){ic.textContent='🌙'; tx.textContent='Dark Mode'; localStorage.setItem('theme','light');} else {ic.textContent='☀️'; tx.textContent='Light Mode'; localStorage.setItem('theme','dark');}}
+</script>
 </body>
 </html>
