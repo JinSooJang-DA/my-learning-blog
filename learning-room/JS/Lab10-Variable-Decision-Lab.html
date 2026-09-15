@@ -1,208 +1,299 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 10 - Variable Decision Lab</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-<style>*{font-family:'Noto Sans KR',sans-serif}.mono{font-family:'JetBrains Mono',monospace}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
-.pop{animation:pop 0.3s ease}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 10 - Variable Decision Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.2)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .pop {
+      animation: pop 0.3s ease
+    }
+  </style>
 </head>
+
 <body class="bg-[#08080a] text-white min-h-screen">
-<header class="sticky top-0 z-30 backdrop-blur-xl bg-[#08080a]/90 border-b border-white/10 px-6 py-3 flex justify-between items-center">
-<div class="flex items-center gap-3">
-<a href="./index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition mono text-[11px] text-white/60 hover:text-white">
-<span>←</span> JS Lab
-</a>
-<div class="w-[1px] h-6 bg-white/10"></div>
-<div class="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 grid place-items-center font-black">10</div>
-<div><div class="font-black leading-none">VARIABLE DECISION LAB</div><div class="mono text-[10px] text-white/40">value vs i vs ${i} - JS Portal / 다크모드 지원</div></div>
-</div>
-<div class="flex items-center gap-2">
-<a href="../../index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition mono text-[11px] text-white/50 hover:text-white">
-🏠 Main Hub
-</a>
-<div class="mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">LAB 10</div>
-</div>
-</header>
+  <header
+    class="sticky top-0 z-30 backdrop-blur-xl bg-[#08080a]/90 border-b border-white/10 px-6 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <a href="./index.html"
+        class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition mono text-[11px] text-white/60 hover:text-white">
+        <span>←</span> JS Lab
+      </a>
+      <div class="w-[1px] h-6 bg-white/10"></div>
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 grid place-items-center font-black">10
+      </div>
+      <div>
+        <div class="font-black leading-none">VARIABLE DECISION LAB</div>
+        <div class="mono text-[10px] text-white/40">value vs i vs ${i} - JS Portal / 다크모드 지원</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="https://jinsoojang-da.github.io/"
+        class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition mono text-[11px] text-white/50 hover:text-white">
+        🏠 Main Hub
+      </a>
+      <div
+        class="mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+        LAB 10</div>
+    </div>
+  </header>
 
-<div class="max-w-[1600px] mx-auto grid lg:grid-cols-[360px_1fr_380px] gap-0 min-h-[calc(100vh-56px)]">
+  <div class="max-w-[1600px] mx-auto grid lg:grid-cols-[360px_1fr_380px] gap-0 min-h-[calc(100vh-56px)]">
 
-<!-- LEFT: 설명 -->
-<aside class="border-r border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
-<div class="mono text-[11px] tracking-widest text-white/40 mb-1">DECISION TREE / 언제 뭘 쓸까?</div>
+    <!-- LEFT: 설명 -->
+    <aside class="border-r border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+      <div class="mono text-[11px] tracking-widest text-white/40 mb-1">DECISION TREE / 언제 뭘 쓸까?</div>
 
-<div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
-<div class="mono text-[11px] font-bold text-cyan-300 mb-1">1. .value — 입력창 속 진짜 글자</div>
-<div class="text-[11px] text-white/60 leading-snug">input 태그 전체가 아니라, 사용자가 타이핑한 <b class="text-white">문자열</b>을 뽑을 때</div>
-<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">let input = document.getElementById("todo");
+      <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+        <div class="mono text-[11px] font-bold text-cyan-300 mb-1">1. .value — 입력창 속 진짜 글자</div>
+        <div class="text-[11px] text-white/60 leading-snug">input 태그 전체가 아니라, 사용자가 타이핑한 <b class="text-white">문자열</b>을
+          뽑을 때</div>
+        <pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">let input = document.getElementById("todo");
 let text = input.value; // "장보기"
 todos.push(text);</pre>
-<div class="mt-2 text-[10px] text-cyan-200/60">→ Ref에서 Value 꺼내기</div>
-</div>
+        <div class="mt-2 text-[10px] text-cyan-200/60">→ Ref에서 Value 꺼내기</div>
+      </div>
 
-<div class="p-3 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20">
-<div class="mono text-[11px] font-bold text-fuchsia-300 mb-1">2. i — 순수 JS에서 숫자 변수</div>
-<div class="text-[11px] text-white/60 leading-snug">for문, 함수 안에서 <b class="text-white">순번</b>을 다룰 때. 백틱 밖</div>
-<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">for(let i=0; i&lt;todos.length; i++){
+      <div class="p-3 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20">
+        <div class="mono text-[11px] font-bold text-fuchsia-300 mb-1">2. i — 순수 JS에서 숫자 변수</div>
+        <div class="text-[11px] text-white/60 leading-snug">for문, 함수 안에서 <b class="text-white">순번</b>을 다룰 때. 백틱 밖</div>
+        <pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">for(let i=0; i&lt;todos.length; i++){
   console.log(todos[i]);
 }
 function deleteTodo(i){
   todos.splice(i,1);
 }</pre>
-</div>
+      </div>
 
-<div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
-<div class="mono text-[11px] font-bold text-amber-300 mb-1">3. ${i} — 백틱 HTML 안에 숫자 끼우기</div>
-<div class="text-[11px] text-white/60 leading-snug">백틱(` `)으로 HTML 만들 때 <b class="text-white">진짜 숫자</b>로 변환</div>
-<pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">// ❌ 문자 'i'가 들어감
+      <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
+        <div class="mono text-[11px] font-bold text-amber-300 mb-1">3. ${i} — 백틱 HTML 안에 숫자 끼우기</div>
+        <div class="text-[11px] text-white/60 leading-snug">백틱(` `)으로 HTML 만들 때 <b class="text-white">진짜 숫자</b>로 변환
+        </div>
+        <pre class="mono text-[10px] bg-black/40 p-2 rounded-lg mt-2 text-white/70">// ❌ 문자 'i'가 들어감
 `<button onclick="del(i)">`
 
 // ⭕ 숫자 0이 들어감
 `<button onclick="del(${i})">`
 // 결과: &lt;button onclick="del(0)"&gt;</pre>
-</div>
+      </div>
 
-<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-<div class="mono text-[11px] font-bold text-white/60 mb-1">변수 이름 짓는 법</div>
-<div class="text-[11px] text-white/50 space-y-1 leading-snug">
-<div><span class="text-cyan-300">Ref:</span> DOM 자체 → const outputRef = document.getElementById(...)</div>
-<div><span class="text-fuchsia-300">Value:</span> 꺼낸 값 → const text = input.value.trim()</div>
-<div><span class="text-amber-300">Index:</span> 순번 → i, bookIndex, commentIndex</div>
-<div><span class="text-emerald-300">HTML:</span> 누적 문자열 → let html = ''; html += ...</div>
-</div>
-</div>
-</aside>
+      <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+        <div class="mono text-[11px] font-bold text-white/60 mb-1">변수 이름 짓는 법</div>
+        <div class="text-[11px] text-white/50 space-y-1 leading-snug">
+          <div><span class="text-cyan-300">Ref:</span> DOM 자체 → const outputRef = document.getElementById(...)</div>
+          <div><span class="text-fuchsia-300">Value:</span> 꺼낸 값 → const text = input.value.trim()</div>
+          <div><span class="text-amber-300">Index:</span> 순번 → i, bookIndex, commentIndex</div>
+          <div><span class="text-emerald-300">HTML:</span> 누적 문자열 → let html = ''; html += ...</div>
+        </div>
+      </div>
+    </aside>
 
-<!-- CENTER: 인터랙티브 -->
-<main class="bg-[#0a0a0a] p-6 overflow-y-auto max-h-[calc(100vh-56px)]">
-<div class="max-w-[640px] mx-auto space-y-6">
+    <!-- CENTER: 인터랙티브 -->
+    <main class="bg-[#0a0a0a] p-6 overflow-y-auto max-h-[calc(100vh-56px)]">
+      <div class="max-w-[640px] mx-auto space-y-6">
 
-<!-- Playground 1: value -->
-<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
-<div class="flex justify-between items-center mb-3"><div class="mono text-[11px] text-cyan-300">PLAYGROUND 1 — .value 실험</div><div id="valBadge" class="mono text-[10px] px-2 py-1 rounded-full bg-white/5">대기중</div></div>
-<div class="flex gap-2 mb-3"><input id="testInput" placeholder="여기에 뭐든 입력" class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-sm outline-none focus:border-cyan-500/50"><button onclick="testValue()" class="px-4 py-2.5 rounded-xl bg-cyan-400 text-black text-sm font-bold">.value 가져오기</button></div>
-<div class="grid grid-cols-2 gap-3 mono text-[11px]">
-<div class="p-3 rounded-xl bg-black/40"><div class="text-white/40">inputRef (태그 자체)</div><div id="refView" class="text-white/80 mt-1 break-all">&lt;input id="testInput"&gt;</div></div>
-<div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20"><div class="text-cyan-300/60">inputRef.value (진짜 글자)</div><div id="valueView" class="text-white font-bold mt-1">""</div></div>
-</div>
-</div>
+        <!-- Playground 1: value -->
+        <div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+          <div class="flex justify-between items-center mb-3">
+            <div class="mono text-[11px] text-cyan-300">PLAYGROUND 1 — .value 실험</div>
+            <div id="valBadge" class="mono text-[10px] px-2 py-1 rounded-full bg-white/5">대기중</div>
+          </div>
+          <div class="flex gap-2 mb-3"><input id="testInput" placeholder="여기에 뭐든 입력"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-sm outline-none focus:border-cyan-500/50"><button
+              onclick="testValue()" class="px-4 py-2.5 rounded-xl bg-cyan-400 text-black text-sm font-bold">.value
+              가져오기</button></div>
+          <div class="grid grid-cols-2 gap-3 mono text-[11px]">
+            <div class="p-3 rounded-xl bg-black/40">
+              <div class="text-white/40">inputRef (태그 자체)</div>
+              <div id="refView" class="text-white/80 mt-1 break-all">&lt;input id="testInput"&gt;</div>
+            </div>
+            <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+              <div class="text-cyan-300/60">inputRef.value (진짜 글자)</div>
+              <div id="valueView" class="text-white font-bold mt-1">""</div>
+            </div>
+          </div>
+        </div>
 
-<!-- Playground 2: i vs ${i} -->
-<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
-<div class="mono text-[11px] text-amber-300 mb-3">PLAYGROUND 2 — i vs ${i} 실험</div>
-<div id="iPlayground" class="space-y-2"></div>
-<div class="mt-4 p-3 rounded-xl bg-black/40 mono text-[10px] text-white/50">
-<div class="text-white/70 mb-1">HTML 생성 결과 (개발자도구 Elements에서 이렇게 보임):</div>
-<div id="htmlResult" class="text-amber-200"></div>
-</div>
-</div>
+        <!-- Playground 2: i vs ${i} -->
+        <div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+          <div class="mono text-[11px] text-amber-300 mb-3">PLAYGROUND 2 — i vs ${i} 실험</div>
+          <div id="iPlayground" class="space-y-2"></div>
+          <div class="mt-4 p-3 rounded-xl bg-black/40 mono text-[10px] text-white/50">
+            <div class="text-white/70 mb-1">HTML 생성 결과 (개발자도구 Elements에서 이렇게 보임):</div>
+            <div id="htmlResult" class="text-amber-200"></div>
+          </div>
+        </div>
 
-<!-- Playground 3: todo mini -->
-<div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
-<div class="mono text-[11px] text-fuchsia-300 mb-3">PLAYGROUND 3 — 투두로 합쳐보기</div>
-<div class="flex gap-2 mb-4"><input id="todoInput" placeholder="할 일 입력" class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-sm"><button onclick="addMiniTodo()" class="px-4 py-2.5 rounded-xl bg-white text-black font-bold text-sm">추가 (push)</button></div>
-<div id="miniList" class="space-y-2"></div>
-</div>
+        <!-- Playground 3: todo mini -->
+        <div class="p-5 rounded-[20px] bg-[#141414] border border-white/10">
+          <div class="mono text-[11px] text-fuchsia-300 mb-3">PLAYGROUND 3 — 투두로 합쳐보기</div>
+          <div class="flex gap-2 mb-4"><input id="todoInput" placeholder="할 일 입력"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-sm"><button
+              onclick="addMiniTodo()" class="px-4 py-2.5 rounded-xl bg-white text-black font-bold text-sm">추가
+              (push)</button></div>
+          <div id="miniList" class="space-y-2"></div>
+        </div>
 
 
-<div class="mt-8 p-4 rounded-xl bg-white/[0.03] border border-white/10 flex justify-between items-center">
-<a href="./index.html" class="mono text-[12px] px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 transition">← JS 포털로 돌아가기</a>
-<a href="../../index.html" class="mono text-[12px] px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08]">메인 허브로</a>
-</div>
+        <div class="mt-8 p-4 rounded-xl bg-white/[0.03] border border-white/10 flex justify-between items-center">
+          <a href="./index.html"
+            class="mono text-[12px] px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 transition">← JS 포털로 돌아가기</a>
+          <a href="../../index.html"
+            class="mono text-[12px] px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08]">메인
+            허브로</a>
+        </div>
 
-</div>
-</main>
+      </div>
+    </main>
 
-<!-- RIGHT: 라이브 변수 -->
-<aside class="border-l border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
-<div>
-<div class="flex justify-between items-center mb-3"><div class="mono text-[11px] tracking-widest text-white/40">LIVE VARIABLES / 실시간 변수</div><button onclick="resetAll()" class="mono text-[10px] px-2 py-1 rounded bg-white/10">리셋</button></div>
-<div class="space-y-2 mono text-[11px]">
-<div class="p-2.5 rounded-xl bg-black/40"><div class="text-white/40">miniTodos 배열</div><pre id="todosJson" class="text-white/70 mt-1 max-h-[160px] overflow-auto">[]</pre></div>
-<div class="grid grid-cols-2 gap-2">
-<div class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20"><div class="text-cyan-300/60">마지막 .value</div><div id="lastValue" class="text-white font-bold">-</div></div>
-<div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20"><div class="text-amber-300/60">마지막 i</div><div id="lastI" class="text-white font-bold">-</div></div>
-</div>
-</div>
-</div>
+    <!-- RIGHT: 라이브 변수 -->
+    <aside class="border-l border-white/10 bg-white/[0.02] p-5 space-y-5 overflow-y-auto max-h-[calc(100vh-56px)]">
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <div class="mono text-[11px] tracking-widest text-white/40">LIVE VARIABLES / 실시간 변수</div><button
+            onclick="resetAll()" class="mono text-[10px] px-2 py-1 rounded bg-white/10">리셋</button>
+        </div>
+        <div class="space-y-2 mono text-[11px]">
+          <div class="p-2.5 rounded-xl bg-black/40">
+            <div class="text-white/40">miniTodos 배열</div>
+            <pre id="todosJson" class="text-white/70 mt-1 max-h-[160px] overflow-auto">[]</pre>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+              <div class="text-cyan-300/60">마지막 .value</div>
+              <div id="lastValue" class="text-white font-bold">-</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20">
+              <div class="text-amber-300/60">마지막 i</div>
+              <div id="lastI" class="text-white font-bold">-</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-<div class="mono text-[11px] font-bold text-emerald-300 mb-2">✅ 퀴즈 — 언제 뭘 쓸까?</div>
-<div class="space-y-3 text-[11px]">
-<div><div class="text-white/70">Q1. 입력창 글자를 배열에 넣을 때?</div><div class="flex gap-2 mt-1"><button onclick="quiz(1,'value')" class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">.value</button><button onclick="quiz(1,'i')" class="px-2 py-1 rounded bg-white/10">i</button><button onclick="quiz(1,'${i}')" class="px-2 py-1 rounded bg-white/10">${i}</button></div><div id="q1" class="mono text-[10px] mt-1"></div></div>
-<div><div class="text-white/70">Q2. for문에서 순번 다룰 때?</div><div class="flex gap-2 mt-1"><button onclick="quiz(2,'value')" class="px-2 py-1 rounded bg-white/10">.value</button><button onclick="quiz(2,'i')" class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">i</button><button onclick="quiz(2,'${i}')" class="px-2 py-1 rounded bg-white/10">${i}</button></div><div id="q2" class="mono text-[10px] mt-1"></div></div>
-<div><div class="text-white/70">Q3. 백틱 HTML 안에 번호 넣을 때?</div><div class="flex gap-2 mt-1"><button onclick="quiz(3,'value')" class="px-2 py-1 rounded bg-white/10">.value</button><button onclick="quiz(3,'i')" class="px-2 py-1 rounded bg-white/10">i</button><button onclick="quiz(3,'${i}')" class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">${i}</button></div><div id="q3" class="mono text-[10px] mt-1"></div></div>
-</div>
-</div>
+      <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+        <div class="mono text-[11px] font-bold text-emerald-300 mb-2">✅ 퀴즈 — 언제 뭘 쓸까?</div>
+        <div class="space-y-3 text-[11px]">
+          <div>
+            <div class="text-white/70">Q1. 입력창 글자를 배열에 넣을 때?</div>
+            <div class="flex gap-2 mt-1"><button onclick="quiz(1,'value')"
+                class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">.value</button><button onclick="quiz(1,'i')"
+                class="px-2 py-1 rounded bg-white/10">i</button><button onclick="quiz(1,'${i}')"
+                class="px-2 py-1 rounded bg-white/10">${i}</button></div>
+            <div id="q1" class="mono text-[10px] mt-1"></div>
+          </div>
+          <div>
+            <div class="text-white/70">Q2. for문에서 순번 다룰 때?</div>
+            <div class="flex gap-2 mt-1"><button onclick="quiz(2,'value')"
+                class="px-2 py-1 rounded bg-white/10">.value</button><button onclick="quiz(2,'i')"
+                class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">i</button><button onclick="quiz(2,'${i}')"
+                class="px-2 py-1 rounded bg-white/10">${i}</button></div>
+            <div id="q2" class="mono text-[10px] mt-1"></div>
+          </div>
+          <div>
+            <div class="text-white/70">Q3. 백틱 HTML 안에 번호 넣을 때?</div>
+            <div class="flex gap-2 mt-1"><button onclick="quiz(3,'value')"
+                class="px-2 py-1 rounded bg-white/10">.value</button><button onclick="quiz(3,'i')"
+                class="px-2 py-1 rounded bg-white/10">i</button><button onclick="quiz(3,'${i}')"
+                class="px-2 py-1 rounded bg-white/10 hover:bg-white/15">${i}</button></div>
+            <div id="q3" class="mono text-[10px] mt-1"></div>
+          </div>
+        </div>
+      </div>
 
-<div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 mono text-[11px] text-white/50 leading-snug">
-<b class="text-white">핵심 암기:</b><br>
-Ref = 태그 자체 (getElementById)<br>
-Value = 태그에서 꺼낸 글자 (.value)<br>
-i = 숫자 순번 (JS 영역)<br>
-${i} = 백틱 안에서 숫자로 변환
-</div>
-</aside>
+      <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 mono text-[11px] text-white/50 leading-snug">
+        <b class="text-white">핵심 암기:</b><br>
+        Ref = 태그 자체 (getElementById)<br>
+        Value = 태그에서 꺼낸 글자 (.value)<br>
+        i = 숫자 순번 (JS 영역)<br>
+        ${i} = 백틱 안에서 숫자로 변환
+      </div>
+    </aside>
 
-</div>
+  </div>
 
-<script>
-let miniTodos = [];
-function testValue(){
-  const ref = document.getElementById('testInput');
-  const val = ref.value;
-  document.getElementById('refView').textContent = ref.outerHTML.slice(0,60)+'...';
-  document.getElementById('valueView').textContent = `"${val}"`;
-  document.getElementById('valBadge').textContent = `가져옴: ${val.length}글자`;
-  document.getElementById('valBadge').classList.add('pop');
-  setTimeout(()=>document.getElementById('valBadge').classList.remove('pop'),300);
-  document.getElementById('lastValue').textContent = val || '""';
-}
-function renderIPlay(){
-  const container = document.getElementById('iPlayground');
-  const result = document.getElementById('htmlResult');
-  let html = '';
-  let preview = '';
-  for(let i=0;i<3;i++){
-    html += `<div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><div>아이템 ${i}</div><button onclick="alert('삭제 i=${i}')" class="mono text-[10px] px-2 py-1 rounded bg-white/10">삭제 ${i}</button></div>`;
-    preview += `&lt;button onclick="deleteTodo(${i})"&gt; // ${i}는 진짜 숫자<br>`;
-    document.getElementById('lastI').textContent = i;
-  }
-  container.innerHTML = html;
-  result.innerHTML = preview + `<br><span class="text-white/40">// 만약 \${i} 없이 i만 쓰면 onclick="deleteTodo(i)" → 문자 i 그대로 들어가서 에러!</span>`;
-}
-function addMiniTodo(){
-  const input = document.getElementById('todoInput');
-  const value = input.value.trim();
-  if(!value) return;
-  miniTodos.push(value);
-  input.value='';
-  renderMini();
-}
-function deleteMiniTodo(i){
-  miniTodos.splice(i,1);
-  renderMini();
-}
-function renderMini(){
-  document.getElementById('miniList').innerHTML = miniTodos.map((t,i)=>`
+  <script>
+    let miniTodos = [];
+    function testValue() {
+      const ref = document.getElementById('testInput');
+      const val = ref.value;
+      document.getElementById('refView').textContent = ref.outerHTML.slice(0, 60) + '...';
+      document.getElementById('valueView').textContent = `"${val}"`;
+      document.getElementById('valBadge').textContent = `가져옴: ${val.length}글자`;
+      document.getElementById('valBadge').classList.add('pop');
+      setTimeout(() => document.getElementById('valBadge').classList.remove('pop'), 300);
+      document.getElementById('lastValue').textContent = val || '""';
+    }
+    function renderIPlay() {
+      const container = document.getElementById('iPlayground');
+      const result = document.getElementById('htmlResult');
+      let html = '';
+      let preview = '';
+      for (let i = 0; i < 3; i++) {
+        html += `<div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><div>아이템 ${i}</div><button onclick="alert('삭제 i=${i}')" class="mono text-[10px] px-2 py-1 rounded bg-white/10">삭제 ${i}</button></div>`;
+        preview += `&lt;button onclick="deleteTodo(${i})"&gt; // ${i}는 진짜 숫자<br>`;
+        document.getElementById('lastI').textContent = i;
+      }
+      container.innerHTML = html;
+      result.innerHTML = preview + `<br><span class="text-white/40">// 만약 \${i} 없이 i만 쓰면 onclick="deleteTodo(i)" → 문자 i 그대로 들어가서 에러!</span>`;
+    }
+    function addMiniTodo() {
+      const input = document.getElementById('todoInput');
+      const value = input.value.trim();
+      if (!value) return;
+      miniTodos.push(value);
+      input.value = '';
+      renderMini();
+    }
+    function deleteMiniTodo(i) {
+      miniTodos.splice(i, 1);
+      renderMini();
+    }
+    function renderMini() {
+      document.getElementById('miniList').innerHTML = miniTodos.map((t, i) => `
     <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/10">
       <div class="text-sm">${t} <span class="mono text-[10px] text-white/30">#${i}</span></div>
       <button onclick="deleteMiniTodo(${i})" class="mono text-[10px] px-2 py-1 rounded bg-red-500/20 text-red-300 border border-red-500/20">삭제 (${i})</button>
     </div>
   `).join('');
-  document.getElementById('todosJson').textContent = JSON.stringify(miniTodos, null, 2);
-}
-function quiz(q, ans){
-  const correct = {1:'value',2:'i',3:'${i}'};
-  const el = document.getElementById('q'+q);
-  if(ans===correct[q]){ el.textContent='✅ 정답!'; el.className='mono text-[10px] mt-1 text-emerald-300'; }
-  else{ el.textContent='❌ 다시 생각해봐 - 힌트: 왼쪽 설명 보기'; el.className='mono text-[10px] mt-1 text-red-300'; }
-}
-function resetAll(){ miniTodos=[]; renderMini(); renderIPlay(); document.getElementById('testInput').value=''; }
-renderIPlay(); renderMini();
-</script>
+      document.getElementById('todosJson').textContent = JSON.stringify(miniTodos, null, 2);
+    }
+    function quiz(q, ans) {
+      const correct = { 1: 'value', 2: 'i', 3: '${i}' };
+      const el = document.getElementById('q' + q);
+      if (ans === correct[q]) { el.textContent = '✅ 정답!'; el.className = 'mono text-[10px] mt-1 text-emerald-300'; }
+      else { el.textContent = '❌ 다시 생각해봐 - 힌트: 왼쪽 설명 보기'; el.className = 'mono text-[10px] mt-1 text-red-300'; }
+    }
+    function resetAll() { miniTodos = []; renderMini(); renderIPlay(); document.getElementById('testInput').value = ''; }
+    renderIPlay(); renderMini();
+  </script>
 </body>
+
 </html>
