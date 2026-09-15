@@ -11,8 +11,20 @@ pre{white-space:pre-wrap;word-break:break-all}
 </head>
 <body class="bg-[#08080a] text-white min-h-screen">
 <header class="sticky top-0 z-30 backdrop-blur-xl bg-[#08080a]/90 border-b border-white/10 px-6 py-3 flex justify-between items-center">
-<div class="flex items-center gap-3"><div class="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 grid place-items-center font-black">11</div><div><div class="font-black leading-none">BOOKSTORE CRUD LAB</div><div class="mono text-[10px] text-white/40">books 배열 + 좋아요 + 댓글 + LocalStorage</div></div></div>
-<div class="flex items-center gap-3"><div class="mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">데이터 기반 렌더링</div><button onclick="resetStorage()" class="mono text-[10px] px-2 py-1 rounded bg-red-500/20 text-red-300 border border-red-500/20">LocalStorage 초기화</button></div>
+<div class="flex items-center gap-3">
+<a href="./index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 hover:bg-white/[0.1] transition mono text-[11px] text-white/60 hover:text-white">
+<span>←</span> JS Lab
+</a>
+<div class="w-[1px] h-6 bg-white/10"></div>
+<div class="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 grid place-items-center font-black">11</div>
+<div><div class="font-black leading-none">BOOKSTORE CRUD LAB</div><div class="mono text-[10px] text-white/40">value vs i vs ${i} - JS Portal / 다크모드 지원</div></div>
+</div>
+<div class="flex items-center gap-2">
+<a href="../../index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition mono text-[11px] text-white/50 hover:text-white">
+🏠 Main Hub
+</a>
+<div class="mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">LAB 11</div>
+</div>
 </header>
 
 <div class="max-w-[1600px] mx-auto grid lg:grid-cols-[360px_1fr_380px] gap-0 min-h-[calc(100vh-56px)]">
@@ -93,6 +105,12 @@ function saveBooks(){
 <div class="max-w-[680px] mx-auto">
 <div class="mb-4 mono text-[11px] text-white/40">가운데 피드에서 직접 만져보세요 — 좋아요, 댓글, LocalStorage 유지됨</div>
 <div id="content" class="space-y-6"></div>
+
+<div class="mt-8 p-4 rounded-xl bg-white/[0.03] border border-white/10 flex justify-between items-center">
+<a href="./index.html" class="mono text-[12px] px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 transition">← JS 포털로 돌아가기</a>
+<a href="../../index.html" class="mono text-[12px] px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08]">메인 허브로</a>
+</div>
+
 </div>
 </main>
 
